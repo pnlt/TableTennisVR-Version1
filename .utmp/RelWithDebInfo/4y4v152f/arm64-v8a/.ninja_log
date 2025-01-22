@@ -1,0 +1,10 @@
+# ninja log v5
+11	1846	7591325106940865	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	df458eb5f4bc2f2a
+19	2139	7591325110465640	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	8ae2ab8290e3e057
+22	2300	7591325112031215	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	27fb4b2a55ba599b
+1	2408	7591325113401924	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	dbccf9d8fac84773
+16	2736	7591325116386432	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	a5a2d688db547efa
+14	2814	7591325117301341	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	d0a97b223cc1a32f
+8	2854	7591325117770344	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	a27dadabc242c944
+5	2913	7591325118279816	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	3ecc9195ba7afb71
+2913	3062	7591325119953082	D:/Developments/UNITY/Unity-Projects/VR-AR-XR-MR/TableTennisXRgame/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4y4v152f/obj/arm64-v8a/libgame.so	9c3328d9ce0e2b68
