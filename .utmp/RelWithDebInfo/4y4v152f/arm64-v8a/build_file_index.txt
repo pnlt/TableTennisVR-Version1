@@ -1,2 +1,0 @@
-D:\Developments\UNITY\Unity-Projects\VR-AR-XR-MR\TableTennisXRgame\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
-D:\Developments\UNITY\Unity-Projects\VR-AR-XR-MR\TableTennisXRgame\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt
