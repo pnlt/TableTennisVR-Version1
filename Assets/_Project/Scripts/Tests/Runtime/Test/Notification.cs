@@ -36,8 +36,12 @@ namespace _Project.Scripts.Tests.Runtime.Test
 
                 _checkpoints.ResetLineState();
                 GuideLine.CoverLines.Clear();
-                Debug.Log(GuideLine.CoverLines.Count);
                 _currentCoverLineIdx = 0;
+
+                foreach (var item in TestCheckpoint.listCheckUI)
+                {
+                    item.ChangeColor(Color.white);
+                }
             }
             catch (Exception e)
             {

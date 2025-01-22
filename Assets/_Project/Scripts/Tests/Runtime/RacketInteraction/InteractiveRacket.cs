@@ -53,7 +53,6 @@ public class InteractiveRacket : MonoBehaviour
         // If the collided game-object's layer-mask is same as checkpoint's layer-mask
         if (checkpointLayer == interactLayer)
         {
-            Debug.Log("ngu dien");
             var splineCheckPoint = collider.GetComponent<SplineCheckpoints>();
             // See if that checkpoint is in turn or not
             if (splineCheckPoint.IsInTurn)

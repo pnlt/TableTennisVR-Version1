@@ -18,5 +18,9 @@ public class SuccessfulNotification : Notification
     public override void ResetLine()
     {
         base.ResetLine();
+        foreach (var item in TestCheckpoint.listCheckUI)
+        {
+            item.ChangeColor(Color.white);
+        }
     }
 }
