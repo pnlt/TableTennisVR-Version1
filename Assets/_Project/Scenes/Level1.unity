@@ -1244,7 +1244,7 @@ MonoBehaviour:
     - {x: 0.5003421, y: 0.03995863, z: 0.08198477, w: 0.8610109}
     - {x: -0.78649545, y: 0.0039434703, z: 0.05694794, w: -0.6149525}
     - {x: 0.20550786, y: -0.047713395, z: 0.01189911, w: 0.9774193}
-  _ghostProvider: {fileID: 0}
+  _ghostProvider: {fileID: 11400000, guid: ba24f6f783d84ef4f8ff075364e1283c, type: 2}
   _handGhostProvider: {fileID: 11400000, guid: 9b9df4f150839de48af887d742aabf53, type: 2}
   _ovrOffsetMode: 1
 --- !u!1 &292592895
@@ -6788,6 +6788,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 257216eb6e3b561429989b0879b94a36, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2104662588}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 257216eb6e3b561429989b0879b94a36, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2104662590}
   m_SourcePrefab: {fileID: 100100000, guid: 257216eb6e3b561429989b0879b94a36, type: 3}
 --- !u!4 &2104662584 stripped
 Transform:
@@ -6904,6 +6907,25 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _sleepFrames: 5
+--- !u!114 &2104662590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104662585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c972e88a02c1de1479e72c629c25ce19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localCorePos: {x: 0, y: 0, z: 0}
+  radius: 0.2
+  racketVelocity: {x: 0, y: 0, z: 0}
+  interactLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  checkPoints: {fileID: 361804817}
 --- !u!1 &2106493959
 GameObject:
   m_ObjectHideFlags: 0
