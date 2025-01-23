@@ -99,3 +99,4 @@ RiderScriptEditorPersistedState.asset
 Packages/packages-lock.json
 RuntimeActionBindings.json
 TempAssembly.dll
+.utmp/

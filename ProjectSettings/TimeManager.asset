@@ -4,7 +4,7 @@
 TimeManager:
   m_ObjectHideFlags: 0
   Fixed Timestep:
-    m_Count: 1960000
+    m_Count: 1176000
     m_Rate:
       m_Denominator: 1
       m_Numerator: 141120000

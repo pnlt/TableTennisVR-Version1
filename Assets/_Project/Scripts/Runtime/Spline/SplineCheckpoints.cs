@@ -38,4 +38,10 @@ public class SplineCheckpoints : MonoBehaviour
             countDownTime = 3;
         }
     }
+
+    public void ResetCountDown()
+    {
+        IsCountDown = false;
+        countDownTime = 3;
+    }
 }
