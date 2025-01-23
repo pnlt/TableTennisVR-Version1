@@ -62,7 +62,7 @@ public class InteractiveRacket : MonoBehaviour
                 _passedCheckPoints++;
                 checkPointManager.NextTurn();
             }
-            else    // FAILURE
+            else if (!splineCheckPoint.IsInTurn)    // FAILURE
             {
                 var failedLine = new FailedNotification(checkPoints);
                 _passedCheckPoints = 0;

@@ -8,7 +8,6 @@ public class Checkpoints : MonoBehaviour
     private List<SplineCheckpoints> checkpoints = new List<SplineCheckpoints>();
     private int _currentCheckpoint;
     private int _numberOfCheckpoints = 0;
-
     
     public int NumberOfCheckpoints => _numberOfCheckpoints;
     public List<SplineCheckpoints> ListCheckpoints => checkpoints;
@@ -32,8 +31,8 @@ public class Checkpoints : MonoBehaviour
     public void NextTurn()
     {
         TestCheckpoint.listCheckUI[_currentCheckpoint].ChangeColor(Color.green);
-        checkpoints[_currentCheckpoint].IsInTurn = false;
         checkpoints[_currentCheckpoint].ResetCountDown();
+        checkpoints[_currentCheckpoint].IsInTurn = false;
         _currentCheckpoint++;
         
         // If number of checkpoints the racket has passed is equal the total of checkpoint => reset state
