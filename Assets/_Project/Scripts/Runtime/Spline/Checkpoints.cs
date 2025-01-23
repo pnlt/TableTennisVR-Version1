@@ -10,6 +10,7 @@ public class Checkpoints : MonoBehaviour
     private int _numberOfCheckpoints = 0;
     
     public int NumberOfCheckpoints => _numberOfCheckpoints;
+    public List<SplineCheckpoints> ListCheckpoints => checkpoints;
     
     private void Awake()
     {
@@ -29,6 +30,8 @@ public class Checkpoints : MonoBehaviour
     /// </summary>
     public void NextTurn()
     {
+        TestCheckpoint.listCheckUI[_currentCheckpoint].ChangeColor(Color.green);
+        checkpoints[_currentCheckpoint].ResetCountDown();
         checkpoints[_currentCheckpoint].IsInTurn = false;
         _currentCheckpoint++;
         
@@ -50,7 +53,7 @@ public class Checkpoints : MonoBehaviour
     public void ResetLineState()
     {
         _currentCheckpoint = 0;
-        checkpoints[_currentCheckpoint].IsInTurn = true;
+        checkpoints[0].IsInTurn = true;
 
         for (int i = 1; i < checkpoints.Count; i++)
         {
