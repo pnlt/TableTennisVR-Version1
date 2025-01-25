@@ -17,6 +17,7 @@ public class InteractiveRacket : MonoBehaviour
     
     [Header("References")]
     public Checkpoints checkPoints;
+    public PaddleControl control;
 
     private int _passedCheckPoints;
     private int numCheckPoints = 0;
@@ -24,6 +25,7 @@ public class InteractiveRacket : MonoBehaviour
     private void Start()
     {
         numCheckPoints = checkPoints.NumberOfCheckpoints;       // Grant number of available checkpoints
+        control = GetComponent<PaddleControl>();
     }
 
     private void OnCollisionEnter(Collision collider)
@@ -37,7 +39,8 @@ public class InteractiveRacket : MonoBehaviour
             // If collided object is spin wheel
             if (collider.gameObject.TryGetComponent<PhysicalWheel>(out var wheel))
             {
-                wheel.RbRotationalMotion(racketVelocity, contact.point);    
+                var force = control.ForceApplied();
+                wheel.RbRotationalMotion(force, contact.point);    
             }
         }
     }
@@ -54,7 +57,6 @@ public class InteractiveRacket : MonoBehaviour
         // If the collided game-object's layer-mask is same as checkpoint's layer-mask
         if (checkpointLayer == interactLayer)
         {
-            Debug.Log("Interactive checkpoint");
             var splineCheckPoint = collider.GetComponent<SplineCheckpoints>();
             // See if that checkpoint is in turn or not
             if (splineCheckPoint.IsInTurn)

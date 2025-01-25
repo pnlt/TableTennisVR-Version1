@@ -1,232 +1,74 @@
-﻿using UnityEngine;
-using System;
+﻿using Oculus.Interaction.HandGrab;
+using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-public class PaddleControl : MonoBehaviour
-{
-    [Header("References")]
-    [SerializeField] private GameObject paddle;
-    [SerializeField] private GameObject avatar;
-    [SerializeField] private GameObject player;
-    [SerializeField] private GameObject spinWheel;
-
-    [Header("Spin Wheel Settings")]
-    [SerializeField] private float spinForceMultiplier = 5f;
-    [SerializeField] private float maxSpinVelocity = 1000f;
-    [SerializeField] private float spinDecayRate = 0.98f;
-    [SerializeField] private float wheelDetectionRadius = 0.5f;
-
-    [Header("Paddle Settings")]
-    [SerializeField] private float handOffset = 0.1f;
-    [SerializeField] private float paddleRotationAngle = 45f;
-    [SerializeField] private float triggerThreshold = 0.2f;
-    [SerializeField] private Vector3 handColliderSize = new Vector3(0.2f, 0.2f, 0.2f);
-
-    // Cached references
-    private GameObject rightHand;
-    private GameObject leftHand;
-    private Rigidbody paddleRigidbody;
-    private Rigidbody wheelRigidbody;
-    private GameObject activeHand;
-    
-    // State tracking
-    private bool isHoldingPaddleRight;
-    private bool isHoldingPaddleLeft;
-    private bool isInitialized;
-    private Vector3 lastPaddlePosition;
-    private float currentSpinVelocity;
-
-    private void Awake()
+    public class PaddleControl : MonoBehaviour
     {
-        InitializeComponents();
-    }
+        [SerializeField]
+        private Rigidbody _rigidbody; // Rigidbody of the paddle
 
-    private void InitializeComponents()
-    {
-        if (!paddle) paddle = gameObject;
-        paddleRigidbody = paddle.GetComponent<Rigidbody>();
-        
-        if (spinWheel != null)
+        private const float _velocityThreshold = 0.01f; // Minimum velocity to consider
+        private const float _velocityMultiplier = 5f;  // Multiplier to amplify the velocity
+        private Vector3 _previousVelocity;
+        private Vector3 acceleration;
+
+        private void FixedUpdate()
         {
-            wheelRigidbody = spinWheel.GetComponent<Rigidbody>();
-            if (wheelRigidbody)
+            TrackControllerVelocity();
+        }
+
+        private void TrackControllerVelocity()
+        {
+            // Declare the controller that will be actively used (left or right)
+            OVRInput.Controller activeController = OVRInput.Controller.None;
+
+            // Check if the left or right controller is connected
+            if (OVRInput.IsControllerConnected(OVRInput.Controller.LTouch))
             {
-                wheelRigidbody.maxAngularVelocity = maxSpinVelocity;
+                activeController = OVRInput.Controller.LTouch;
+            }
+            else if (OVRInput.IsControllerConnected(OVRInput.Controller.RTouch))
+            {
+                activeController = OVRInput.Controller.RTouch;
+            }
+
+            // If a controller is connected
+            if (activeController != OVRInput.Controller.None)
+            {
+                // Get the velocity of the active controller
+                Vector3 controllerVelocity = OVRInput.GetLocalControllerVelocity(activeController);
+
+                // Apply a multiplier to increase the effect of the velocity if it's too low
+                controllerVelocity *= _velocityMultiplier;
+
+                // Only apply the velocity if it's above the threshold
+                if (controllerVelocity.magnitude > _velocityThreshold)
+                {
+                    _rigidbody.linearVelocity = controllerVelocity;
+                    Debug.Log($"Paddle Velocity Applied: {_rigidbody.linearVelocity}");
+                    AccelerationCalculation(_rigidbody.linearVelocity);
+                }
+                else
+                {
+                    _rigidbody.linearVelocity = Vector3.zero;
+                }
+            }
+            else
+            {
+                // Reset the velocity if no controller is connected
+                _rigidbody.linearVelocity = Vector3.zero;
             }
         }
 
-        isInitialized = false;
-        isHoldingPaddleRight = false;
-        isHoldingPaddleLeft = false;
-        lastPaddlePosition = paddle.transform.position;
-    }
-
-    private void FixedUpdate()
-    {
-        if (!isInitialized)
+        public Vector3 ForceApplied()
         {
-            InitializeHandColliders();
+            return acceleration * _rigidbody.mass;
         }
 
-        UpdatePaddleState();
-        UpdateSpinWheelPhysics();
-    }
-
-    private void InitializeHandColliders()
-    {
-        if (avatar == null || avatar.transform.childCount <= 1) return;
-
-        leftHand = avatar.transform.GetChild(0).gameObject;
-        rightHand = avatar.transform.GetChild(1).gameObject;
-
-        SetupHandCollider(leftHand, "LeftHand");
-        SetupHandCollider(rightHand, "RightHand");
-
-        isInitialized = true;
-    }
-
-    private void SetupHandCollider(GameObject hand, string handName)
-    {
-        if (!hand.TryGetComponent<BoxCollider>(out var collider))
+        private void AccelerationCalculation(Vector3 paddleVelocity)
         {
-            collider = hand.AddComponent<BoxCollider>();
-            collider.isTrigger = true;
-            collider.size = handColliderSize;
-        }
-        hand.name = handName;
-    }
-
-    private void UpdatePaddleState()
-    {
-        if (!avatar || avatar.transform.childCount <= 1) return;
-
-        avatar.transform.position = player.transform.position;
-
-        // Handle right hand input
-        if (OVRInput.Get(OVRInput.RawAxis1D.RHandTrigger) > triggerThreshold && activeHand?.name == "RightHand")
-        {
-            HandlePaddleHolding(rightHand, OVRInput.Controller.RTouch, true);
-        }
-        // Handle left hand input
-        else if (OVRInput.Get(OVRInput.RawAxis1D.LHandTrigger) > triggerThreshold && activeHand?.name == "LeftHand")
-        {
-            HandlePaddleHolding(leftHand, OVRInput.Controller.LTouch, false);
-        }
-        else
-        {
-            ReleasePaddle();
-        }
-
-        // Update last position for velocity calculation
-        lastPaddlePosition = paddle.transform.position;
-    }
-
-    private void HandlePaddleHolding(GameObject hand, OVRInput.Controller controller, bool isRightHand)
-    {
-        paddleRigidbody.isKinematic = true;
-        paddleRigidbody.useGravity = false;
-
-        // Update position and rotation
-        Vector3 targetPosition = hand.transform.position + paddle.transform.forward * -handOffset;
-        paddleRigidbody.MovePosition(targetPosition);
-        paddleRigidbody.MoveRotation(hand.transform.rotation);
-        
-        // Apply paddle rotation offset
-        paddle.transform.Rotate(new Vector3(-paddleRotationAngle, 0, 0));
-        
-        // Update velocity from controller
-        paddleRigidbody.linearVelocity = OVRInput.GetLocalControllerVelocity(controller);
-
-        // Update holding state
-        isHoldingPaddleRight = isRightHand;
-        isHoldingPaddleLeft = !isRightHand;
-
-        // Check for wheel interaction
-        CheckWheelInteraction();
-    }
-
-    private void CheckWheelInteraction()
-    {
-        if (wheelRigidbody != null && 
-            Vector3.Distance(spinWheel.transform.position, paddle.transform.position) < wheelDetectionRadius)
-        {
-            ProcessWheelInteraction();
-        }
-    }
-
-    private void ProcessWheelInteraction()
-    {
-        // Calculate paddle velocity
-        Vector3 paddleVelocity = (paddle.transform.position - lastPaddlePosition) / Time.fixedDeltaTime;
-        
-        // Calculate impact point and direction
-        Vector3 hitPoint = paddle.transform.position;
-        Vector3 wheelCenter = spinWheel.transform.position;
-        Vector3 radiusVector = hitPoint - wheelCenter;
-        
-        // Calculate tangential force
-        Vector3 tangentialDirection = Vector3.Cross(spinWheel.transform.up, radiusVector).normalized;
-        float tangentialSpeed = Vector3.Dot(paddleVelocity, tangentialDirection);
-        
-        // Apply spin force
-        float spinForce = tangentialSpeed * spinForceMultiplier;
-        wheelRigidbody.AddTorque(spinWheel.transform.up * spinForce, ForceMode.Impulse);
-        
-        // Optional: Add haptic feedback
-        if (isHoldingPaddleRight)
-        {
-            OVRInput.SetControllerVibration(1f, 1f, OVRInput.Controller.RTouch);
-        }
-        else if (isHoldingPaddleLeft)
-        {
-            OVRInput.SetControllerVibration(1f, 1f, OVRInput.Controller.LTouch);
-        }
-    }
-
-    private void UpdateSpinWheelPhysics()
-    {
-        if (wheelRigidbody != null)
-        {
-            // Apply spin decay
-            wheelRigidbody.angularVelocity *= spinDecayRate;
+            var deltaVelocity = paddleVelocity - _previousVelocity;
+            acceleration = deltaVelocity / Time.fixedUnscaledDeltaTime;
             
-            // Clamp maximum spin velocity
-            if (wheelRigidbody.angularVelocity.magnitude > maxSpinVelocity)
-            {
-                wheelRigidbody.angularVelocity = wheelRigidbody.angularVelocity.normalized * maxSpinVelocity;
-            }
+            _previousVelocity = paddleVelocity;
         }
     }
-
-    private void ReleasePaddle()
-    {
-        paddleRigidbody.isKinematic = false;
-        paddleRigidbody.useGravity = true;
-        isHoldingPaddleRight = false;
-        isHoldingPaddleLeft = false;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (activeHand == null)
-        {
-            if (other.name == "RightHand") activeHand = rightHand;
-            else if (other.name == "LeftHand") activeHand = leftHand;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if ((other.name == "RightHand" && activeHand?.name == "RightHand") ||
-            (other.name == "LeftHand" && activeHand?.name == "LeftHand"))
-        {
-            activeHand = null;
-        }
-    }
-
-    // Public properties for external access
-    public bool IsHoldingPaddleRight => isHoldingPaddleRight;
-    public bool IsHoldingPaddleLeft => isHoldingPaddleLeft;
-    public bool IsPaddleHeld => isHoldingPaddleRight || isHoldingPaddleLeft;
-    public float CurrentSpinVelocity => wheelRigidbody ? wheelRigidbody.angularVelocity.magnitude : 0f;
-}
