@@ -13,6 +13,7 @@ public class InteractiveRacket : MonoBehaviour
     
     [Header("Detection layer")]
     public LayerMask interactLayer;
+    public LayerMask wheelLayer;
     
     [Header("References")]
     public Checkpoints checkPoints;
@@ -27,8 +28,8 @@ public class InteractiveRacket : MonoBehaviour
 
     private void OnCollisionEnter(Collision collider)
     {
-        var wheelLayer = 1 << collider.gameObject.layer;
-        if (interactLayer == wheelLayer)
+        var spinWheelLayer = 1 << collider.gameObject.layer;
+        if (wheelLayer == spinWheelLayer)
         {
             // Get contact point => collision point
             var contact = collider.contacts[0];
