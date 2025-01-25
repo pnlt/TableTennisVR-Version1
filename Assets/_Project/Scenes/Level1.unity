@@ -1163,7 +1163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 262285180}
   - component: {fileID: 262285181}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: HandGrabPose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1987,7 +1987,7 @@ GameObject:
   m_Component:
   - component: {fileID: 569650404}
   - component: {fileID: 569650405}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: HandGrabInteractable_mirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4525,7 +4525,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1220458954}
   - component: {fileID: 1220458953}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: HandGrabPose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4946,7 +4946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2203098682971652429, guid: a7a283c538f526040acd7c29703dad02, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9187867933911550432, guid: a7a283c538f526040acd7c29703dad02, type: 3}
       propertyPath: _rigidbody
@@ -6006,7 +6006,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1747091731}
   - component: {fileID: 1747091732}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: HandleCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6065,7 +6065,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1774478840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7013,18 +7013,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 975037995}
     m_Modifications:
-    - target: {fileID: 265927976022954667, guid: f58073a4a60b04445b9a2dc15ffbcfc5, type: 3}
-      propertyPath: m_Constraints
-      value: 62
-      objectReference: {fileID: 0}
-    - target: {fileID: 265927976022954667, guid: f58073a4a60b04445b9a2dc15ffbcfc5, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 265927976022954667, guid: f58073a4a60b04445b9a2dc15ffbcfc5, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1776455026211266799, guid: f58073a4a60b04445b9a2dc15ffbcfc5, type: 3}
       propertyPath: m_Name
       value: SpinWheel
@@ -7069,14 +7057,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -2.519
       objectReference: {fileID: 0}
-    - target: {fileID: 3509769894380956836, guid: f58073a4a60b04445b9a2dc15ffbcfc5, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3509769894380956836, guid: f58073a4a60b04445b9a2dc15ffbcfc5, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: 0976dff03a43b504dae971677e788a3e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
