@@ -25,7 +25,7 @@ namespace _Project.Scripts.Tests.Runtime.RacketInteraction
                 
             // Add Force at specific position. Unity has a built-in function to
             // determine for us the angular acceleration from the torque calculated from given force
-            _rigidbody.AddForceAtPosition(force, touchedPoint, ForceMode.Force);
+            _rigidbody.AddTorque(force, ForceMode.Force);
             
             // Calculate the angular velocity to use another built-in function in Unity to 
             // adjust the rational rotational speed
