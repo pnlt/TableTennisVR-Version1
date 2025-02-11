@@ -6560,6 +6560,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 434468828384310189, guid: 6041724fa8334b2469a80e4983aaeeaa, type: 3}
+      propertyPath: m_Mass
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 434468828384310189, guid: 6041724fa8334b2469a80e4983aaeeaa, type: 3}
+      propertyPath: m_Constraints
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3553049303131824389, guid: 6041724fa8334b2469a80e4983aaeeaa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6598,6 +6606,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3553049303131824389, guid: 6041724fa8334b2469a80e4983aaeeaa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4387083232112099654, guid: 6041724fa8334b2469a80e4983aaeeaa, type: 3}
+      propertyPath: _kinematicWhileSelected
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6814103362362002725, guid: 6041724fa8334b2469a80e4983aaeeaa, type: 3}
@@ -6770,6 +6782,10 @@ PrefabInstance:
     - target: {fileID: 4689300013321542841, guid: ce6fb8e9fbe0197448c607f15c50099e, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689300013321542841, guid: ce6fb8e9fbe0197448c607f15c50099e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
