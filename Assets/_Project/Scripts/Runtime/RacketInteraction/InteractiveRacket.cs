@@ -28,16 +28,16 @@ public class InteractiveRacket : MonoBehaviour
         control = GetComponent<PaddleControl>();
     }
 
-    private void OnCollisionEnter(Collision collider)
+    private void OnCollisionEnter(Collision collision)
     {
-        var spinWheelLayer = 1 << collider.gameObject.layer;
+        var spinWheelLayer = 1 << collision.gameObject.layer;
         if (wheelLayer == spinWheelLayer)
         {
             // Get contact point => collision point
-            var contact = collider.contacts[0];
+            var contact = collision.contacts[0];
             
             // If collided object is spin wheel
-            if (collider.gameObject.TryGetComponent<PhysicalWheel>(out var wheel))
+            if (collision.gameObject.TryGetComponent<PhysicalWheel>(out var wheel))
             {
                 var force = control.ForceApplied();
                 wheel.RbRotationalMotion(force, contact.point);    
