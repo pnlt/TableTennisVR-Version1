@@ -3289,7 +3289,6 @@ GameObject:
   - component: {fileID: 852286853}
   - component: {fileID: 852286852}
   - component: {fileID: 852286851}
-  - component: {fileID: 852286850}
   m_Layer: 7
   m_Name: PingPongPaddle (1)
   m_TagString: Untagged
@@ -3305,28 +3304,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 852286848}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3381972, y: -0.1563974, z: 0.2816308, w: 0.88422096}
-  m_LocalPosition: {x: 0.005, y: 1.037, z: 1.179}
+  m_LocalRotation: {x: -0.58938587, y: -0.6694925, z: 0.14567745, w: 0.42799795}
+  m_LocalPosition: {x: -0.146, y: 1.044, z: 1.229}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2124085835}
   - {fileID: 1120653041}
   m_Father: {fileID: 8911253}
-  m_LocalEulerAnglesHint: {x: 43.328, y: -6.796, z: 32.632}
---- !u!114 &852286850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 852286848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e7015f1f42770a4a9b939362b23af36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 852286851}
+  m_LocalEulerAnglesHint: {x: -18.0262, y: -128.441, z: 73.9563}
 --- !u!54 &852286851
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3349,7 +3335,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
@@ -4430,7 +4416,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1120653041
 Transform:
   m_ObjectHideFlags: 0
@@ -6306,7 +6292,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2124085835
 Transform:
   m_ObjectHideFlags: 0
@@ -6559,7 +6545,6 @@ GameObject:
   - component: {fileID: 6731247549460562143}
   - component: {fileID: 4216321477066431648}
   - component: {fileID: 9058392695652428936}
-  - component: {fileID: 4667076626037135868}
   m_Layer: 7
   m_Name: PingPongPaddle
   m_TagString: Untagged
@@ -6651,15 +6636,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1998075761682571736}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.43029737, y: 0.2478868, z: -0.44045427, w: 0.747928}
-  m_LocalPosition: {x: -0.34353167, y: 0.49914175, z: 0.33541125}
+  m_LocalRotation: {x: -0.64802706, y: -0.57079786, z: 0.086747274, w: 0.496715}
+  m_LocalPosition: {x: -0.262, y: 0.626, z: 0.656}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 205874771933448557}
   - {fileID: 3140318016229829789}
   m_Father: {fileID: 8911253}
-  m_LocalEulerAnglesHint: {x: 59.545, y: -0.933, z: -61.521}
+  m_LocalEulerAnglesHint: {x: -33.007, y: -125.88, z: 80.038}
 --- !u!65 &3654406308992282767
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6774,9 +6759,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3424702627088562244, guid: ce6fb8e9fbe0197448c607f15c50099e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4689300013321542841, guid: ce6fb8e9fbe0197448c607f15c50099e, type: 3}
       propertyPath: m_Name
       value: 12h_4h
+      objectReference: {fileID: 0}
+    - target: {fileID: 4689300013321542841, guid: ce6fb8e9fbe0197448c607f15c50099e, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6786,19 +6779,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7821229447095581253}
   m_SourcePrefab: {fileID: 100100000, guid: ce6fb8e9fbe0197448c607f15c50099e, type: 3}
---- !u!114 &4667076626037135868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1998075761682571736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e7015f1f42770a4a9b939362b23af36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 9058392695652428936}
 --- !u!1 &5368116791640555050
 GameObject:
   m_ObjectHideFlags: 0
@@ -6815,7 +6795,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6098457613152701917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2595256692968854022, guid: f58073a4a60b04445b9a2dc15ffbcfc5, type: 3}
@@ -6845,7 +6825,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7821229447095581249 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 78946717471859393, guid: ce6fb8e9fbe0197448c607f15c50099e, type: 3}
@@ -6922,7 +6902,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3509769894380956836, guid: f58073a4a60b04445b9a2dc15ffbcfc5, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9137927467675087607, guid: f58073a4a60b04445b9a2dc15ffbcfc5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.010559029
+      objectReference: {fileID: 0}
+    - target: {fileID: 9137927467675087607, guid: f58073a4a60b04445b9a2dc15ffbcfc5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.99994427
+      objectReference: {fileID: 0}
+    - target: {fileID: 9137927467675087607, guid: f58073a4a60b04445b9a2dc15ffbcfc5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 1.21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6959,7 +6951,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
