@@ -21,4 +21,9 @@ public class DetectOverlapping : MonoBehaviour
         }
         
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        Debug.Log(other.gameObject.name);
+    }
 }
