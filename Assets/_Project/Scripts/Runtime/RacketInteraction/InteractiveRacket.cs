@@ -30,7 +30,7 @@ public class InteractiveRacket : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        var spinWheelLayer = 1 << collision.gameObject.layer;
+        /*var spinWheelLayer = 1 << collision.gameObject.layer;
         if (wheelLayer == spinWheelLayer)
         {
             // Get contact point => collision point
@@ -42,7 +42,7 @@ public class InteractiveRacket : MonoBehaviour
                 var force = control.ForceApplied();
                 wheel.RbRotationalMotion(force, contact.point);    
             }
-        }
+        }*/
     }
 
     /// <summary>
@@ -55,7 +55,7 @@ public class InteractiveRacket : MonoBehaviour
         var checkpointLayer = 1 << collider.gameObject.layer;
 
         // If the collided game-object's layer-mask is same as checkpoint's layer-mask
-        /*if (checkpointLayer == interactLayer)
+        if (checkpointLayer == interactLayer)
         {
             var splineCheckPoint = collider.GetComponent<SplineCheckpoints>();
             // See if that checkpoint is in turn or not
@@ -72,9 +72,9 @@ public class InteractiveRacket : MonoBehaviour
                 _passedCheckPoints = 0;
                 failedLine.ResetLine();
             }
-        }*/
+        }
         
-        //AttainPerfectLine();
+        AttainPerfectLine();
     }
 
     /// <summary>
