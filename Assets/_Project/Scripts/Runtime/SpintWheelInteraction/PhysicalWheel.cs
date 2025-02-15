@@ -7,6 +7,8 @@ namespace _Project.Scripts.Tests.Runtime.RacketInteraction
     {
         [Header("References")]
         [SerializeField] private Rigidbody _rigidbody;
+        
+        private float rotationMultiplier = 1f;
 
         private void Awake()
         {
@@ -32,6 +34,21 @@ namespace _Project.Scripts.Tests.Runtime.RacketInteraction
             //_rigidbody.angularVelocity = Vector3.zero;
         }
 
+        public void ClaudeRotation(Vector3 force, Vector3 touchedPoint)
+        {
+            Vector3 directionFromCenter = (touchedPoint - _rigidbody.worldCenterOfMass).normalized;
+        
+            // Calculate torque direction using cross product
+            float torqueDirection = Mathf.Sign(Vector3.Cross(directionFromCenter, force.normalized).z);
+        
+            // Calculate torque magnitude based on force magnitude
+            float torqueMagnitude = force.magnitude * rotationMultiplier;
+        
+            // Apply torque around the Z axis
+            Vector3 torque = Vector3.forward * torqueMagnitude * torqueDirection;
+            _rigidbody.AddTorque(torque, ForceMode.Impulse);
+        }
+        
         #region AngularAcceleration
 
         /// <summary>

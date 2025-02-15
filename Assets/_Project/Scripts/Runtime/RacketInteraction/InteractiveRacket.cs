@@ -26,7 +26,7 @@ public class InteractiveRacket : MonoBehaviour
     private void Start()
     {
         numCheckPoints = checkPoints.NumberOfCheckpoints;       // Grant number of available checkpoints
-        //control = GetComponent<PaddleControl>();
+        control = GetComponent<PaddleControl>();
     }
 
     #region Wheel Interaction
@@ -36,13 +36,14 @@ public class InteractiveRacket : MonoBehaviour
         var spinWheelLayer = 1 << collision.gameObject.layer;
         if (wheelLayer == spinWheelLayer)
         {
-            var contact = collision.contacts[0];                    // Get contact point => collision point when colliding
-            
             // If collided object is spin wheel
             if (collision.gameObject.TryGetComponent<PhysicalWheel>(out var wheel))
             {
+                var contact = collision.contacts[0];                    // Get contact point => collision point when colliding
+                UIManager.Instance.SetValueDebug(contact.point.ToString());
+                
                 var force = control.ForceApplied();
-                wheel.RbRotationalMotion(force, contact.point);    
+                wheel.ClaudeRotation(force, contact.point);    
             }
             
             // If collided object is on right area
