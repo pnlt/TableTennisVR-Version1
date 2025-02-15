@@ -1,5 +1,6 @@
 using _Project.Scripts.Tests.Runtime.RacketInteraction;
 using _Project.Scripts.Tests.Runtime.Test;
+using Dorkbots.XR.Runtime.Spline;
 using UnityEngine;
 
 public class InteractiveRacket : MonoBehaviour
@@ -28,13 +29,14 @@ public class InteractiveRacket : MonoBehaviour
         //control = GetComponent<PaddleControl>();
     }
 
+    #region Wheel Interaction
+
     private void OnCollisionEnter(Collision collision)
     {
-        /*var spinWheelLayer = 1 << collision.gameObject.layer;
+        var spinWheelLayer = 1 << collision.gameObject.layer;
         if (wheelLayer == spinWheelLayer)
         {
-            // Get contact point => collision point
-            var contact = collision.contacts[0];
+            var contact = collision.contacts[0];                    // Get contact point => collision point when colliding
             
             // If collided object is spin wheel
             if (collision.gameObject.TryGetComponent<PhysicalWheel>(out var wheel))
@@ -42,9 +44,19 @@ public class InteractiveRacket : MonoBehaviour
                 var force = control.ForceApplied();
                 wheel.RbRotationalMotion(force, contact.point);    
             }
-        }*/
+            
+            // If collided object is on right area
+            if (collision.gameObject.TryGetComponent<ScoreInSpinWheel>(out var spinWheel))
+            {
+                spinWheel.CalculateScore();
+            }
+        }
     }
 
+    #endregion
+    
+    #region Line Interaction
+    
     /// <summary>
     /// Handling the detection with the checkpoint to check perfect line
     /// </summary>
@@ -91,4 +103,6 @@ public class InteractiveRacket : MonoBehaviour
             successfulLine.ResetLine();
         }
     }
+    
+    #endregion
 }

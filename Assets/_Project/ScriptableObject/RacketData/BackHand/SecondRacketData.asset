@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 676ebbb2a67136a40af406c3a3c5e373, type: 3}
-  m_Name: RacketData
+  m_Name: SecondRacketData
   m_EditorClassIdentifier: 
-  racketCoordinatePos: {x: 0.8521957, y: 0.8734589, z: 1.221055}
-  racketCoordinateRotation: {x: 326.2249, y: 148.1564, z: 289.32}
+  racketCoordinatePos: {x: 0.777467, y: 0.9656471, z: 1.43952}
+  racketCoordinateRotation: {x: 337.1884, y: 160.4044, z: 280.3828}

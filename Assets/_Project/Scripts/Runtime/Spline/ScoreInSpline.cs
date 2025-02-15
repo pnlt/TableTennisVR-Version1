@@ -14,7 +14,7 @@ namespace Dorkbots.XR.Runtime.Spline
 
         public override void CalculateScore()
         {
-            
+            Debug.Log("score line calculated");
         }
     }
 }

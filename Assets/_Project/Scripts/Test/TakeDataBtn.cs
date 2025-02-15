@@ -7,7 +7,6 @@ public class TakeDataBtn : MonoBehaviour
     
     public void OnClicked()
     {
-        racketCoordinate.racketCoordinatePos = RacketTransform.position;    
         racketCoordinate.racketCoordinateRotation = RacketTransform.eulerAngles;
     }
 }

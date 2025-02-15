@@ -1,29 +1,25 @@
 using System;
+using _Project.Scripts.Tests.Runtime.RacketInteraction;
 using UnityEngine;
 
 public class DetectOverlapping : MonoBehaviour
 {
-    public MeshFilter meshFilter;
-    public Transform transparentObject;
-    public MeshFilter transparentMeshFilter;
-
-    private void Awake()
+    public LayerMask wheelLayer;
+    private void OnCollisionEnter(Collision collision)
     {
-        meshFilter = GetComponent<MeshFilter>();
-        transparentMeshFilter = transparentObject.GetComponent<MeshFilter>();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        foreach (var vertex in meshFilter.mesh.vertices)
+        var spinWheelLayer = 1 << collision.gameObject.layer;
+        if (wheelLayer == spinWheelLayer)
         {
-            Vector3 p = transform.TransformPoint(vertex);
+            // Get contact point => collision point
+            var contact = collision.contacts[0];
+            
+            // If collided object is spin wheel
+            if (collision.gameObject.TryGetComponent<PhysicalWheel>(out var wheel))
+            {
+                var force = new Vector3();
+                wheel.RbRotationalMotion(force, contact.point);    
+            }
         }
-        
-    }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        Debug.Log(other.gameObject.name);
     }
 }

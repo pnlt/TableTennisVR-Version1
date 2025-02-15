@@ -12,6 +12,7 @@ public class ScoreInSpinWheel : ScoreCalculation
 
     public override void CalculateScore()
     {
+        Debug.Log("Score wheel Calculated");
         gameManager.PlayerScore += gainedScore;
     }
 }

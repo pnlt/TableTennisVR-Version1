@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676ebbb2a67136a40af406c3a3c5e373, type: 3}
   m_Name: SecondRacketDataBackSpin
   m_EditorClassIdentifier: 
-  racketCoordinatePos: {x: 0, y: 0, z: 0}
-  racketCoordinateRotation: {x: 0, y: 0, z: 0}
+  racketCoordinateRotation: {x: 22.32326, y: 335.3766, z: 308.31}
