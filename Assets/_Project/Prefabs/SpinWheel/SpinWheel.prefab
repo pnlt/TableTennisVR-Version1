@@ -288,7 +288,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8091034737955160084}
-  - {fileID: 8033344777543379101}
   - {fileID: 7012599377710847280}
   - {fileID: 7470688411079275108}
   - {fileID: 1684181237249017459}
@@ -318,7 +317,7 @@ GameObject:
   - component: {fileID: 9016037143608750008}
   - component: {fileID: 6093590609819250896}
   m_Layer: 8
-  m_Name: Circle.156
+  m_Name: CoreAxis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -332,12 +331,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2016260278831491248}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.50000006}
-  m_LocalPosition: {x: 27.74171, y: 62.857513, z: 22.10546}
-  m_LocalScale: {x: 1.5393082, y: 1.5393082, z: 1.5393082}
+  m_LocalRotation: {x: -0.5, y: -0.50000006, z: 0.5, w: -0.5}
+  m_LocalPosition: {x: -0.00035501368, y: -0.015453205, z: -1.0989329}
+  m_LocalScale: {x: 0.37948415, y: 0.37948418, z: 0.3794842}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2595256692968854022}
+  m_Father: {fileID: 9137927467675087607}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &9016037143608750008
 MeshRenderer:
@@ -603,6 +602,7 @@ Transform:
   - {fileID: 864342196506684608}
   - {fileID: 7199698372166136168}
   - {fileID: 7957924254448447092}
+  - {fileID: 8033344777543379101}
   m_Father: {fileID: 2595256692968854022}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!23 &1712644457968126093
