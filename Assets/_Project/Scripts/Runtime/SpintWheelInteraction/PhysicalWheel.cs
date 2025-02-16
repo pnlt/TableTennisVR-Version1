@@ -9,11 +9,21 @@ namespace _Project.Scripts.Tests.Runtime.RacketInteraction
         [SerializeField] private Rigidbody _rigidbody;
         
         private float rotationMultiplier = 1f;
+        private Collider childCollider;
+        private Collider parentCollider;
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+            childCollider = GetComponentInChildren<Collider>();
+            parentCollider = GetComponent<Collider>();
         }
+
+        private void Start()
+        {
+            Physics.IgnoreCollision(parentCollider, childCollider);
+        }
+
 
         /// <summary>
         /// This function will calculate the rotational motion based on the built-in physics in Unity - Rigidbody

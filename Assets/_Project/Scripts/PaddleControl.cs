@@ -1,4 +1,5 @@
-﻿using Oculus.Interaction.HandGrab;
+﻿
+using Oculus.Interaction.HandGrab;
 using UnityEngine;
 
     public class PaddleControl : MonoBehaviour
@@ -44,7 +45,6 @@ using UnityEngine;
                 if (controllerVelocity.magnitude > _velocityThreshold)
                 {
                     _rigidbody.linearVelocity = controllerVelocity;
-                    Debug.Log($"Paddle Velocity Applied: {_rigidbody.linearVelocity}");
                     AccelerationCalculation(_rigidbody.linearVelocity);
                 }
                 else

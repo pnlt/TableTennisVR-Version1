@@ -40,17 +40,11 @@ public class InteractiveRacket : MonoBehaviour
             if (collision.gameObject.TryGetComponent<PhysicalWheel>(out var wheel))
             {
                 var contact = collision.contacts[0];                    // Get contact point => collision point when colliding
-                UIManager.Instance.SetValueDebug(contact.point.ToString());
                 
                 var force = control.ForceApplied();
                 wheel.ClaudeRotation(force, contact.point);    
             }
             
-            // If collided object is on right area
-            if (collision.gameObject.TryGetComponent<ScoreInSpinWheel>(out var spinWheel))
-            {
-                spinWheel.CalculateScore();
-            }
         }
     }
 
@@ -85,6 +79,13 @@ public class InteractiveRacket : MonoBehaviour
                 _passedCheckPoints = 0;
                 failedLine.ResetLine();
             }
+        }
+        
+        // If collided object is on right area
+        if (collider.gameObject.TryGetComponent<ScoreInSpinWheel>(out var spinWheel))
+        {
+            spinWheel.CalculateScore();
+            UIManager.Instance.SetValueDebug("Scored");
         }
         
         AttainPerfectLine();
