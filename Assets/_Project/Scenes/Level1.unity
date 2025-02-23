@@ -6856,6 +6856,22 @@ PrefabInstance:
       propertyPath: checkPoints
       value: 
       objectReference: {fileID: 361804817}
+    - target: {fileID: 3785819078674933165, guid: 00ce827a882297f4aa47cb60f8ac3e05, type: 3}
+      propertyPath: _isKinematicGrab
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7004958894990863296, guid: 00ce827a882297f4aa47cb60f8ac3e05, type: 3}
+      propertyPath: _throwWhenUnselected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7004958894990863296, guid: 00ce827a882297f4aa47cb60f8ac3e05, type: 3}
+      propertyPath: _kinematicWhileSelected
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7389011536891296122, guid: 00ce827a882297f4aa47cb60f8ac3e05, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8764942963227952078, guid: 00ce827a882297f4aa47cb60f8ac3e05, type: 3}
       propertyPath: m_Name
       value: PingPongPaddle

@@ -1,9 +1,11 @@
 ﻿
+using Oculus.Interaction;
 using Oculus.Interaction.HandGrab;
 using UnityEngine;
 
     public class PaddleControl : MonoBehaviour
     {
+        [SerializeField] private Grabbable _grabbable;
         [SerializeField]
         private Rigidbody _rigidbody; // Rigidbody of the paddle
 
@@ -12,52 +14,41 @@ using UnityEngine;
         private Vector3 _previousVelocity;
         private Vector3 acceleration;
 
-        private void FixedUpdate()
-        {
-            TrackControllerVelocity();
-        }
+      private void FixedUpdate()
+      {
+          if (_grabbable != null && _grabbable.SelectingPointsCount > 0)
+          {
+              TrackControllerVelocity();
+          }
+          else
+          {
+              _rigidbody.linearVelocity = Vector3.zero;
+              _previousVelocity = Vector3.zero;
+          }
+      }
 
-        private void TrackControllerVelocity()
-        {
-            // Declare the controller that will be actively used (left or right)
-            OVRInput.Controller activeController = OVRInput.Controller.None;
+     private void TrackControllerVelocity()
+     {
+         OVRInput.Controller activeController = OVRInput.GetActiveController();
+         if (activeController == OVRInput.Controller.None)
+         {
+             _rigidbody.linearVelocity = Vector3.zero;
+             return;
+         }
 
-            // Check if the left or right controller is connected
-            if (OVRInput.IsControllerConnected(OVRInput.Controller.LTouch))
-            {
-                activeController = OVRInput.Controller.LTouch;
-            }
-            else if (OVRInput.IsControllerConnected(OVRInput.Controller.RTouch))
-            {
-                activeController = OVRInput.Controller.RTouch;
-            }
+         Vector3 controllerVelocity = OVRInput.GetLocalControllerVelocity(activeController);
+         controllerVelocity *= _velocityMultiplier;
 
-            // If a controller is connected
-            if (activeController != OVRInput.Controller.None)
-            {
-                // Get the velocity of the active controller
-                Vector3 controllerVelocity = OVRInput.GetLocalControllerVelocity(activeController);
-
-                // Apply a multiplier to increase the effect of the velocity if it's too low
-                controllerVelocity *= _velocityMultiplier;
-
-                // Only apply the velocity if it's above the threshold
-                if (controllerVelocity.magnitude > _velocityThreshold)
-                {
-                    _rigidbody.linearVelocity = controllerVelocity;
-                    AccelerationCalculation(_rigidbody.linearVelocity);
-                }
-                else
-                {
-                    _rigidbody.linearVelocity = Vector3.zero;
-                }
-            }
-            else
-            {
-                // Reset the velocity if no controller is connected
-                _rigidbody.linearVelocity = Vector3.zero;
-            }
-        }
+         if (controllerVelocity.magnitude > _velocityThreshold)
+         {
+             _rigidbody.linearVelocity = controllerVelocity;
+             AccelerationCalculation(_rigidbody.linearVelocity);
+         }
+         else
+         {
+             _rigidbody.linearVelocity = Vector3.zero;
+         }
+     }
 
         public Vector3 ForceApplied()
         {
