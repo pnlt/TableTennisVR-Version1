@@ -3723,6 +3723,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1321723913920922459, guid: 00ce827a882297f4aa47cb60f8ac3e05, type: 3}
+      propertyPath: _grabbable
+      value: 
+      objectReference: {fileID: 753870219}
+    - target: {fileID: 1321723913920922459, guid: 00ce827a882297f4aa47cb60f8ac3e05, type: 3}
       propertyPath: _positionDamper
       value: 10
       objectReference: {fileID: 0}
@@ -3808,6 +3812,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8957277491093564588, guid: 00ce827a882297f4aa47cb60f8ac3e05, type: 3}
   m_PrefabInstance: {fileID: 753870217}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &753870219 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7004958894990863296, guid: 00ce827a882297f4aa47cb60f8ac3e05, type: 3}
+  m_PrefabInstance: {fileID: 753870217}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &769144775
 PrefabInstance:
   m_ObjectHideFlags: 0
