@@ -16,24 +16,24 @@ public class GuideLine : MonoBehaviour
 
     private void Update()
     {
-        Invoke(nameof(ResetCoverLines), 1);
+        if (checkpoints.ListCheckpoints[0].IsInTurn)
+        {
+            Invoke(nameof(ResetCoverLines), 1);
+        }
     }
 
     private async void ResetCoverLines()
     {
         try
         {
-            if (checkpoints.ListCheckpoints[0].IsInTurn)
+            if (_coverLines.Count > 0)
             {
-                if (_coverLines.Count > 0)
+                for (int i = 0;
+                     i < _coverLines.Count;
+                     i++)
                 {
-                    for (int i = 0;
-                         i < _coverLines.Count;
-                         i++)
-                    {
-                        _coverLines[i].EnablingObject(flag: true);
-                        await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
-                    }
+                    _coverLines[i].EnablingObject(flag: true);
+                    await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
                 }
             }
         }
