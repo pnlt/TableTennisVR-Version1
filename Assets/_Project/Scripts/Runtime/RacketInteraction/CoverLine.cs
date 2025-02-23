@@ -16,7 +16,7 @@ public class CoverLine : MonoBehaviour
             // Case 1: Player completed perfect Line => The cover line will be reset gradually after disabling 
             EnablingObject(false);
             
-            //Case 2: Player is moving racket following the line then moving accidentally in a wrong direction
+            //Case 2: Player is moving racket following the line then accidentally  moving in a wrong direction
             // => Show a notification about player's fouls
             // => Reset all the disabled cover line player have already gone through
         }

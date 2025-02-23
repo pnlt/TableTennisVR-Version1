@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Dorkbots.XR.Runtime.Spline
 {
-    public class ScoreInSpline : ScoreCalculation
+    public class ScoreInSpline : BaseScoreCalculation
     {
         private GameManager gameManager;
 
@@ -12,9 +12,9 @@ namespace Dorkbots.XR.Runtime.Spline
             gameManager = GameManager.Instance;
         }
 
-        public override void CalculateScore()
+        protected override void ResetCondition()
         {
-            Debug.Log("score line calculated");
+            correctCondition = false;
         }
     }
 }

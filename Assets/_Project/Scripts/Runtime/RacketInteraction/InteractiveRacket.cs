@@ -5,13 +5,6 @@ using UnityEngine;
 
 public class InteractiveRacket : MonoBehaviour
 {
-    [Header("Interactive stat")]
-    public Vector3 localCorePos;
-    [Range(.2f, 10)]
-    public float radius;
-
-    public Vector3 racketVelocity;
-    
     [Header("Detection layer")]
     public LayerMask interactLayer;
     public LayerMask wheelLayer;
@@ -60,16 +53,16 @@ public class InteractiveRacket : MonoBehaviour
     {
         // Get layer-mask of the collided game-object
         var checkpointLayer = 1 << collider.gameObject.layer;
+        ScoreInSpline spline = null;
 
         // If the collided game-object's layer-mask is same as checkpoint's layer-mask
         if (checkpointLayer == interactLayer)
         {
             var splineCheckPoint = collider.GetComponent<SplineCheckpoints>();
-            // See if that checkpoint is in turn or not
-            if (splineCheckPoint.IsInTurn)
+            spline = collider.gameObject.transform.root.GetComponent<ScoreInSpline>();
+            if (splineCheckPoint.IsInTurn)      //SUCCESS
             {
                 var checkPointManager = collider.GetComponentInParent<Checkpoints>();
-                // Move to next checkpoint's turn
                 _passedCheckPoints++;
                 checkPointManager.NextTurn();
             }
@@ -77,6 +70,7 @@ public class InteractiveRacket : MonoBehaviour
             {
                 var failedLine = new FailedNotification(checkPoints);
                 _passedCheckPoints = 0;
+                spline.SetCondition(false);
                 failedLine.ResetLine();
             }
         }
@@ -84,26 +78,34 @@ public class InteractiveRacket : MonoBehaviour
         // If collided object is on right area
         if (collider.gameObject.TryGetComponent<ScoreInSpinWheel>(out var spinWheel))
         {
-            spinWheel.CalculateScore();
-            UIManager.Instance.SetValueDebug("Scored");
+            spinWheel.SetCondition(true);
         }
         
-        AttainPerfectLine();
+        AttainPerfectLine(spline);
     }
 
     /// <summary>
     /// This func will handle logical events after
     /// player move the racket adhering to the line successfully
     /// </summary>
-    private void AttainPerfectLine()
+    private void AttainPerfectLine(ScoreInSpline spline)
     {
         // If crossing over all the checkpoints in the line = perfect line     //SUCCESS
         if (_passedCheckPoints == numCheckPoints)
         {
-            _passedCheckPoints = 0;
-            var successfulLine = new SuccessfulNotification(checkPoints);
-            successfulLine.ResetLine();
+            if (spline)
+            {
+                _passedCheckPoints = 0;
+                var successfulLine = new SuccessfulNotification(checkPoints);
+                spline.SetCondition(true);
+                successfulLine.ResetLine();
+            }
+            else
+            {
+                Debug.Log("Error, can not find out spline object");
+            }
         }
+        
     }
     
     #endregion

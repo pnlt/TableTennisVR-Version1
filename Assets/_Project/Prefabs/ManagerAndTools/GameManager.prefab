@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faa3f735c40cfba4fb2499bd6f1d09c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intervalTime: 0.2
-  checkpoints: {fileID: 0}
+  score: 10
+  clip: {fileID: 8300000, guid: f802fed42fb30894b89024a484367386, type: 3}

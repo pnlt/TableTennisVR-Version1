@@ -1,37 +1,39 @@
 using System;
-using _Project.Scripts.Tests.Runtime.RacketInteraction;
 using UnityEngine;
 
 public class DetectOverlapping : MonoBehaviour
 {
-    public LayerMask wheelLayer;
-    public Rigidbody cubeRb;
+    public Transform target;
+    public MeshFilter meshFilter;
 
-    private void Start()
+    private void Update()
     {
-        //cubeRb.rotation = Quaternion.Euler(new Vector3(0f, 45f, 0f));
-    }
-
-    public void Update()
-    {
-        //transform.rotation = cubeRb.rotation;
-        Debug.Log(cubeRb.rotation.eulerAngles);
-    }
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        var spinWheelLayer = 1 << collision.gameObject.layer;
-        if (wheelLayer == spinWheelLayer)
+        if (Overlapping(this.transform, target, meshFilter))
         {
-            // Get contact point => collision point
-            var contact = collision.contacts[0];
-            
-            // If collided object is spin wheel
-            if (collision.gameObject.TryGetComponent<PhysicalWheel>(out var wheel))
+            Debug.Log(this.transform.name + " is overlapping.");
+        }
+        else
+        {
+            Debug.Log(this.transform.name + " is not overlapping.");
+        }
+    }
+
+    private bool Overlapping(Transform original, Transform target, MeshFilter meshFilter)
+    {
+        Mesh mesh = meshFilter.sharedMesh;
+        Vector3[] vertices = mesh.vertices;
+        
+        foreach (Vector3 vertex in vertices)
+        {
+            var worldVertexA = original.TransformPoint(vertex);
+            var worldVertexB = target.TransformPoint(vertex);
+
+            if (Vector3.Distance(worldVertexA, worldVertexB) > 0.15f)
             {
-                var force = new Vector3();
-                wheel.RbRotationalMotion(force, contact.point);    
+                return false;
             }
         }
-
-    }*/
+        
+        return true;
+    }
 }

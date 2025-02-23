@@ -1,8 +1,4 @@
-using System;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Serialization;
-using VContainer;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -17,5 +13,4 @@ public class GameManager : Singleton<GameManager>
             else Debug.LogWarning("Score out of range");
         }
     }
-    
 }

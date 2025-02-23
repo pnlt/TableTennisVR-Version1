@@ -24,6 +24,7 @@ public class Checkpoints : MonoBehaviour
     {
         checkpoints[0].IsInTurn = true;     // The first checkpoint is always in turn
     }
+    
 
     /// <summary>
     /// This func has a duty on moving to next checkpoint's turn

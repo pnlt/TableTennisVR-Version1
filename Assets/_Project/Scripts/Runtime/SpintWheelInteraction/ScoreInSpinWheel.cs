@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-public class ScoreInSpinWheel : ScoreCalculation
+public class ScoreInSpinWheel : BaseScoreCalculation
 {
     private GameManager gameManager;
 
@@ -10,10 +9,9 @@ public class ScoreInSpinWheel : ScoreCalculation
         gameManager = GameManager.Instance;
     }
 
-    public override void CalculateScore()
+    protected override void ResetCondition()
     {
-        Debug.Log("Score wheel Calculated");
-        gameManager.PlayerScore += gainedScore;
+        correctCondition = false;
     }
 }
 
