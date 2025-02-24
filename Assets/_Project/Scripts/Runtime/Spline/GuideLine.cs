@@ -16,10 +16,10 @@ public class GuideLine : MonoBehaviour
 
     private void Update()
     {
-        if (checkpoints.ListCheckpoints[0].IsInTurn)
-        {
-            Invoke(nameof(ResetCoverLines), 1);
-        }
+        //if (checkpoints.ListCheckpoints[0].IsInTurn)
+        //{
+            //Invoke(nameof(ResetCoverLines), 1);
+        //}
     }
 
     private async void ResetCoverLines()

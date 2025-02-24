@@ -45,6 +45,7 @@ namespace _Project.Scripts.Tests.Runtime.Test
         // Reset the line as its initial state
         private async void ResetInitialLine()
         {
+            Debug.Log("Reset Initial Line");
             try
             {
                 for (_currentCoverLineIdx = 0;
