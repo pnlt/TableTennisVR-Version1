@@ -16,39 +16,21 @@ using UnityEngine;
 
       private void FixedUpdate()
       {
-          if (_grabbable != null && _grabbable.SelectingPointsCount > 0)
-          {
-              TrackControllerVelocity();
-          }
-          else
-          {
-              _rigidbody.linearVelocity = Vector3.zero;
-              _previousVelocity = Vector3.zero;
-          }
+                 if (_grabbable != null && _grabbable.SelectingPointsCount > 0)
+                 {
+                     OVRInput.Controller activeController = OVRInput.GetActiveController();
+                     if (activeController != OVRInput.Controller.None)
+                     {
+                         Vector3 controllerVelocity = OVRInput.GetLocalControllerVelocity(activeController);
+                         controllerVelocity *= _velocityMultiplier;
+         
+                         if (controllerVelocity.magnitude > _velocityThreshold)
+                         {
+                             AccelerationCalculation(controllerVelocity);
+                         }
+                     }
+                 }
       }
-
-     private void TrackControllerVelocity()
-     {
-         OVRInput.Controller activeController = OVRInput.GetActiveController();
-         if (activeController == OVRInput.Controller.None)
-         {
-             _rigidbody.linearVelocity = Vector3.zero;
-             return;
-         }
-
-         Vector3 controllerVelocity = OVRInput.GetLocalControllerVelocity(activeController);
-         controllerVelocity *= _velocityMultiplier;
-
-         if (controllerVelocity.magnitude > _velocityThreshold)
-         {
-             _rigidbody.linearVelocity = controllerVelocity;
-             AccelerationCalculation(_rigidbody.linearVelocity);
-         }
-         else
-         {
-             _rigidbody.linearVelocity = Vector3.zero;
-         }
-     }
 
         public Vector3 ForceApplied()
         {
