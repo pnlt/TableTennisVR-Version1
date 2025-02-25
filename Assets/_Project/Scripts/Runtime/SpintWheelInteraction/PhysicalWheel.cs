@@ -11,6 +11,15 @@ namespace _Project.Scripts.Tests.Runtime.RacketInteraction
         private float rotationMultiplier = 1f;
         private Collider childCollider;
         private Collider parentCollider;
+        
+        // Tweak these for your desired spin effect
+        [Header("Spin Audio Settings")]
+        [SerializeField] private float maxSpinSpeed = 20f;
+        [SerializeField] private float minPitch = 0.5f;
+        [SerializeField] private float maxPitch = 2.0f;
+        [SerializeField] private float minVolume = 0f;
+        [SerializeField] private float maxVolume = 1f;
+        [SerializeField] private float spinThreshold = 0.1f; // If speed < this, consider it "stopped"
 
         private void Awake()
         {
@@ -22,6 +31,40 @@ namespace _Project.Scripts.Tests.Runtime.RacketInteraction
         private void Start()
         {
             Physics.IgnoreCollision(parentCollider, childCollider);
+        }
+        private void Update()
+        {
+            // 1) Get how fast the wheel is spinning
+            float spinSpeed = _rigidbody.angularVelocity.magnitude;
+
+            // 2) Decide if we should be playing the loop
+            if (spinSpeed > spinThreshold)
+            {
+                // If not already playing, start it
+                if (!AudioManager.instance.IsPlaying("SpinWheelLoop"))
+                {
+                    AudioManager.instance.Play("SpinWheelLoop");
+                }
+
+                // 3) Calculate normalized speed [0..1]
+                float t = spinSpeed / maxSpinSpeed;
+                t = Mathf.Clamp01(t);
+
+                // 4) Interpolate pitch & volume
+                float newPitch = Mathf.Lerp(minPitch, maxPitch, t);
+                float newVolume = Mathf.Lerp(minVolume, maxVolume, t);
+
+                // 5) Update the sound in real time
+                AudioManager.instance.UpdateSound("SpinWheelLoop", newVolume, newPitch);
+            }
+            else
+            {
+                // If spinning slower than threshold, stop the loop
+                if (AudioManager.instance.IsPlaying("SpinWheelLoop"))
+                {
+                    AudioManager.instance.Stop("SpinWheelLoop");
+                }
+            }
         }
 
 

@@ -36,6 +36,7 @@ public class InteractiveRacket : MonoBehaviour
                 
                 var force = control.ForceApplied();
                 wheel.ClaudeRotation(force, contact.point);    
+                
             }
             
         }

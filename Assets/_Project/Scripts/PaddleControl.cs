@@ -13,6 +13,7 @@ using UnityEngine;
         private const float _velocityMultiplier = 5f;  // Multiplier to amplify the velocity
         private Vector3 _previousVelocity;
         private Vector3 acceleration;
+        
 
       private void FixedUpdate()
       {
@@ -28,6 +29,7 @@ using UnityEngine;
                          {
                              AccelerationCalculation(controllerVelocity);
                          }
+                         
                      }
                  }
       }
