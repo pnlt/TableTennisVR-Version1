@@ -4,23 +4,35 @@ using UnityEngine;
 public class CoverLine : MonoBehaviour
 {
     public LayerMask racketLayer;
+    public static event Action<bool> OnLineCompleted; // Event for perfect line completion
+    public static event Action OnLineMissed; // Event for wrong direction
 
     private void OnTriggerEnter(Collider collider)
     {
         var targetLayer = 1 << collider.gameObject.layer;
         if (targetLayer == racketLayer.value)
         {
-            GuideLine.AddElement(this);
-            // When player add force to racket following line, there are two cases: 
-            
-            // Case 1: Player completed perfect Line => The cover line will be reset gradually after disabling 
+            // Only add to the list if it's not already in there
+            if (!GuideLine.CoverLines.Contains(this))
+            {
+                GuideLine.AddElement(this);
+            }
+        
+            // Disable the line when hit
             EnablingObject(false);
-            
-            //Case 2: Player is moving racket following the line then accidentally  moving in a wrong direction
-            // => Show a notification about player's fouls
-            // => Reset all the disabled cover line player have already gone through
+        
+            // Notify the game system about this hit
+            // This will be important for triggering reset logic
+            GuideLine.NotifyLineHit(this);
         }
     }
+    private bool CheckIfPerfectLine()
+    {
+        // Implement logic to determine if this hit was in the correct sequence
+        // This depends on your game's specific rules
+        return true; // Placeholder
+    }
+
 
     public void EnablingObject(bool flag)
     {

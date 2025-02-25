@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
@@ -16,6 +17,7 @@ namespace _Project.Scripts.Tests.Runtime.Test
         {
             _checkpoints = checkpoints;
         }
+        // Handle perfect line completion
 
         private int _currentCoverLineIdx;
 
@@ -26,42 +28,48 @@ namespace _Project.Scripts.Tests.Runtime.Test
         {
             EventBus<FinalScoreEvent>.Raise(new FinalScoreEvent());
 
-            ResetInitialLine();
             StatsReset();
         }
 
         private void StatsReset()
         {
             _checkpoints.ResetLineState();
-            GuideLine.RemoveAllElements();
+    
+            // Store the current cover lines before clearing
+            var linesToReset = new List<CoverLine>(GuideLine.CoverLines);
+    
+            // Reset stats
             _currentCoverLineIdx = 0;
-
+    
             foreach (var item in TestCheckpoint.listCheckUI)
             {
                 item.ChangeColor(Color.white);
             }
+    
+            // Clear the static list
+            GuideLine.RemoveAllElements();
+    
+            // Reset each line manually
+            ResetLines(linesToReset);
         }
-
-        // Reset the line as its initial state
-        private async void ResetInitialLine()
+        private async void ResetLines(List<CoverLine> linesToReset)
         {
             try
             {
-                Debug.Log("Reset Initial Line");
-                var coverLine = GuideLine.CoverLines;
-                for (_currentCoverLineIdx = 0;
-                     _currentCoverLineIdx < coverLine.Count;
-                     _currentCoverLineIdx++)
+                foreach (var line in linesToReset)
                 {
-                    coverLine[_currentCoverLineIdx].EnablingObject(flag: true);
-                    await UniTask.Delay(TimeSpan.FromSeconds(_intervalTime));
+                    if (line != null)
+                    {
+                        line.EnablingObject(true);
+                        await UniTask.Delay(TimeSpan.FromSeconds(_intervalTime));
+                    }
                 }
             }
             catch (Exception e)
             {
-                // ignored
                 Debug.LogException(e);
             }
         }
+
     }
 }
