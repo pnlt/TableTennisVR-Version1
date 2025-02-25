@@ -27,13 +27,13 @@ namespace _Project.Scripts.Tests.Runtime.Test
             EventBus<FinalScoreEvent>.Raise(new FinalScoreEvent());
 
             ResetInitialLine();
-            VisualReset();
+            StatsReset();
         }
 
-        private void VisualReset()
+        private void StatsReset()
         {
             _checkpoints.ResetLineState();
-            GuideLine.CoverLines.Clear();
+            GuideLine.RemoveAllElements();
             _currentCoverLineIdx = 0;
 
             foreach (var item in TestCheckpoint.listCheckUI)
@@ -45,14 +45,15 @@ namespace _Project.Scripts.Tests.Runtime.Test
         // Reset the line as its initial state
         private async void ResetInitialLine()
         {
-            Debug.Log("Reset Initial Line");
             try
             {
+                Debug.Log("Reset Initial Line");
+                var coverLine = GuideLine.CoverLines;
                 for (_currentCoverLineIdx = 0;
-                     _currentCoverLineIdx < GuideLine.CoverLines.Count;
+                     _currentCoverLineIdx < coverLine.Count;
                      _currentCoverLineIdx++)
                 {
-                    GuideLine.CoverLines[_currentCoverLineIdx].EnablingObject(flag: true);
+                    coverLine[_currentCoverLineIdx].EnablingObject(flag: true);
                     await UniTask.Delay(TimeSpan.FromSeconds(_intervalTime));
                 }
             }

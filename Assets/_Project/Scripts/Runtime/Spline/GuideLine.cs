@@ -14,6 +14,11 @@ public class GuideLine : MonoBehaviour
         _coverLines.Add(coverLine);
     }
 
+    public static void RemoveAllElements()
+    {
+        _coverLines.Clear();
+    }
+
     private void Update()
     {
         //if (checkpoints.ListCheckpoints[0].IsInTurn)
