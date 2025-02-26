@@ -4,8 +4,6 @@ using UnityEngine;
 public class CoverLine : MonoBehaviour
 {
     public LayerMask racketLayer;
-    public static event Action<bool> OnLineCompleted; // Event for perfect line completion
-    public static event Action OnLineMissed; // Event for wrong direction
 
     private void OnTriggerEnter(Collider collider)
     {
@@ -25,12 +23,6 @@ public class CoverLine : MonoBehaviour
             // This will be important for triggering reset logic
             GuideLine.NotifyLineHit(this);
         }
-    }
-    private bool CheckIfPerfectLine()
-    {
-        // Implement logic to determine if this hit was in the correct sequence
-        // This depends on your game's specific rules
-        return true; // Placeholder
     }
 
 

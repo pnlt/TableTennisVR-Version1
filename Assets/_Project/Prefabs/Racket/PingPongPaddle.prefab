@@ -445,7 +445,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1301666643952001794, guid: 49544f7c35ed0ea438c0a8d5336dca23, type: 3}
+  - {fileID: -2813467912831258332, guid: 4ce0edec38d01304cbdcf2b047b3e6a3, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -584,9 +584,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c972e88a02c1de1479e72c629c25ce19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localCorePos: {x: 0, y: 0, z: 0}
-  radius: 0.2
-  racketVelocity: {x: 10, y: 20, z: 10}
   interactLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -607,6 +604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e7015f1f42770a4a9b939362b23af36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _grabbable: {fileID: 0}
   _rigidbody: {fileID: 5520309195374323843}
 --- !u!114 &3785819078674933165
 MonoBehaviour:

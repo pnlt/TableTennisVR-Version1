@@ -1,4 +1,7 @@
 ﻿
+using System;
+using _Project.Scripts.Runtime.Enum;
+using Dorkbots.XR.Runtime;
 using Oculus.Interaction;
 using Oculus.Interaction.HandGrab;
 using UnityEngine;
@@ -13,9 +16,17 @@ using UnityEngine;
         private const float _velocityMultiplier = 5f;  
         private Vector3 _previousVelocity;
         private Vector3 acceleration;
-        
+        private Vector3 controllerVelocity;
 
-      private void FixedUpdate()
+        private void Update()
+        {
+            if (controllerVelocity.magnitude > 0)
+            {
+                PlaySFXEvent.Invoke(new PlaySFXEventData(SoundTypes.SwingSound));
+            }
+        }
+
+        private void FixedUpdate()
       {
           if (_grabbable != null && _grabbable.SelectingPointsCount > 0)
           {
@@ -31,8 +42,9 @@ using UnityEngine;
               return;
           }
 
-          Vector3 controllerVelocity = OVRInput.GetLocalControllerVelocity(activeController);
+          controllerVelocity = OVRInput.GetLocalControllerVelocity(activeController);
           controllerVelocity *= _velocityMultiplier;
+          UIManager.Instance.SetValueDebug(controllerVelocity.ToString());
 
           if (controllerVelocity.magnitude > _velocityThreshold)
           {

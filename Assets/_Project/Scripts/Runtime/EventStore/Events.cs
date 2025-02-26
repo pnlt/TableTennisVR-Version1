@@ -1,3 +1,4 @@
+using _Project.Scripts.Runtime.Enum;
 using UnityEngine;
 using VadimskyiLab.Events;
 
@@ -9,9 +10,9 @@ namespace Dorkbots.XR.Runtime
 
     public readonly struct PlayMusicEventData
     {
-        public readonly AudioType audioType;
+        public readonly SoundTypes audioType;
 
-        public PlayMusicEventData(AudioType audioType)
+        public PlayMusicEventData(SoundTypes audioType)
         {
             this.audioType = audioType;
         }
@@ -22,10 +23,10 @@ namespace Dorkbots.XR.Runtime
 
     public readonly struct PlaySFXEventData
     {
-        public readonly AudioType audioType;
+        public readonly SoundTypes audioType;
         public readonly Vector3 position;
 
-        public PlaySFXEventData(AudioType audioType, Vector3 position = default(Vector3))
+        public PlaySFXEventData(SoundTypes audioType, Vector3 position = default(Vector3))
         {
             this.audioType = audioType;
             this.position = position;
