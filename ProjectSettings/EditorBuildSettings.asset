@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Project/Scenes/Level1_PNISWORKING.unity
     guid: 8e08daf512474ac4b965dea738a6a666
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Project/Scenes/Level1_PN.unity
     guid: 5285c4a9794c6814da523dad8348a162
   m_configObjects:
