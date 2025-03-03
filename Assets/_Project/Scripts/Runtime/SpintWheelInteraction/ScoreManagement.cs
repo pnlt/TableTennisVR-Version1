@@ -54,7 +54,7 @@ public class ScoreManagement : MonoBehaviour
     {
         // Plus Score
         gameManager.PlayerScore += 1;
-        UIManager.Instance.SetValueDebug(gameManager.PlayerScore.ToString());
+        UIManager.Instance.SetValueDebug(gameManager.PlayerScore.ToString() + " scored");
         
         // Play successful sound
         
