@@ -8,6 +8,6 @@ public class UIManager : Singleton<UIManager>
 
     public void SetValueDebug(string value)
     {
-        valueDebug.text = value;
+        valueDebug.text += " " + value;
     }
 }

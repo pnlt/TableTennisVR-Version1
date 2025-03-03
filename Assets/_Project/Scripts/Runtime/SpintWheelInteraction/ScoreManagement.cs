@@ -52,10 +52,11 @@ public class ScoreManagement : MonoBehaviour
     
     private void ScoreSuccessfully()
     {
-        UIManager.Instance.SetValueDebug("Score Successfully");
-        // Play successful sound
-        
         // Plus Score
+        gameManager.PlayerScore += 1;
+        UIManager.Instance.SetValueDebug(gameManager.PlayerScore.ToString());
+        
+        // Play successful sound
         
         Reset();
     }

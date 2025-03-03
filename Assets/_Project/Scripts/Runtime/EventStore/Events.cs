@@ -33,6 +33,17 @@ namespace Dorkbots.XR.Runtime
         }
     }
     
-    public class ResetConditionEvent : EventBase<ResetConditionEvent>
-    {}
+    public class ResetConditionEvent : EventBase<ResetConditionEvent> {}
+    public class LineAttainmentEvent : EventBase<LineAttainmentEvent, LineDataEvent> {}
+
+    public class LineDataEvent
+    {
+        public SplineCheckpoints checkpoint;
+
+        public LineDataEvent(SplineCheckpoints checkpoint)
+        {
+            this.checkpoint = checkpoint;
+        }
+    }
+    
 }

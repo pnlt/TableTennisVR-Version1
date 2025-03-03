@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private float score;
+    [SerializeField] private float coin;
 
     public float PlayerScore
     {

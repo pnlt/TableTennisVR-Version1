@@ -1,4 +1,3 @@
-using System;
 using Dorkbots.XR.Runtime;
 using UnityEngine;
 
