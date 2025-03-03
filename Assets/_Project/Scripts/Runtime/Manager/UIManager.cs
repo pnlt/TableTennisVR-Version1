@@ -10,4 +10,9 @@ public class UIManager : Singleton<UIManager>
     {
         valueDebug.text += " " + value;
     }
+
+    public void DeleteDebug()
+    {
+        valueDebug.text = "";
+    }
 }

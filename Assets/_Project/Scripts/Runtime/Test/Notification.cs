@@ -26,6 +26,7 @@ namespace _Project.Scripts.Tests.Runtime.Test
         /// </summary>
         public virtual void ResetLine()
         {
+            UIManager.Instance.DeleteDebug();
             EventBus<FinalScoreEvent>.Raise(new FinalScoreEvent());
 
             StatsReset();
