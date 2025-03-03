@@ -1,6 +1,7 @@
 ﻿
 using System;
 using _Project.Scripts.Runtime.Enum;
+using AudioSystem;
 using Dorkbots.XR.Runtime;
 using Oculus.Interaction;
 using Oculus.Interaction.HandGrab;
@@ -17,23 +18,51 @@ using UnityEngine;
         private Vector3 _previousVelocity;
         private Vector3 acceleration;
         private Vector3 controllerVelocity;
+        
+        [SerializeField] SoundData soundData;
 
-        private void Update()
-        {
-            if (controllerVelocity.magnitude > 0)
-            {
-                PlaySFXEvent.Invoke(new PlaySFXEventData(SoundTypes.SwingSound));
-            }
-        }
+        private bool _wasAboveThresholdLastFrame;
+        private bool _wasGrabbingLastFrame;
+
 
         private void FixedUpdate()
       {
-          if (_grabbable != null && _grabbable.SelectingPointsCount > 0)
+          bool isGrabbing = _grabbable != null && _grabbable.SelectingPointsCount > 0;
+
+          if (isGrabbing)
           {
               TrackControllerVelocity();
+              float speed = controllerVelocity.magnitude;
+              bool isAboveThreshold = speed > _velocityThreshold;
+
+              // Only play if:
+              // 1) We are currently above threshold
+              // 2) We were below threshold last frame
+              // 3) We were already grabbing last frame (so we skip the instant you first grab)
+              if (isAboveThreshold && !_wasAboveThresholdLastFrame && _wasGrabbingLastFrame)
+              {
+                  PlaySwingSound();
+              }
+
+              // Update for next frame
+              _wasAboveThresholdLastFrame = isAboveThreshold;
           }
+          else
+          {
+              // Not grabbing -> reset velocity & flags
+              _rigidbody.linearVelocity = Vector3.zero;
+              _wasAboveThresholdLastFrame = false;
+          }
+
+          _wasGrabbingLastFrame = isGrabbing;
       }
-      private void TrackControllerVelocity()
+
+        private void PlaySwingSound()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void TrackControllerVelocity()
       {
           OVRInput.Controller activeController = OVRInput.GetActiveController();
           if (activeController == OVRInput.Controller.None)
@@ -44,7 +73,6 @@ using UnityEngine;
 
           controllerVelocity = OVRInput.GetLocalControllerVelocity(activeController);
           controllerVelocity *= _velocityMultiplier;
-          UIManager.Instance.SetValueDebug(controllerVelocity.ToString());
 
           if (controllerVelocity.magnitude > _velocityThreshold)
           {
