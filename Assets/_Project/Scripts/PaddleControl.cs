@@ -21,44 +21,50 @@ using UnityEngine;
         
         [SerializeField] SoundData soundData;
 
-        private bool _wasAboveThresholdLastFrame;
-        private bool _wasGrabbingLastFrame;
+        
+        private const float _swingThreshold = 1.5f;
+        private float timeSinceLastSound = 0f;
+        private float soundCooldown = 0.25f;  // Increased to prevent rapid sound repetition
+        private bool wasSwinging = false; 
 
+        
+        private void Update()
+        {
+            timeSinceLastSound += Time.deltaTime;
+        
+            bool isSwinging = controllerVelocity.magnitude > _swingThreshold;
+        
+            if (isSwinging && !wasSwinging && timeSinceLastSound >= soundCooldown)
+            {
+                SoundBuilder soundBuilder = SoundManager.Instance.CreateSoundBuilder();
+            
+                float swingIntensity = Mathf.Clamp01(controllerVelocity.magnitude / 10f);
+            
+                soundBuilder
+                    .WithRandomPitch()
+                    .WithPosition(transform.position)
+                    .Play(soundData);
+                
+                timeSinceLastSound = 0f;
+            }
+        
+            wasSwinging = isSwinging;
+        }
 
         private void FixedUpdate()
       {
-          bool isGrabbing = _grabbable != null && _grabbable.SelectingPointsCount > 0;
-
-          if (isGrabbing)
+          if (_grabbable != null && _grabbable.SelectingPointsCount > 0)
           {
               TrackControllerVelocity();
-              float speed = controllerVelocity.magnitude;
-              bool isAboveThreshold = speed > _velocityThreshold;
-
-              if (isAboveThreshold && !_wasAboveThresholdLastFrame && _wasGrabbingLastFrame)
-              {
-                  PlaySwingSound();
-              }
-
-              _wasAboveThresholdLastFrame = isAboveThreshold;
           }
           else
           {
-              _wasAboveThresholdLastFrame = false;
+              // Reset velocity when not grabbed
+              controllerVelocity = Vector3.zero;
+              wasSwinging = false;  // Reset swing state when not grabbed
           }
-
-          _wasGrabbingLastFrame = isGrabbing;
       }
 
-        private void PlaySwingSound()
-        {
-            SoundBuilder soundBuilder = SoundManager.Instance.CreateSoundBuilder();
-
-            soundBuilder
-                .WithRandomPitch()
-                .WithPosition(transform.position)
-                .Play(soundData);
-        }
 
         private void TrackControllerVelocity()
       {
@@ -66,6 +72,7 @@ using UnityEngine;
           if (activeController == OVRInput.Controller.None)
           {
               _rigidbody.linearVelocity = Vector3.zero;
+              controllerVelocity = Vector3.zero;
               return;
           }
 
