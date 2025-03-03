@@ -1242,49 +1242,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 180359406}
-  - component: {fileID: 180359405}
+  - component: {fileID: 180359407}
   m_Layer: 0
-  m_Name: MusicBackground
+  m_Name: MusicManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &180359405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 180359404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1798031ac536e94a8b26ecd4f63a51d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundData:
-    clip: {fileID: 8300000, guid: 7dc130423f627d943a95445936f99c4d, type: 3}
-    mixerGroup: {fileID: -1655472622737748322, guid: 0648aff6a08d3f0468df28399773aba6, type: 2}
-    loop: 1
-    playOnAwake: 1
-    frequentSound: 0
-    mute: 0
-    bypassEffects: 0
-    bypassListenerEffects: 0
-    bypassReverbZones: 0
-    priority: 128
-    volume: 1
-    pitch: 1
-    panStereo: 0
-    spatialBlend: 0
-    reverbZoneMix: 1
-    dopplerLevel: 1
-    spread: 0
-    minDistance: 1
-    maxDistance: 500
-    ignoreListenerVolume: 0
-    ignoreListenerPause: 0
-    rolloffMode: 0
 --- !u!4 &180359406
 Transform:
   m_ObjectHideFlags: 0
@@ -1300,6 +1265,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &180359407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180359404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48a80ecc506b456aabc8a9fe88ddecd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutoUnparentOnAwake: 1
+  initialPlaylist:
+  - {fileID: 8300000, guid: 7dc130423f627d943a95445936f99c4d, type: 3}
+  musicMixerGroup: {fileID: 1468588115202338304, guid: 0648aff6a08d3f0468df28399773aba6, type: 2}
 --- !u!1 &191491960
 GameObject:
   m_ObjectHideFlags: 0
@@ -2376,6 +2357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97eeba2c3d3719f4bab876e9614eddc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineScore: {fileID: 0}
 --- !u!114 &435316640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2560,6 +2542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0506f4a209060b847b97a10e0d7cf6f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetDelay: 1.5
   checkpoints: {fileID: 432780017}
 --- !u!4 &474886514
 Transform:
@@ -4681,7 +4664,7 @@ MonoBehaviour:
   AutoUnparentOnAwake: 1
   soundEmitterPrefab: {fileID: 4789772686394328642, guid: 9c24cda77957e7147ae757011cf75f47, type: 3}
   collectionCheck: 1
-  defaultCapacity: 20
+  defaultCapacity: 10
   maxPoolSize: 100
   maxSoundInstances: 30
 --- !u!4 &1004836466
