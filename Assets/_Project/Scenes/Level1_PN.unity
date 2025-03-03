@@ -4675,7 +4675,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imagePrefab: {fileID: 1437275131041226276, guid: 00494a22f64950d458a88e725f44792f, type: 3}
-  checkpoints: {fileID: 0}
+  checkpoints: 2
 --- !u!114 &1021681417
 MonoBehaviour:
   m_ObjectHideFlags: 0

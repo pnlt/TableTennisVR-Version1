@@ -71,7 +71,6 @@ public class Checkpoints : MonoBehaviour
     /// </summary>
     private void NextTurn()
     {
-        TestCheckpoint.listCheckUI[_currentCheckpoint].ChangeColor(Color.green);
         checkpoints[_currentCheckpoint].ResetCountDown();
         checkpoints[_currentCheckpoint].IsInTurn = false;
         _currentCheckpoint++;
