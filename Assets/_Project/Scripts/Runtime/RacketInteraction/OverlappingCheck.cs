@@ -10,14 +10,6 @@ public class OverlappingCheck : MonoBehaviour
     [Header ("Accurate level")]
     [SerializeField] private float tolerance;
 
-    private void Update()
-    {
-        if (IsAlignedMesh(transform, playerRacket, meshShape))
-        {
-            
-        }
-    }
-
     private bool IsAlignedMesh(Transform original, Transform racket, MeshFilter mesh)
     {
         Mesh meshes = mesh.sharedMesh;

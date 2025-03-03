@@ -1,7 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using _Project.Scripts.Tests.Runtime.Test;
+using Dorkbots.XR.Runtime;
+using Dorkbots.XR.Runtime.Spline;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Checkpoints : MonoBehaviour
 {
@@ -11,6 +15,7 @@ public class Checkpoints : MonoBehaviour
     
     public int NumberOfCheckpoints => _numberOfCheckpoints;
     public List<SplineCheckpoints> ListCheckpoints => checkpoints;
+    public ScoreInSpline lineScore;
     
     private void Awake()
     {
@@ -18,18 +23,53 @@ public class Checkpoints : MonoBehaviour
         
         _numberOfCheckpoints = gameObject.transform.childCount;         // Get number of currently checkpoints in the line
         checkpoints = gameObject.GetComponentsInChildren<SplineCheckpoints>().ToList();
+        lineScore = GetComponentInParent<ScoreInSpline>();
+    }
+
+    private void OnEnable()
+    {
+        LineAttainmentEvent.Subscribe(LineChecking);
     }
 
     private void Start()
     {
         checkpoints[0].IsInTurn = true;     // The first checkpoint is always in turn
     }
-    
+
+    private void LineChecking(LineDataEvent lineData)
+    {
+        if (lineData.checkpoint.IsInTurn)
+        {
+            NextTurn();
+        }
+        else
+        {
+            var failedLine = new FailedNotification(this);
+            lineScore.SetCondition(false);
+            failedLine.ResetLine();
+        }
+        
+        LineAttainment();
+    }
+
+    /// <summary>
+    /// This func will handle logical events after
+    /// player move the racket adhering to the line successfully
+    /// </summary>
+    private void LineAttainment()
+    {
+        if (_currentCheckpoint == _numberOfCheckpoints)
+        {
+            var successfulLine = new SuccessfulNotification(this);
+            lineScore.SetCondition(true);
+            successfulLine.ResetLine();
+        }
+    }
 
     /// <summary>
     /// This func has a duty on moving to next checkpoint's turn
     /// </summary>
-    public void NextTurn()
+    private void NextTurn()
     {
         TestCheckpoint.listCheckUI[_currentCheckpoint].ChangeColor(Color.green);
         checkpoints[_currentCheckpoint].ResetCountDown();
@@ -60,5 +100,10 @@ public class Checkpoints : MonoBehaviour
         {
             checkpoints[i].IsInTurn = false;
         }
+    }
+
+    private void OnDisable()
+    {
+        LineAttainmentEvent.Unsubscribe(LineChecking);
     }
 }

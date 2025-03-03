@@ -11,6 +11,11 @@ public class ScoreInSpinWheel : BaseScoreCalculation
 
     protected override void ResetCondition()
     {
+        if (!correctCondition)
+        {
+            Debug.Log("Did not hit right spin wheel area");
+            return;
+        }
         correctCondition = false;
     }
 }

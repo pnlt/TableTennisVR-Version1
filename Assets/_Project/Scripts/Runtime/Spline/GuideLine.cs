@@ -2,16 +2,17 @@ using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GuideLine : MonoBehaviour
 {
+    [SerializeField] private float resetDelay = 1.5f; // Wait time before resetting lines
     public Checkpoints checkpoints;
     private static List<CoverLine> _coverLines = new List<CoverLine>();
     public static List<CoverLine> CoverLines => _coverLines;
     
     private static bool _needsReset = false;
     private float _resetTimer = 0f;
-    private float _resetDelay = 1.5f; // Wait time before resetting lines
 
     public static void AddElement(CoverLine coverLine)
     {
@@ -38,7 +39,7 @@ public class GuideLine : MonoBehaviour
         {
             _resetTimer += Time.deltaTime;
             
-            if (_resetTimer >= _resetDelay)
+            if (_resetTimer >= resetDelay)
             {
                 _resetTimer = 0f;
                 _needsReset = false;
@@ -51,8 +52,6 @@ public class GuideLine : MonoBehaviour
     {
         try
         {
-            Debug.Log($"Resetting {_coverLines.Count} cover lines");
-            
             if (_coverLines.Count > 0)
             {
                 // Make a copy of the list to avoid modification issues during iteration

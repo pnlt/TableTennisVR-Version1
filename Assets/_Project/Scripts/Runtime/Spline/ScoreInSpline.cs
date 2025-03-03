@@ -14,6 +14,11 @@ namespace Dorkbots.XR.Runtime.Spline
 
         protected override void ResetCondition()
         {
+            if (!correctCondition)
+            {
+                Debug.Log("Not perfect line");
+                return;
+            }
             correctCondition = false;
         }
     }
