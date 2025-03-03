@@ -3,18 +3,18 @@ using UnityEngine;
 public class TestCheckpoint : MonoBehaviour
 {
     public GameObject imagePrefab;
-    public Checkpoints checkpoints;
+    public int checkpoints;
     public static TestCheckUI[] listCheckUI;
 
     private void Start()
     {
-        listCheckUI = new TestCheckUI[checkpoints.ListCheckpoints.Count];
+        listCheckUI = new TestCheckUI[checkpoints];
         SpawnCheck();
     }
 
     private void SpawnCheck()
     {
-        for (int i = 0; i < checkpoints.ListCheckpoints.Count; i++)
+        for (int i = 0; i < checkpoints; i++)
         {
             var check = Instantiate(imagePrefab);
             check.transform.SetParent(transform, false);
