@@ -35,22 +35,15 @@ using UnityEngine;
               float speed = controllerVelocity.magnitude;
               bool isAboveThreshold = speed > _velocityThreshold;
 
-              // Only play if:
-              // 1) We are currently above threshold
-              // 2) We were below threshold last frame
-              // 3) We were already grabbing last frame (so we skip the instant you first grab)
               if (isAboveThreshold && !_wasAboveThresholdLastFrame && _wasGrabbingLastFrame)
               {
                   PlaySwingSound();
               }
 
-              // Update for next frame
               _wasAboveThresholdLastFrame = isAboveThreshold;
           }
           else
           {
-              // Not grabbing -> reset velocity & flags
-              _rigidbody.linearVelocity = Vector3.zero;
               _wasAboveThresholdLastFrame = false;
           }
 
@@ -59,7 +52,12 @@ using UnityEngine;
 
         private void PlaySwingSound()
         {
-            throw new NotImplementedException();
+            SoundBuilder soundBuilder = SoundManager.Instance.CreateSoundBuilder();
+
+            soundBuilder
+                .WithRandomPitch()
+                .WithPosition(transform.position)
+                .Play(soundData);
         }
 
         private void TrackControllerVelocity()

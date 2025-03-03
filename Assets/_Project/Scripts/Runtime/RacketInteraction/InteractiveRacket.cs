@@ -2,7 +2,6 @@ using _Project.Scripts.Tests.Runtime.RacketInteraction;
 using _Project.Scripts.Tests.Runtime.Test;
 using Dorkbots.XR.Runtime;
 using Dorkbots.XR.Runtime.Spline;
-using Dreamteck.Splines;
 using UnityEngine;
 
 public class InteractiveRacket : MonoBehaviour
