@@ -31,11 +31,10 @@ public class SplineCheckpoints : MonoBehaviour
         countDownTime -= Time.deltaTime;
         if (countDownTime <= 0)
         {
+            ResetCountDown();
             // Out of time => Failed line then resetting it
             Notification failedLine = new FailedNotification(checkpoints);
             failedLine.ResetLine();
-            IsCountDown = false;
-            countDownTime = 3;
         }
     }
 

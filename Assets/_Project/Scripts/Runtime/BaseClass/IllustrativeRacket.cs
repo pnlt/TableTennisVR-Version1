@@ -6,32 +6,18 @@ namespace Dorkbots.XR.Runtime.SoundAndSFX
 {
     public class IllustrativeRacket : MonoBehaviour
     {
-        [Header("Reference components")] 
-        [SerializeField] protected Transform playerRacket;
+        [Header("Accurate level")] 
+        [SerializeField] private float tolerance;
         [SerializeField] protected MeshRenderer racketRender;
-        [SerializeField] protected MeshFilter meshShape;
-
-        [Header("Accurate level")] [SerializeField]
-        private float tolerance;
-
-        [Header("Assets alteration")] 
-        [SerializeField] protected Material correctMat;
-        [SerializeField] protected Material incorrectMat;
         
         protected Material originalMat;
 
-        protected void Awake()
-        {
-            racketRender = GetComponent<MeshRenderer>();
-        }
-
         protected void Start()
         {
-            originalMat = racketRender.material;
         }
+        
 
-
-        protected bool IsAlignedMesh(Transform original, Transform racket, MeshFilter mesh)
+        public bool IsAlignedMesh(Transform original, Transform racket, MeshFilter mesh)
         {
             Mesh meshes = mesh.sharedMesh;
             Vector3[] vertices = meshes.vertices;
@@ -50,7 +36,7 @@ namespace Dorkbots.XR.Runtime.SoundAndSFX
             return true;
         }
 
-        protected void ChangeMaterial(Material material)
+        public void ChangeMaterial(Material material)
         {
             racketRender.material = material;
         }
