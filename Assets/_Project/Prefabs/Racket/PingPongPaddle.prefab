@@ -386,8 +386,8 @@ GameObject:
   - component: {fileID: 7389011536891296122}
   - component: {fileID: 5521547088752914733}
   - component: {fileID: 2150101900294764640}
-  - component: {fileID: 1321723913920922459}
   - component: {fileID: 3785819078674933165}
+  - component: {fileID: 6974204525546406658}
   m_Layer: 7
   m_Name: PingPongPaddle
   m_TagString: Untagged
@@ -403,7 +403,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8764942963227952078}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.70105743, y: 0.09229579, z: -0.09229579, w: 0.70105743}
+  m_LocalRotation: {x: 0.7010574, y: 0.09229599, z: -0.09229599, w: 0.7010574}
   m_LocalPosition: {x: 0.36, y: 0.78, z: 0.442}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -590,22 +590,7 @@ MonoBehaviour:
   wheelLayer:
     serializedVersion: 2
     m_Bits: 256
-  checkPoints: {fileID: 0}
-  control: {fileID: 0}
---- !u!114 &1321723913920922459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8764942963227952078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e7015f1f42770a4a9b939362b23af36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _grabbable: {fileID: 0}
-  _rigidbody: {fileID: 5520309195374323843}
+  control: {fileID: 6974204525546406658}
 --- !u!114 &3785819078674933165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,6 +606,43 @@ MonoBehaviour:
   _customJoint: {fileID: 0}
   _isKinematicGrab: 0
   _rigidbodiesRoot: {fileID: 0}
+--- !u!114 &6974204525546406658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8764942963227952078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7015f1f42770a4a9b939362b23af36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _grabbable: {fileID: 7004958894990863296}
+  _rigidbody: {fileID: 5520309195374323843}
+  soundData:
+    clip: {fileID: 8300000, guid: 21da10e858104704a8563b292be9cf5c, type: 3}
+    mixerGroup: {fileID: 4796280562796518393, guid: 0648aff6a08d3f0468df28399773aba6, type: 2}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    spread: 0
+    minDistance: 1
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0
 --- !u!1001 &9111446839919326395
 PrefabInstance:
   m_ObjectHideFlags: 0
