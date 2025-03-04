@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Dorkbots.XR.Runtime.SoundAndSFX
 {
@@ -6,7 +8,7 @@ namespace Dorkbots.XR.Runtime.SoundAndSFX
     {
         [Header("Reference components")] 
         [SerializeField] protected Transform playerRacket;
-        [SerializeField] protected Material racketMaterial;
+        [SerializeField] protected MeshRenderer racketRender;
         [SerializeField] protected MeshFilter meshShape;
 
         [Header("Accurate level")] [SerializeField]
@@ -15,6 +17,19 @@ namespace Dorkbots.XR.Runtime.SoundAndSFX
         [Header("Assets alteration")] 
         [SerializeField] protected Material correctMat;
         [SerializeField] protected Material incorrectMat;
+        
+        protected Material originalMat;
+
+        protected void Awake()
+        {
+            racketRender = GetComponent<MeshRenderer>();
+        }
+
+        protected void Start()
+        {
+            originalMat = racketRender.material;
+        }
+
 
         protected bool IsAlignedMesh(Transform original, Transform racket, MeshFilter mesh)
         {
@@ -33,6 +48,11 @@ namespace Dorkbots.XR.Runtime.SoundAndSFX
             }
 
             return true;
+        }
+
+        protected void ChangeMaterial(Material material)
+        {
+            racketRender.material = material;
         }
     }
 }

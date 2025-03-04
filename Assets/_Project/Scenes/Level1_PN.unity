@@ -568,6 +568,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 432780016}
     m_Modifications:
+    - target: {fileID: 393577483826674502, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
+      propertyPath: m_Radius
+      value: 0.3877116
+      objectReference: {fileID: 0}
     - target: {fileID: 869098579486696353, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
       propertyPath: m_Name
       value: CheckPoint (3)
@@ -582,11 +586,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7793220235020779894, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.713
+      value: 3.727
       objectReference: {fileID: 0}
     - target: {fileID: 7793220235020779894, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.698
+      value: 12.693
       objectReference: {fileID: 0}
     - target: {fileID: 7793220235020779894, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1709,6 +1713,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 432780016}
     m_Modifications:
+    - target: {fileID: 393577483826674502, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
+      propertyPath: m_Radius
+      value: 0.3877116
+      objectReference: {fileID: 0}
     - target: {fileID: 869098579486696353, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
       propertyPath: m_Name
       value: CheckPoint (4)
@@ -2897,6 +2905,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 432780016}
     m_Modifications:
+    - target: {fileID: 393577483826674502, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
+      propertyPath: m_Radius
+      value: 0.3877116
+      objectReference: {fileID: 0}
+    - target: {fileID: 393577483826674502, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
+      propertyPath: m_Center.y
+      value: 0.10647645
+      objectReference: {fileID: 0}
     - target: {fileID: 869098579486696353, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
       propertyPath: m_Name
       value: CheckPoint (2)
@@ -2915,7 +2931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7793220235020779894, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.336
+      value: 10.22
       objectReference: {fileID: 0}
     - target: {fileID: 7793220235020779894, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5481,7 +5497,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1120653041}
   - component: {fileID: 1120653042}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PaddleCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7212,6 +7228,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 432780016}
     m_Modifications:
+    - target: {fileID: 393577483826674502, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
+      propertyPath: m_Radius
+      value: 0.3877116
+      objectReference: {fileID: 0}
     - target: {fileID: 869098579486696353, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
       propertyPath: m_Name
       value: CheckPoint (5)
@@ -7230,7 +7250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7793220235020779894, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.7
+      value: 16.711
       objectReference: {fileID: 0}
     - target: {fileID: 7793220235020779894, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7410,6 +7430,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 432780016}
     m_Modifications:
+    - target: {fileID: 393577483826674502, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
+      propertyPath: m_Radius
+      value: 0.3877116
+      objectReference: {fileID: 0}
+    - target: {fileID: 393577483826674502, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
+      propertyPath: m_Center.y
+      value: 0.16771162
+      objectReference: {fileID: 0}
     - target: {fileID: 869098579486696353, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
       propertyPath: m_Name
       value: CheckPoint (1)
@@ -7424,7 +7452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7793220235020779894, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.285
+      value: 8.117
       objectReference: {fileID: 0}
     - target: {fileID: 7793220235020779894, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7703,6 +7731,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 432780016}
     m_Modifications:
+    - target: {fileID: 393577483826674502, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
+      propertyPath: m_Radius
+      value: 0.3877116
+      objectReference: {fileID: 0}
     - target: {fileID: 869098579486696353, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
       propertyPath: m_Name
       value: CheckPoint (6)
@@ -7721,7 +7753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7793220235020779894, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.714
+      value: 18.738
       objectReference: {fileID: 0}
     - target: {fileID: 7793220235020779894, guid: 81b9f480f98431648ae03ac680b8da9d, type: 3}
       propertyPath: m_LocalPosition.z

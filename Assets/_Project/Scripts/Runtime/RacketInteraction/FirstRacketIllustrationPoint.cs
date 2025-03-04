@@ -1,19 +1,18 @@
 using System;
 using Dorkbots.XR.Runtime.SoundAndSFX;
+using UnityEngine;
 
-public class FirstRacketIllustrationPoint : IllustrativeRacket 
+public class FirstRacketIllustrationPoint : IllustrativeRacket
 {
-    private void Update()
+    private void OnTriggerStay(Collider other)
     {
         if (IsAlignedMesh(gameObject.transform, playerRacket, meshShape))
         {
-            // Change mat to green color
-            racketMaterial = correctMat;
+            ChangeMaterial(correctMat);
         }
         else
         {
-            // Change mat to red color
-            racketMaterial = incorrectMat;
+            ChangeMaterial(incorrectMat);
         }
     }
 }
