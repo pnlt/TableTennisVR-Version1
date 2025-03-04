@@ -421,7 +421,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8764942963227952078}
-  m_Mesh: {fileID: 735298258132635799, guid: 257216eb6e3b561429989b0879b94a36, type: 3}
+  m_Mesh: {fileID: 735298258132635799, guid: d377ab8ba89d8fb4195e21e13fd2d8d6, type: 3}
 --- !u!23 &7369284326911257573
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -489,7 +489,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
@@ -590,7 +590,7 @@ MonoBehaviour:
   wheelLayer:
     serializedVersion: 2
     m_Bits: 256
-  control: {fileID: 6974204525546406658}
+  control: {fileID: 0}
 --- !u!114 &3785819078674933165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,7 +621,7 @@ MonoBehaviour:
   _grabbable: {fileID: 7004958894990863296}
   _rigidbody: {fileID: 5520309195374323843}
   soundData:
-    clip: {fileID: 8300000, guid: 21da10e858104704a8563b292be9cf5c, type: 3}
+    clip: {fileID: 8300000, guid: d1569cd097c5da64197b27733f70cea6, type: 3}
     mixerGroup: {fileID: 4796280562796518393, guid: 0648aff6a08d3f0468df28399773aba6, type: 2}
     loop: 0
     playOnAwake: 0

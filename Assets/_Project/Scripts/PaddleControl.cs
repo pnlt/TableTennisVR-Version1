@@ -8,17 +8,64 @@ public class PaddleControl : MonoBehaviour
     [SerializeField] private Rigidbody _rigidbody;
 
     private const float _velocityThreshold = 0.01f;
-    private const float _velocityMultiplier = 5f;
+    private const float _velocityMultiplier = 2f;
     private Vector3 _previousVelocity;
     private Vector3 acceleration;
     private Vector3 controllerVelocity;
+    
+    [SerializeField] SoundData soundData;
+    
+    // Sound and swing detection variables
+    private float _swingThreshold = 1.0f; // Increased from 0.01f to only detect actual swings
+    private bool _isCurrentlySwinging = false;
+    private float _lastSoundPlayTime = 0f;
+    private float _soundCooldown = 0.2f;
+    private bool _wasGrabbed = false;
 
     private void FixedUpdate()
     {
         if (_grabbable != null && _grabbable.SelectingPointsCount > 0)
         {
             TrackControllerVelocity();
+            
+            // Detect if this is a new grab
+            if (!_wasGrabbed)
+            {
+                _wasGrabbed = true;
+                // Reset swinging state on new grab
+                _isCurrentlySwinging = false;
+            }
+            
+            // Check for swing with higher threshold
+            bool isSwinging = controllerVelocity.magnitude > _swingThreshold;
+            
+            // Handle swing sound logic
+            if (isSwinging && (!_isCurrentlySwinging || Time.time - _lastSoundPlayTime > _soundCooldown))
+            {
+                PlaySwingSound();
+                _lastSoundPlayTime = Time.time;
+                _isCurrentlySwinging = true;
+            }
+            else if (!isSwinging)
+            {
+                _isCurrentlySwinging = false;
+            }
         }
+        else
+        {
+            _wasGrabbed = false;
+            _isCurrentlySwinging = false;
+            controllerVelocity = Vector3.zero;
+        }
+    }
+    private void PlaySwingSound()
+    {
+        SoundBuilder soundBuilder = SoundManager.Instance.CreateSoundBuilder();
+        
+        soundBuilder
+            .WithRandomPitch()
+            .WithPosition(transform.position)
+            .Play(soundData);
     }
 
     private void TrackControllerVelocity()
