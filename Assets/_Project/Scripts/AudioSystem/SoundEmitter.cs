@@ -8,6 +8,10 @@ namespace AudioSystem {
     public class SoundEmitter : MonoBehaviour {
         public SoundData Data { get; private set; }
         public LinkedListNode<SoundEmitter> Node { get; set; }
+        
+        // Add a public accessor to the AudioSource
+        public AudioSource AudioSource => audioSource;
+
 
         AudioSource audioSource;
         Coroutine playingCoroutine;
@@ -44,6 +48,18 @@ namespace AudioSystem {
             audioSource.ignoreListenerPause = data.ignoreListenerPause;
             
             audioSource.rolloffMode = data.rolloffMode;
+        }
+        
+        // New method to update parameters in real time
+        public void UpdateParameters(float volume = -1f, float pitch = -1f) {
+            // Only update if valid values are provided (negative values indicate "don't change")
+            if (volume >= 0) {
+                audioSource.volume = volume;
+            }
+            
+            if (pitch >= 0) {
+                audioSource.pitch = pitch;
+            }
         }
 
         public void Play() {
