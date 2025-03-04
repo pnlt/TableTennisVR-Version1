@@ -1,7 +1,5 @@
 using _Project.Scripts.Tests.Runtime.RacketInteraction;
-using _Project.Scripts.Tests.Runtime.Test;
 using Dorkbots.XR.Runtime;
-using Dorkbots.XR.Runtime.Spline;
 using UnityEngine;
 
 public class InteractiveRacket : MonoBehaviour
@@ -48,18 +46,18 @@ public class InteractiveRacket : MonoBehaviour
     {
         // Get layer-mask of the collided game-object
         var checkpointLayer = 1 << collider.gameObject.layer;
+        
+        // If collided object is on right area
+        if (collider.gameObject.TryGetComponent<ScoreInSpinWheel>(out var spinWheel))
+        {
+            spinWheel.SetCondition(true);
+        }
 
         // If the collided game-object's layer-mask is same as checkpoint's layer-mask
         if (checkpointLayer == interactLayer)
         {
             SplineCheckpoints splineCheckpoints = collider.gameObject.GetComponent<SplineCheckpoints>();
             LineAttainmentEvent.Invoke(new LineDataEvent(splineCheckpoints));
-        }
-        
-        // If collided object is on right area
-        if (collider.gameObject.TryGetComponent<ScoreInSpinWheel>(out var spinWheel))
-        {
-            spinWheel.SetCondition(true);
         }
     }
     

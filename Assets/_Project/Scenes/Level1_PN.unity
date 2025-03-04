@@ -4124,7 +4124,7 @@ PrefabInstance:
       objectReference: {fileID: 735298258132635799, guid: d377ab8ba89d8fb4195e21e13fd2d8d6, type: 3}
     - target: {fileID: 5520309195374323843, guid: 00ce827a882297f4aa47cb60f8ac3e05, type: 3}
       propertyPath: m_UseGravity
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7004958894990863296, guid: 00ce827a882297f4aa47cb60f8ac3e05, type: 3}
       propertyPath: _oneGrabTransformer
@@ -4490,7 +4490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRacket: {fileID: 753870218}
-  racketMaterial: {fileID: 0}
+  racketRender: {fileID: 0}
   meshShape: {fileID: 753870222}
   tolerance: 0.03
   correctMat: {fileID: 2100000, guid: 72e8c355ce9a48542a590a36d95a1f42, type: 2}
@@ -4658,7 +4658,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1021681414}
   m_LocalRotation: {x: -0, y: 0.20672335, z: -0, w: 0.97839946}
-  m_LocalPosition: {x: 0, y: 0, z: 12.9}
+  m_LocalPosition: {x: 0, y: 0, z: -8.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8328,7 +8328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRacket: {fileID: 753870218}
-  racketMaterial: {fileID: 0}
+  racketRender: {fileID: 0}
   meshShape: {fileID: 753870222}
   tolerance: 0.03
   correctMat: {fileID: 2100000, guid: 72e8c355ce9a48542a590a36d95a1f42, type: 2}

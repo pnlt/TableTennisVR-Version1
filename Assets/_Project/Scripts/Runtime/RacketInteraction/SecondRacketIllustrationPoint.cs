@@ -6,9 +6,5 @@ public class SecondRacketIllustrationPoint : IllustrativeRacket
 {
     private void OnTriggerStay(Collider other)
     {
-        if (IsAlignedMesh(gameObject.transform, playerRacket, meshShape))
-        {
-            ChangeMaterial(correctMat);
-        }
     }
 }

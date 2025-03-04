@@ -19,7 +19,6 @@ namespace _Project.Scripts.Tests.Runtime.Test
         }
         // Handle perfect line completion
 
-        private int _currentCoverLineIdx;
 
         /// <summary>
         /// Reset to the initial state of guideline
@@ -39,9 +38,6 @@ namespace _Project.Scripts.Tests.Runtime.Test
             // Store the current cover lines before clearing
             var linesToReset = new List<CoverLine>(GuideLine.CoverLines);
     
-            // Reset stats
-            _currentCoverLineIdx = 0;
-            
             // UI for checking condition will be reset at initial state
             RestoreChecking();
     
