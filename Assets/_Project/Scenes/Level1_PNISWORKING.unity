@@ -1249,7 +1249,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &180359406
 Transform:
   m_ObjectHideFlags: 0
@@ -3926,6 +3926,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1537270411}
     m_Modifications:
+    - target: {fileID: 6974204525546406658, guid: 00ce827a882297f4aa47cb60f8ac3e05, type: 3}
+      propertyPath: soundData.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: d1569cd097c5da64197b27733f70cea6, type: 3}
     - target: {fileID: 8764942963227952078, guid: 00ce827a882297f4aa47cb60f8ac3e05, type: 3}
       propertyPath: m_Name
       value: PingPongPaddle
@@ -7782,6 +7786,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpinWheel
       objectReference: {fileID: 0}
+    - target: {fileID: 1995526291498477214, guid: f58073a4a60b04445b9a2dc15ffbcfc5, type: 3}
+      propertyPath: spinWheelLoopSound.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ada535c873aff945b557e4ad518688c, type: 3}
+    - target: {fileID: 1995526291498477214, guid: f58073a4a60b04445b9a2dc15ffbcfc5, type: 3}
+      propertyPath: spinWheelLoopSound.loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995526291498477214, guid: f58073a4a60b04445b9a2dc15ffbcfc5, type: 3}
+      propertyPath: spinWheelLoopSound.mixerGroup
+      value: 
+      objectReference: {fileID: 4796280562796518393, guid: 0648aff6a08d3f0468df28399773aba6, type: 2}
     - target: {fileID: 2016260278831491248, guid: f58073a4a60b04445b9a2dc15ffbcfc5, type: 3}
       propertyPath: m_Name
       value: Core Axis

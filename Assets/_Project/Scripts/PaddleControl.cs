@@ -9,73 +9,62 @@ public class PaddleControl : MonoBehaviour
 
     private const float _velocityThreshold = 0.01f;
     private const float _velocityMultiplier = 5f;
+    private const float _minSwingVelocity = 0.5f;
     private Vector3 _previousVelocity;
     private Vector3 acceleration;
     private Vector3 controllerVelocity;
 
     [SerializeField] SoundData soundData;
 
+    private float _swingThreshold = 1.0f; // Increased from 0.01f to only detect actual swings
     private bool _isCurrentlySwinging = false;
     private float _lastSoundPlayTime = 0f;
     private float _soundCooldown = 0.2f;
-    private float _realSwingThreshold = 1.0f;
-    private float _grabStabilizationTime = 0.3f;
-    private float _grabStartTime = 0f;
-    private bool _justGrabbed = false;
-
+    private bool _wasGrabbed = false;
     
-    private void Update()
+    private void Start()
     {
-        // Only check grab state and handle sound effects in Update
-        if (_grabbable != null)
+        // Ensure rigidbody is not kinematic and has no constraints
+        _rigidbody.isKinematic = false;
+        _rigidbody.constraints = RigidbodyConstraints.None;
+    }
+    private void FixedUpdate()
+    {
+        bool isCurrentlyGrabbed = _grabbable != null && _grabbable.SelectingPointsCount > 0;
+        
+        // Handle grab state changes and controller velocity
+        if (isCurrentlyGrabbed)
         {
-            if (_grabbable.SelectingPointsCount > 0)
+            TrackControllerVelocity();
+            
+            // Detect if this is a new grab
+            if (!_wasGrabbed)
             {
-                if (!_justGrabbed)
-                {
-                    _justGrabbed = true;
-                    _grabStartTime = Time.time;
-                }
+                _wasGrabbed = true;
+                // Reset swinging state on new grab
+                _isCurrentlySwinging = false;
             }
-            else
-            {
-                _justGrabbed = false;
-                controllerVelocity = Vector3.zero;
-            }
-        }
+            
+            // Check for swing with higher threshold
+            bool isSwinging = controllerVelocity.magnitude > _minSwingVelocity && controllerVelocity.magnitude > _swingThreshold;
 
-        // Ignore velocity for a short time after grabbing
-        if (_justGrabbed && Time.time - _grabStartTime < _grabStabilizationTime)
-        {
-            return;
-        }
-
-        // Sound logic - keep this in Update as it's not physics-related
-        bool isSwinging = controllerVelocity.magnitude > _realSwingThreshold;
-        if (isSwinging)
-        {
-            if (!_isCurrentlySwinging || (Time.time - _lastSoundPlayTime > _soundCooldown))
+            
+            // Handle swing sound logic
+            if (isSwinging && (!_isCurrentlySwinging || Time.time - _lastSoundPlayTime > _soundCooldown))
             {
                 PlaySwingSound();
                 _lastSoundPlayTime = Time.time;
+                _isCurrentlySwinging = true;
             }
-            _isCurrentlySwinging = true;
+            else if (!isSwinging)
+            {
+                _isCurrentlySwinging = false;
+            }
         }
         else
         {
+            _wasGrabbed = false;
             _isCurrentlySwinging = false;
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        // Handle all physics operations in FixedUpdate
-        if (_grabbable != null && _grabbable.SelectingPointsCount > 0)
-        {
-            TrackControllerVelocity();
-        }
-        else
-        {
             controllerVelocity = Vector3.zero;
         }
     }
@@ -100,7 +89,9 @@ public class PaddleControl : MonoBehaviour
         }
 
         controllerVelocity = OVRInput.GetLocalControllerVelocity(activeController);
+        UIManager.Instance.SetValueDebug("Controller Velocity" + controllerVelocity.magnitude);
         controllerVelocity *= _velocityMultiplier;
+        
 
         if (controllerVelocity.magnitude > _velocityThreshold)
         {
