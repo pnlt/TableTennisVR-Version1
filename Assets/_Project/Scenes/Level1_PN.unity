@@ -4089,7 +4089,7 @@ PrefabInstance:
     - target: {fileID: 2150101900294764640, guid: 00ce827a882297f4aa47cb60f8ac3e05, type: 3}
       propertyPath: control
       value: 
-      objectReference: {fileID: 753870221}
+      objectReference: {fileID: 0}
     - target: {fileID: 2150101900294764640, guid: 00ce827a882297f4aa47cb60f8ac3e05, type: 3}
       propertyPath: checkPoints
       value: 
@@ -4200,17 +4200,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94900559e72f2654ca112bf2fbc6f0c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &753870221 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1321723913920922459, guid: 00ce827a882297f4aa47cb60f8ac3e05, type: 3}
-  m_PrefabInstance: {fileID: 753870217}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e7015f1f42770a4a9b939362b23af36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!33 &753870222 stripped
@@ -8310,8 +8299,8 @@ MonoBehaviour:
   racketMaterial: {fileID: 0}
   meshShape: {fileID: 753870222}
   tolerance: 0.03
-  correctMat: {fileID: 0}
-  incorrectMat: {fileID: 0}
+  correctMat: {fileID: 2100000, guid: 72e8c355ce9a48542a590a36d95a1f42, type: 2}
+  incorrectMat: {fileID: 2100000, guid: 19dee1855303d7147bd39131aea14059, type: 2}
 --- !u!1 &7747722996146107720
 GameObject:
   m_ObjectHideFlags: 0

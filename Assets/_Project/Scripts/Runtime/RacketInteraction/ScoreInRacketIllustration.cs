@@ -6,7 +6,7 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
         {
             if (!correctCondition)
             {
-                UIManager.Instance.SetValueDebug("wrong sample racket's pose");
+                //UIManager.Instance.SetValueDebug("wrong sample racket's pose");
             }
             correctCondition = false;
         }
