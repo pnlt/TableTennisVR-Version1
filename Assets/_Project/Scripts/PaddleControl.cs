@@ -15,51 +15,70 @@ public class PaddleControl : MonoBehaviour
 
     [SerializeField] SoundData soundData;
 
-    // Sound and swing detection variables
-    private float _swingThreshold = 1.0f; 
     private bool _isCurrentlySwinging = false;
     private float _lastSoundPlayTime = 0f;
     private float _soundCooldown = 0.2f;
-    private bool _wasGrabbed = false;
+    private float _realSwingThreshold = 1.0f;
+    private float _grabStabilizationTime = 0.3f;
+    private float _grabStartTime = 0f;
+    private bool _justGrabbed = false;
 
-    private void FixedUpdate()
+    
+    private void Update()
     {
-        bool isCurrentlyGrabbed = _grabbable != null && _grabbable.SelectingPointsCount > 0;
-
-        if (isCurrentlyGrabbed)
+        // Only check grab state and handle sound effects in Update
+        if (_grabbable != null)
         {
-            TrackControllerVelocity();
-
-            //    Detect if this is a new grab
-            if (!_wasGrabbed)
+            if (_grabbable.SelectingPointsCount > 0)
             {
-                _wasGrabbed = true;
-                //   Reset swinging state on new grab
-                _isCurrentlySwinging = false;
+                if (!_justGrabbed)
+                {
+                    _justGrabbed = true;
+                    _grabStartTime = Time.time;
+                }
             }
+            else
+            {
+                _justGrabbed = false;
+                controllerVelocity = Vector3.zero;
+            }
+        }
 
-            bool isSwinging = controllerVelocity.magnitude > _swingThreshold;
-            UIManager.Instance.SetValueDebug(controllerVelocity.magnitude.ToString());
+        // Ignore velocity for a short time after grabbing
+        if (_justGrabbed && Time.time - _grabStartTime < _grabStabilizationTime)
+        {
+            return;
+        }
 
-            if (isSwinging && (!_isCurrentlySwinging || Time.time - _lastSoundPlayTime > _soundCooldown))
+        // Sound logic - keep this in Update as it's not physics-related
+        bool isSwinging = controllerVelocity.magnitude > _realSwingThreshold;
+        if (isSwinging)
+        {
+            if (!_isCurrentlySwinging || (Time.time - _lastSoundPlayTime > _soundCooldown))
             {
                 PlaySwingSound();
                 _lastSoundPlayTime = Time.time;
-                _isCurrentlySwinging = true;
             }
-            else if (!isSwinging)
-            {
-                _isCurrentlySwinging = false;
-            }
+            _isCurrentlySwinging = true;
         }
         else
         {
-            _wasGrabbed = false;
             _isCurrentlySwinging = false;
-            controllerVelocity = Vector3.zero;
         }
     }
 
+    private void FixedUpdate()
+    {
+        // Handle all physics operations in FixedUpdate
+        if (_grabbable != null && _grabbable.SelectingPointsCount > 0)
+        {
+            TrackControllerVelocity();
+        }
+        else
+        {
+            controllerVelocity = Vector3.zero;
+        }
+    }
     private void PlaySwingSound()
     {
         SoundBuilder soundBuilder = SoundManager.Instance.CreateSoundBuilder();
