@@ -4396,8 +4396,8 @@ GameObject:
   - component: {fileID: 852286853}
   - component: {fileID: 852286852}
   - component: {fileID: 852286854}
-  m_Layer: 7
-  m_Name: PingPongPaddle (1)
+  m_Layer: 0
+  m_Name: PingPongPaddle-T3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4416,7 +4416,6 @@ Transform:
   m_LocalScale: {x: 1.15, y: 1.15, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2124085835}
   - {fileID: 1120653041}
   m_Father: {fileID: 8911253}
   m_LocalEulerAnglesHint: {x: -52.18, y: -168.38, z: 46.837}
@@ -4486,8 +4485,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRacket: {fileID: 753870218}
+  racketMaterial: {fileID: 0}
   meshShape: {fileID: 753870222}
   tolerance: 0.03
+  correctMat: {fileID: 2100000, guid: 72e8c355ce9a48542a590a36d95a1f42, type: 2}
+  incorrectMat: {fileID: 2100000, guid: 19dee1855303d7147bd39131aea14059, type: 2}
 --- !u!1 &899727640
 GameObject:
   m_ObjectHideFlags: 0
@@ -5490,13 +5492,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1120653041}
   - component: {fileID: 1120653042}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: PaddleCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1120653041
 Transform:
   m_ObjectHideFlags: 0
@@ -5507,7 +5509,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071064, y: -0.0000000155923, z: 6.911413e-10, w: 0.70710725}
   m_LocalPosition: {x: -0.001, y: 0.091, z: 0}
-  m_LocalScale: {x: 0.16022126, y: 0.0044497503, z: 0.17112137}
+  m_LocalScale: {x: 0.15455584, y: 0.004292407, z: 0.16507052}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 852286849}
@@ -5527,7 +5529,7 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
@@ -7910,59 +7912,6 @@ Transform:
   - {fileID: 360404992}
   m_Father: {fileID: 1820988658}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2124085834
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2124085835}
-  - component: {fileID: 2124085836}
-  m_Layer: 0
-  m_Name: HandleCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &2124085835
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2124085834}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 852286849}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2124085836
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2124085834}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.03722114, y: 0.08715996, z: 0.013765594}
-  m_Center: {x: -0.00053032115, y: -0.039532404, z: 0.000104270875}
 --- !u!1 &2125497375
 GameObject:
   m_ObjectHideFlags: 0
@@ -8115,8 +8064,8 @@ GameObject:
   - component: {fileID: 6731247549460562143}
   - component: {fileID: 4216321477066431648}
   - component: {fileID: 6731247549460562144}
-  m_Layer: 7
-  m_Name: PingPongPaddle
+  m_Layer: 0
+  m_Name: PingPongPaddle-T2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8354,12 +8303,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1998075761682571736}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee1f458df5007434aa9d7c691e1a57a9, type: 3}
+  m_Script: {fileID: 11500000, guid: fa4cf59fc05063c4c928c9383df74f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerRacket: {fileID: 753870218}
+  racketMaterial: {fileID: 0}
   meshShape: {fileID: 753870222}
   tolerance: 0.03
+  correctMat: {fileID: 0}
+  incorrectMat: {fileID: 0}
 --- !u!1 &7747722996146107720
 GameObject:
   m_ObjectHideFlags: 0
@@ -8370,7 +8322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3140318016229829789}
   - component: {fileID: 1573960635851902316}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: PaddleCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

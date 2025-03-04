@@ -41,11 +41,9 @@ namespace _Project.Scripts.Tests.Runtime.Test
     
             // Reset stats
             _currentCoverLineIdx = 0;
-    
-            foreach (var item in TestCheckpoint.listCheckUI)
-            {
-                item.ChangeColor(Color.white);
-            }
+            
+            // UI for checking condition will be reset at initial state
+            RestoreChecking();
     
             // Clear the static list
             GuideLine.RemoveAllElements();
@@ -53,6 +51,15 @@ namespace _Project.Scripts.Tests.Runtime.Test
             // Reset each line manually
             ResetLines(linesToReset);
         }
+
+        private void RestoreChecking()
+        {
+            foreach (var item in TestCheckpoint.listCheckUI)
+            {
+                item.ChangeColor(Color.white);
+            }
+        }
+        
         private async void ResetLines(List<CoverLine> linesToReset)
         {
             try

@@ -10,6 +10,7 @@ using UnityEngine.Serialization;
 public class Checkpoints : MonoBehaviour
 {
     private List<SplineCheckpoints> checkpoints = new List<SplineCheckpoints>();
+    private int _checkpointIdxComparison;
     private int _currentCheckpoint;
     private int _numberOfCheckpoints = 0;
     
@@ -48,8 +49,6 @@ public class Checkpoints : MonoBehaviour
             lineScore.SetCondition(false);
             failedLine.ResetLine();
         }
-        
-        LineAttainment();
     }
 
     /// <summary>
@@ -58,12 +57,9 @@ public class Checkpoints : MonoBehaviour
     /// </summary>
     private void LineAttainment()
     {
-        if (_currentCheckpoint == _numberOfCheckpoints)
-        {
-            var successfulLine = new SuccessfulNotification(this);
-            lineScore.SetCondition(true);
-            successfulLine.ResetLine();
-        }
+        var successfulLine = new SuccessfulNotification(this); 
+        lineScore.SetCondition(true);
+        successfulLine.ResetLine();
     }
 
     /// <summary>
@@ -78,8 +74,7 @@ public class Checkpoints : MonoBehaviour
         // If number of checkpoints the racket has passed is equal the total of checkpoint => reset state
         if (_currentCheckpoint == _numberOfCheckpoints)
         {
-            _currentCheckpoint = 0;
-            checkpoints[_currentCheckpoint].IsInTurn = true;
+            LineAttainment();
             return;
         }
         

@@ -58,7 +58,7 @@ public class ScoreManagement : MonoBehaviour
         
         // Play successful sound
         
-        Reset();
+        ResetSatisfiedConditionNum();
     }
 
     /// <summary>
@@ -71,10 +71,13 @@ public class ScoreManagement : MonoBehaviour
         
         // Remain or decrease score
         
-        Reset();
+        ResetSatisfiedConditionNum();
     }
 
-    public void Reset()
+    /// <summary>
+    /// Reset the number of satisfied condition to be zero, being its initial state
+    /// </summary>
+    private void ResetSatisfiedConditionNum()
     {
         satisfiedConditions = 0;
     }
