@@ -21,7 +21,7 @@ public class ScoreInSpinWheel : BaseScoreCalculation
         if (!correctCondition)
         {
             Debug.Log("Did not hit right spin wheel area");
-            UIManager.Instance.SetValueDebug("Did not hit right spin wheel area");
+            //UIManager.Instance.SetValueDebug("Did not hit right spin wheel area");
             return;
         }
         correctCondition = false;

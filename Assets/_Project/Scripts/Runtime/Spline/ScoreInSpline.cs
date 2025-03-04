@@ -23,7 +23,7 @@ namespace Dorkbots.XR.Runtime.Spline
             if (!correctCondition)
             {
                 Debug.Log("Not perfect line");
-                UIManager.Instance.SetValueDebug("Not perfect line");
+                //UIManager.Instance.SetValueDebug("Not perfect line");
                 return;
             }
             correctCondition = false;
