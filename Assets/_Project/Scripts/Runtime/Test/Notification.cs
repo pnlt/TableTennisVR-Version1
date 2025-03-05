@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Dorkbots.XR.Runtime;
 using UnityEngine;
 using VContainer;
 
@@ -28,6 +29,7 @@ namespace _Project.Scripts.Tests.Runtime.Test
             UIManager.Instance.DeleteDebug();
             EventBus<FinalScoreEvent>.Raise(new FinalScoreEvent());
 
+            ResetConditionEvent.Invoke();
             StatsReset();
         }
 

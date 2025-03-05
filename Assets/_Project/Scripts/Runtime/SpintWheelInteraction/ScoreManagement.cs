@@ -46,15 +46,11 @@ public class ScoreManagement : MonoBehaviour
             ScoreSuccessfully();     
         else
             ScoreFailed();
-        
-        ResetConditionEvent.Invoke();
     }
     
     private void ScoreSuccessfully()
     {
         // Plus Score
-        gameManager.PlayerScore += 1;
-        UIManager.Instance.SetValueDebug(gameManager.PlayerScore.ToString() + "scored");
         
         // Play successful sound
         

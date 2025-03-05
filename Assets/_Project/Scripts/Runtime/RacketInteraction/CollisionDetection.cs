@@ -4,36 +4,74 @@ using UnityEngine;
 
 namespace Dorkbots.XR.Runtime.RacketInteraction
 {
-        
     public class CollisionDetection : MonoBehaviour
     {
-        [Header("Reference components")] 
-        [SerializeField] protected Transform playerRacket;
-        [SerializeField] protected MeshFilter meshShape;
-        
+        [Header("Reference components")] [SerializeField]
+        private Transform playerRacket;
 
-        [Header("Assets alteration")] 
-        [SerializeField] protected Material correctMat;
-        [SerializeField] protected Material incorrectMat;
-        public IllustrativeRacket racket;
+        [SerializeField] private MeshFilter meshShape;
+
+        [Header("Materials")] [SerializeField] private Material correctMat;
+        [SerializeField] private Material incorrectMat;
+
+        [Header("Threshold")] [SerializeField] private float distanceThreshold;
+
+        private IllustrativeRacket racket;
+        private Collider sampleRacketCollider;
         public Collider racketCollider;
+
+        private bool isCorrectPose;
+        private bool inCenter;
 
         private void Awake()
         {
             racket = GetComponentInParent<IllustrativeRacket>();
-            racketCollider = GetComponentInParent<Collider>();
+            sampleRacketCollider = GetComponent<Collider>();
         }
 
         private void OnTriggerStay(Collider other)
         {
+            var distance = Vector3.Distance(sampleRacketCollider.bounds.center, racketCollider.bounds.center);
+            
+            if (!inCenter)
+                PoseCorrectionSignal();
+
+            if (distance < .01f)
+            {
+                inCenter = true;
+                PoseCorrectionSignal();
+            }
+            else
+            {
+                if (isCorrectPose)
+                {
+                    racket.ChangeMaterial(correctMat);
+                }
+                else
+                {
+                    racket.ChangeMaterial(incorrectMat);
+                }
+            }
+        }
+
+        private void PoseCorrectionSignal()
+        {
             if (racket.IsAlignedMesh(transform.parent, playerRacket, meshShape))
             {
                 racket.ChangeMaterial(correctMat);
+                isCorrectPose = true;
             }
             else
             {
                 racket.ChangeMaterial(incorrectMat);
+                isCorrectPose = false;
             }
+        }
+
+        private void ResetState()
+        {
+            inCenter = false;
+            isCorrectPose = false;
         }
     }
 }
