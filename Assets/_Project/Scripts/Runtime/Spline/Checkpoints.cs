@@ -45,9 +45,7 @@ public class Checkpoints : MonoBehaviour
         }
         else
         {
-            var failedLine = new FailedNotification(this);
-            lineScore.SetCondition(false);
-            failedLine.ResetLine();
+            LineAttainment(false);
         }
     }
 
@@ -55,11 +53,10 @@ public class Checkpoints : MonoBehaviour
     /// This func will handle logical events after
     /// player move the racket adhering to the line successfully
     /// </summary>
-    private void LineAttainment()
+    private void LineAttainment(bool satisfiedCondition)
     {
-        var successfulLine = new SuccessfulNotification(this); 
-        lineScore.SetCondition(true);
-        successfulLine.ResetLine();
+        lineScore.SetCondition(satisfiedCondition);
+        EventBus<CheckingConditionEvent>.Raise(new CheckingConditionEvent(this));
     }
 
     /// <summary>
@@ -74,7 +71,7 @@ public class Checkpoints : MonoBehaviour
         // If number of checkpoints the racket has passed is equal the total of checkpoint => reset state
         if (_currentCheckpoint == _numberOfCheckpoints)
         {
-            LineAttainment();
+            LineAttainment(true);
             return;
         }
         

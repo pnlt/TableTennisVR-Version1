@@ -17,6 +17,18 @@ public class SuccessfulNotification : Notification
 
     public override void ResetLine()
     {
+        PlaySuccessfulSound();
         base.ResetLine();
+        DisplaySuccessfulNotification();
+    }
+
+    private void PlaySuccessfulSound()
+    {
+        // Play sound when player successfully scored
+    }
+
+    private void DisplaySuccessfulNotification()
+    {
+        // Notify player has scored - Display UI or effects
     }
 }

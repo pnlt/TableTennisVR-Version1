@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Dorkbots.XR.Runtime;
 using UnityEngine;
-using VContainer;
 
 namespace _Project.Scripts.Tests.Runtime.Test
 {
@@ -26,8 +25,7 @@ namespace _Project.Scripts.Tests.Runtime.Test
         /// </summary>
         public virtual void ResetLine()
         {
-            UIManager.Instance.DeleteDebug();
-            EventBus<FinalScoreEvent>.Raise(new FinalScoreEvent());
+            //UIManager.Instance.DeleteDebug();
 
             ResetConditionEvent.Invoke();
             StatsReset();
