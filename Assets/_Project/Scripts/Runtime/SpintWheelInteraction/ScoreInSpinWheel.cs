@@ -3,13 +3,6 @@ using UnityEngine;
 
 public class ScoreInSpinWheel : BaseScoreCalculation
 {
-    private GameManager gameManager;
-
-    private void Awake()
-    {
-        gameManager = GameManager.Instance;
-    }
-
     private void Update()
     {
         if (correctCondition)

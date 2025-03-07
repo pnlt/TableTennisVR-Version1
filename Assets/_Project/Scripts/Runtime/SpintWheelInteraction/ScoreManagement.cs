@@ -1,33 +1,46 @@
 using System;
+using _Project.Scripts.Tests.Runtime.Test;
 using Dorkbots.XR.Runtime;
 using UnityEngine;
 
 #region Score Events
 
 public struct ConditionActivatedEvent : IEvent { }
-public struct FinalScoreEvent : IEvent { }
+
+public class CheckingConditionEvent : IEvent
+{
+    private readonly Checkpoints checkpointsManager;
+    
+    public Checkpoints CheckpointsManager => checkpointsManager;
+
+    public CheckingConditionEvent(Checkpoints checkpointsManager)
+    {
+        this.checkpointsManager = checkpointsManager;
+    }
+}
 
 #endregion
 
 public class ScoreManagement : MonoBehaviour
 {
     [SerializeField] private int conditionThreshold;
+    
     private GameManager gameManager;
     private int satisfiedConditions;    // Conditions need to be satisfied (spin wheel, right line) to score 
     private EventBinding<ConditionActivatedEvent> conditionEvents;
-    private EventBinding<FinalScoreEvent> finalScoreEvents;
+    private EventBinding<CheckingConditionEvent> finalScoreEvents;
 
     private void Awake()
     {
         gameManager = GameManager.Instance;
         conditionEvents = new EventBinding<ConditionActivatedEvent>(ActivateCondition);
-        finalScoreEvents = new EventBinding<FinalScoreEvent>(MeetCondition);
+        finalScoreEvents = new EventBinding<CheckingConditionEvent>(MeetCondition);
     }
 
     private void OnEnable()
     {
         EventBus<ConditionActivatedEvent>.Register(conditionEvents);
-        EventBus<FinalScoreEvent>.Register(finalScoreEvents);
+        EventBus<CheckingConditionEvent>.Register(finalScoreEvents);
     }
 
     private void ActivateCondition()
@@ -35,42 +48,37 @@ public class ScoreManagement : MonoBehaviour
         satisfiedConditions += 1;
     }
 
-    private void MeetCondition()
+    private void MeetCondition(CheckingConditionEvent data)
     {
-        CheckConditionSatisfaction();
+        CheckConditionSatisfaction(data.CheckpointsManager);
     }
 
-    private void CheckConditionSatisfaction()
+    private void CheckConditionSatisfaction(Checkpoints checkingCheckpoint)
     {
         if (satisfiedConditions >= conditionThreshold)
-            ScoreSuccessfully();     
+            ScoreSuccessfully(new SuccessfulNotification(checkingCheckpoint));     
         else
-            ScoreFailed();
-        
-        ResetConditionEvent.Invoke();
+            ScoreFailed(new FailedNotification(checkingCheckpoint));
     }
     
-    private void ScoreSuccessfully()
+    private void ScoreSuccessfully(Notification notification)
     {
         // Plus Score
-        gameManager.PlayerScore += 1;
-        UIManager.Instance.SetValueDebug(gameManager.PlayerScore.ToString() + "scored");
         
-        // Play successful sound
-        
+        notification.ResetLine();
         ResetSatisfiedConditionNum();
     }
 
     /// <summary>
     /// Player failed at hitting right area on spin wheel or did not complete the line correctly
     /// </summary>
-    private void ScoreFailed()
+    private void ScoreFailed(Notification notification)
     {
-        UIManager.Instance.SetValueDebug("Score Failed");
-        // Play failed Sound
+        //UIManager.Instance.SetValueDebug("Score Failed");
         
         // Remain or decrease score
         
+        notification.ResetLine();
         ResetSatisfiedConditionNum();
     }
 
@@ -85,6 +93,6 @@ public class ScoreManagement : MonoBehaviour
     private void OnDisable()
     {
         EventBus<ConditionActivatedEvent>.Deregister(conditionEvents);
-        EventBus<FinalScoreEvent>.Deregister(finalScoreEvents);
+        EventBus<CheckingConditionEvent>.Deregister(finalScoreEvents);
     }
 }

@@ -4,16 +4,16 @@ using UnityEngine;
 public class SplineCheckpoints : MonoBehaviour
 {
     [SerializeField] private float countDownTime = 3;       // The max length of time of each checkpoint
-    public Checkpoints checkpoints;
                                                             // allows user continuing to follow line 
-    private bool _isInTurn = false;
-    
+    public Checkpoints checkpoints;
     public bool IsCountDown { get; set; }
     public bool IsInTurn
     {
-        get { return _isInTurn; }
-        set { _isInTurn = value; }
+        get => _isInTurn;
+        set => _isInTurn = value;
     }
+    
+    private bool _isInTurn;
 
     private void Update()
     {
@@ -33,8 +33,7 @@ public class SplineCheckpoints : MonoBehaviour
         {
             ResetCountDown();
             // Out of time => Failed line then resetting it
-            Notification failedLine = new FailedNotification(checkpoints);
-            failedLine.ResetLine();
+            EventBus<CheckingConditionEvent>.Raise(new CheckingConditionEvent(checkpoints));
         }
     }
 

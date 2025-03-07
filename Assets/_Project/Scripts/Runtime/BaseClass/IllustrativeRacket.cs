@@ -11,12 +11,7 @@ namespace Dorkbots.XR.Runtime.SoundAndSFX
         [SerializeField] protected MeshRenderer racketRender;
         
         protected Material originalMat;
-
-        protected void Start()
-        {
-        }
         
-
         public bool IsAlignedMesh(Transform original, Transform racket, MeshFilter mesh)
         {
             Mesh meshes = mesh.sharedMesh;
