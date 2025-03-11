@@ -7,13 +7,11 @@ public class UIManager : Singleton<UIManager>
     // Temporary variable and method
     public TextMeshProUGUI valueDebug;
 
-    public void SetValueDebug(string value)
-    {
-        valueDebug.text = " " + value;
+    public void SetValueDebug(string value) {
+        valueDebug.text = value;
     }
 
-    public void DeleteDebug()
-    {
+    public void DeleteDebug() {
         valueDebug.text = "";
     }
 }
