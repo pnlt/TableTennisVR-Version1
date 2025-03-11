@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using _Project.Scripts.Tests.Runtime.Test;
 using Dorkbots.XR.Runtime;
 using Dorkbots.XR.Runtime.Spline;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Checkpoints : MonoBehaviour
 {

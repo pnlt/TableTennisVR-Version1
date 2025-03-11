@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class SecondRacketIllustrationPoint : IllustrativeRacket
 {
-    private void OnTriggerStay(Collider other)
+    public override void ConditionValidation(bool condition)
     {
+        if (!isCorrectPose)
+        {
+            scoreSampleRacket.SetCondition(false);
+            return;
+        }
+        base.ConditionValidation(condition);
+        scoreSampleRacket.SetCondition(true);
     }
 }

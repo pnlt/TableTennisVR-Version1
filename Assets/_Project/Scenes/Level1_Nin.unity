@@ -431,6 +431,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8911253}
+  - component: {fileID: 8911254}
   m_Layer: 0
   m_Name: Racket_Illustrations
   m_TagString: Untagged
@@ -455,6 +456,20 @@ Transform:
   - {fileID: 3307509660824425041}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8911254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8911252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 945555b05343408499e663f643dced3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  correctCondition: 0
+  scoreManagement: {fileID: 670738830}
 --- !u!1 &27154351
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,67 +917,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 103655088}
   m_CullTransparentMesh: 1
---- !u!1001 &129976005
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3186191313832380328, guid: e181fc0283f8afd45aa667bb53437605, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3186191313832380328, guid: e181fc0283f8afd45aa667bb53437605, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3186191313832380328, guid: e181fc0283f8afd45aa667bb53437605, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3186191313832380328, guid: e181fc0283f8afd45aa667bb53437605, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3186191313832380328, guid: e181fc0283f8afd45aa667bb53437605, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3186191313832380328, guid: e181fc0283f8afd45aa667bb53437605, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3186191313832380328, guid: e181fc0283f8afd45aa667bb53437605, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3186191313832380328, guid: e181fc0283f8afd45aa667bb53437605, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3186191313832380328, guid: e181fc0283f8afd45aa667bb53437605, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3186191313832380328, guid: e181fc0283f8afd45aa667bb53437605, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3914154504487438906, guid: e181fc0283f8afd45aa667bb53437605, type: 3}
-      propertyPath: m_Name
-      value: GameLifetimeScope
-      objectReference: {fileID: 0}
-    - target: {fileID: 6914487861093812749, guid: e181fc0283f8afd45aa667bb53437605, type: 3}
-      propertyPath: checkpoints
-      value: 
-      objectReference: {fileID: 361804817}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e181fc0283f8afd45aa667bb53437605, type: 3}
 --- !u!1001 &153428040
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8485,11 +8439,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRacket: {fileID: 753870218}
+  racketCollider: {fileID: 2046007499}
   meshShape: {fileID: 794031055}
   correctMat: {fileID: 2100000, guid: 72e8c355ce9a48542a590a36d95a1f42, type: 2}
   incorrectMat: {fileID: 2100000, guid: 19dee1855303d7147bd39131aea14059, type: 2}
   distanceThreshold: 0.05
-  racketCollider: {fileID: 2046007499}
 --- !u!4 &7821229447095581249 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 78946717471859393, guid: ce6fb8e9fbe0197448c607f15c50099e, type: 3}
@@ -8715,7 +8669,6 @@ SceneRoots:
   - {fileID: 975037995}
   - {fileID: 633686580}
   - {fileID: 474886514}
-  - {fileID: 129976005}
   - {fileID: 177466435}
   - {fileID: 380661457}
   - {fileID: 2125497379}

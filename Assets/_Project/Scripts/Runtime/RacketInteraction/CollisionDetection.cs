@@ -6,9 +6,9 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
 {
     public class CollisionDetection : MonoBehaviour
     {
-        [Header("Reference components")] [SerializeField]
-        private Transform playerRacket;
-
+        [Header("Reference components")] 
+        [SerializeField] private Transform playerRacket;
+        public Collider racketCollider;
         [SerializeField] private MeshFilter meshShape;
 
         [Header("Materials")] [SerializeField] private Material correctMat;
@@ -18,12 +18,16 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
 
         private IllustrativeRacket racket;
         private Collider sampleRacketCollider;
-        public Collider racketCollider;
 
         private bool isCorrectPose;
         private bool inCenter;
 
         private void Awake()
+        {
+            ReferenceComponents();
+        }
+
+        private void ReferenceComponents()
         {
             racket = GetComponentInParent<IllustrativeRacket>();
             sampleRacketCollider = GetComponent<Collider>();
@@ -46,10 +50,12 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
                 if (isCorrectPose)
                 {
                     racket.ChangeMaterial(correctMat);
+                    racket.ConditionValidation(true);
                 }
                 else
                 {
                     racket.ChangeMaterial(incorrectMat);
+                    racket.ConditionValidation(false);
                 }
             }
         }
@@ -66,6 +72,11 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
                 racket.ChangeMaterial(incorrectMat);
                 isCorrectPose = false;
             }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            ResetState();
         }
 
         private void ResetState()
