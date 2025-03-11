@@ -1,4 +1,4 @@
-﻿using AudioSystem;
+using AudioSystem;
 using Oculus.Interaction;
 using UnityEngine;
 
@@ -16,10 +16,10 @@ public class PaddleControl : MonoBehaviour
     [SerializeField] SoundData soundData;
 
     // Sound and swing detection variables
-    private float _swingThreshold = 7.0f;
+    private float _swingThreshold = 15.0f;
     private bool _isCurrentlySwinging = false;
     private float _lastSoundPlayTime = 0f;
-    private float _soundCooldown = 0.3f;
+    private float _soundCooldown = 0.5f;
     private bool _wasGrabbed = false;
 
     private void FixedUpdate() {
