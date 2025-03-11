@@ -1,9 +1,6 @@
-using System;
+using _Project.Scripts.Runtime.Interfaces;
 using _Project.Scripts.Tests.Runtime.Test;
-using Dorkbots.XR.Runtime;
 using UnityEngine;
-
-#region Score Events
 
 public struct ConditionActivatedEvent : IEvent { }
 
@@ -19,16 +16,17 @@ public class CheckingConditionEvent : IEvent
     }
 }
 
-#endregion
-
 public class ScoreManagement : MonoBehaviour
 {
     [SerializeField] private int conditionThreshold;
     
     private GameManager gameManager;
     private int satisfiedConditions;    // Conditions need to be satisfied (spin wheel, right line) to score 
+    private bool correctPose;      // Needed condition to get score (have correction swinging pose)
     private EventBinding<ConditionActivatedEvent> conditionEvents;
     private EventBinding<CheckingConditionEvent> finalScoreEvents;
+    
+    public bool CorrectPose { get; set; }
 
     private void Awake()
     {
@@ -47,6 +45,7 @@ public class ScoreManagement : MonoBehaviour
     {
         satisfiedConditions += 1;
     }
+    
 
     private void MeetCondition(CheckingConditionEvent data)
     {
@@ -55,30 +54,31 @@ public class ScoreManagement : MonoBehaviour
 
     private void CheckConditionSatisfaction(Checkpoints checkingCheckpoint)
     {
-        if (satisfiedConditions >= conditionThreshold)
-            ScoreSuccessfully(new SuccessfulNotification(checkingCheckpoint));     
+        var presentLevel = gameManager.CurrentLevel;
+        if (satisfiedConditions >= conditionThreshold && CorrectPose)
+            ScoreSuccessfully(new SuccessfulNotification(checkingCheckpoint), presentLevel);     
         else
-            ScoreFailed(new FailedNotification(checkingCheckpoint));
+            ScoreFailed(new FailedNotification(checkingCheckpoint), presentLevel);
     }
     
-    private void ScoreSuccessfully(Notification notification)
+    private void ScoreSuccessfully(Notification successfulNotification, IScoreIncrease presentLevel)
     {
         // Plus Score
+        presentLevel.UpdateScore(gameManager);
         
-        notification.ResetLine();
+        successfulNotification.ResetLine();
         ResetSatisfiedConditionNum();
     }
 
     /// <summary>
     /// Player failed at hitting right area on spin wheel or did not complete the line correctly
     /// </summary>
-    private void ScoreFailed(Notification notification)
+    private void ScoreFailed(Notification failedNotification, IScoreDecrease presentLevel)
     {
-        //UIManager.Instance.SetValueDebug("Score Failed");
-        
         // Remain or decrease score
+        presentLevel.ScoreDecrease(gameManager, satisfiedConditions,  correctPose);
         
-        notification.ResetLine();
+        failedNotification.ResetLine();
         ResetSatisfiedConditionNum();
     }
 
@@ -88,6 +88,7 @@ public class ScoreManagement : MonoBehaviour
     private void ResetSatisfiedConditionNum()
     {
         satisfiedConditions = 0;
+        correctPose = false;
     }
 
     private void OnDisable()

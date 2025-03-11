@@ -9,9 +9,26 @@ namespace Dorkbots.XR.Runtime.SoundAndSFX
         [Header("Accurate level")] 
         [SerializeField] private float tolerance;
         [SerializeField] protected MeshRenderer racketRender;
+        [SerializeField] protected ScoreInSampleRacket scoreSampleRacket;
         
         protected Material originalMat;
+        protected static bool isCorrectPose;
+
+        protected void Awake()
+        {
+            ReferenceComponents();
+        }
         
+        public virtual void ConditionValidation(bool condition)
+        {
+            isCorrectPose = condition;
+        }
+
+        protected virtual void ReferenceComponents()
+        {
+            scoreSampleRacket = GetComponentInParent<ScoreInSampleRacket>();
+        }
+
         public bool IsAlignedMesh(Transform original, Transform racket, MeshFilter mesh)
         {
             Mesh meshes = mesh.sharedMesh;

@@ -2,6 +2,14 @@ using UnityEngine;
 
 public class ScoreInSampleRacket : BaseScoreCalculation
 {
+    [SerializeField] private ScoreManagement scoreManagement;
+    
+    public override void SetCondition(bool flag)
+    {
+        correctCondition = flag;
+        scoreManagement.CorrectPose = correctCondition;
+    }
+
     protected override void ResetCondition()
     {
         if (!correctCondition)

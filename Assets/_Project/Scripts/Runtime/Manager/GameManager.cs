@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using _Project.Scripts.Runtime.Enum;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -15,14 +16,35 @@ public class GameManager : Singleton<GameManager>
     [Header("Level regulations")] 
     [SerializeField] private AssetLabelReference levelDataLabel;
     [SerializeField] private List<LevelSO> levels;
-
-    public LevelSO CurrentLevel { get => currentLevel; set => currentLevel = value; }
     
     private LevelSO currentLevel;
     private int currentLevelIndex;
-    
+    private GameMode mode;
+
+    public LevelSO CurrentLevel
+    {
+        get
+        {
+            currentLevel = levels[currentLevelIndex];
+            return currentLevel;
+        }
+        set => currentLevel = value;
+    }
+
+    public float PlayerScore
+    {
+        get => score;
+        set
+        {
+            if (score >= 0) score = value;
+            else Debug.LogWarning("Score out of range");
+        }
+    }
+    public GameMode Mode => mode;
     public List<LevelSO> Levels { get => levels; private set => levels = value; }
 
+    #region Load GameManager by Addressable
+    
     protected override void Awake()
     {
         base.Awake();
@@ -63,19 +85,20 @@ public class GameManager : Singleton<GameManager>
             Debug.Log(e);
         }
     }*/
+    
+    #endregion
 
     private void Start()
     {
         currentLevel = levels[currentLevelIndex];
     }
 
-    public float PlayerScore
+    private void UpgradeLevel()
     {
-        get => score;
-        set
-        {
-            if (score >= 0) score = value;
-            else Debug.LogWarning("Score out of range");
-        }
+        currentLevelIndex++;
+        
+        if (currentLevelIndex < levels.Count)
+            currentLevel = levels[currentLevelIndex]; 
     }
+
 }

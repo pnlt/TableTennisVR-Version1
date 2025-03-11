@@ -15,14 +15,7 @@ public abstract class BaseScoreCalculation : MonoBehaviour
         return correctCondition;
     }
 
-    public void SetCondition(bool flag)
-    {
-        correctCondition = flag;
-        if (correctCondition)
-        {
-            EventBus<ConditionActivatedEvent>.Raise(new ConditionActivatedEvent());
-        }
-    }
+    public abstract void SetCondition(bool flag);
 
     protected abstract void ResetCondition();
 

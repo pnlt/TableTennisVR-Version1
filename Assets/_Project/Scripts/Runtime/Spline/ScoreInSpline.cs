@@ -11,6 +11,15 @@ namespace Dorkbots.XR.Runtime.Spline
                 TestCheckpoint.listCheckUI[0].ChangeColor(Color.green);
         }
 
+        public override void SetCondition(bool flag)
+        {
+            correctCondition = flag;
+            if (correctCondition)
+            {
+                EventBus<ConditionActivatedEvent>.Raise(new ConditionActivatedEvent());
+            }
+        }
+
         protected override void ResetCondition()
         {
             if (!correctCondition)
