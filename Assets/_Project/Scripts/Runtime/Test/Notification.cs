@@ -25,7 +25,7 @@ namespace _Project.Scripts.Tests.Runtime.Test
         /// </summary>
         public virtual void ResetLine()
         {
-            //UIManager.Instance.DeleteDebug();
+            UIManager.Instance.DeleteDebug();
 
             ResetConditionEvent.Invoke();
             StatsReset();

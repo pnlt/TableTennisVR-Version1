@@ -54,7 +54,7 @@ public class Checkpoints : MonoBehaviour
     private void LineAttainment(bool satisfiedCondition)
     {
         lineScore.SetCondition(satisfiedCondition);
-        EventBus<CheckingConditionEvent>.Raise(new CheckingConditionEvent(this));
+        //EventBus<CheckingConditionEvent>.Raise(new CheckingConditionEvent(this));
     }
 
     /// <summary>

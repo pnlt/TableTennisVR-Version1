@@ -66,4 +66,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3e80d5c9bbb7340aacbbc9112ecc85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countDownTime: 3
+  countDownTime: 1.5
+  checkpoints: {fileID: 0}
