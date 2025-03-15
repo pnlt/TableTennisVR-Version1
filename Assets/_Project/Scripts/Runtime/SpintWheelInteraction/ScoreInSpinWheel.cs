@@ -15,7 +15,6 @@ public class ScoreInSpinWheel : BaseScoreCalculation
         if (correctCondition)
         {
             EventBus<ConditionActivatedEvent>.Raise(new ConditionActivatedEvent());
-            UIManager.Instance.SetValueDebug("Wheel ");
         }
     }
 

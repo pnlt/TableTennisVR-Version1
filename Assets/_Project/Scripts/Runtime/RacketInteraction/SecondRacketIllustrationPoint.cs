@@ -12,6 +12,7 @@ public class SecondRacketIllustrationPoint : IllustrativeRacket
             return;
         }
         base.ConditionValidation(condition);
+        UIManager.Instance.SetValueDebug("Second Racket");
         scoreSampleRacket.SetCondition(true);
     }
 }

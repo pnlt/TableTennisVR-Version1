@@ -60,29 +60,15 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
             {
                 if (isCorrectPose)
                 {
-                    racket.ChangeMaterial(correctMat);
                     racket.ConditionValidation(true);
                 }
                 else
                 {
-                    racket.ChangeMaterial(incorrectMat);
                     racket.ConditionValidation(false);
                 }
             }
         }
-
-        /*  private void PoseCorrectionSignal() {
-              if (racket.IsAlignedMesh(transform.parent, playerRacket, meshShape))
-              {
-                  racket.ChangeMaterial(correctMat);
-                  isCorrectPose = true;
-              }
-              else
-              {
-                  racket.ChangeMaterial(incorrectMat);
-                  isCorrectPose = false;
-              }
-          } */
+        
         private float currentAlignmentScore = 0f;
         private float smoothingFactor = 0.3f; // Adjust for more/less smoothing
 

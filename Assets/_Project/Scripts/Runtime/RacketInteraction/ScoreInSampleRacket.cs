@@ -10,7 +10,8 @@ public class ScoreInSampleRacket : BaseScoreCalculation
         scoreManagement.CorrectPose = correctCondition;
         if (correctCondition)
         {
-            UIManager.Instance.SetValueDebug("SampleRacket ");
+            UIManager.Instance.DeleteDebug();
+            UIManager.Instance.SetValueDebug("SampleRacket");
         }
     }
 
