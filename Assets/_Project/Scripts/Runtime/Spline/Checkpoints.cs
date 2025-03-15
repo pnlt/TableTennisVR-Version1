@@ -35,7 +35,7 @@ public class Checkpoints : MonoBehaviour
         checkpoints[0].IsInTurn = true;     // The first checkpoint is always in turn
     }
 
-    private void LineChecking(LineDataEvent lineData)
+    private void LineChecking(LineData lineData)
     {
         if (lineData.checkpoint.IsInTurn)
         {

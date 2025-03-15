@@ -57,7 +57,7 @@ public class InteractiveRacket : MonoBehaviour
         if (checkpointLayer == interactLayer)
         {
             SplineCheckpoints splineCheckpoints = collider.gameObject.GetComponent<SplineCheckpoints>();
-            LineAttainmentEvent.Invoke(new LineDataEvent(splineCheckpoints));
+            LineAttainmentEvent.Invoke(new LineData(splineCheckpoints));
         }
         
         // If collided object is the sign of out of range

@@ -34,16 +34,43 @@ namespace Dorkbots.XR.Runtime
     }
     
     public class ResetConditionEvent : EventBase<ResetConditionEvent> {}
-    public class LineAttainmentEvent : EventBase<LineAttainmentEvent, LineDataEvent> {}
+    public class LineAttainmentEvent : EventBase<LineAttainmentEvent, LineData> {}
 
-    public class LineDataEvent
+    public class LineData
     {
         public SplineCheckpoints checkpoint;
 
-        public LineDataEvent(SplineCheckpoints checkpoint)
+        public LineData(SplineCheckpoints checkpoint)
         {
             this.checkpoint = checkpoint;
         }
     }
-    
+
+    public class DisplayScoreEvent : EventBase<DisplayScoreEvent, ScoreData>
+    { }
+
+    public struct ScoreData
+    {
+        private readonly float score;
+        public float Score => score;
+
+        public ScoreData(float score)
+        {
+            this.score = score;
+        }
+    }
+
+    public class ModeAlterationNotificationEvent : EventBase<ModeAlterationNotificationEvent, ModeNotificationData>
+    { }
+
+    public readonly struct ModeNotificationData
+    {
+        private readonly bool flag;
+        public bool Flag => flag;
+
+        public ModeNotificationData(bool flag)
+        {
+            this.flag = flag;
+        }
+    }
 }

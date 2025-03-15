@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using _Project.Scripts.Runtime.Enum;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -19,7 +18,7 @@ public class GameManager : Singleton<GameManager>
     
     private LevelSO currentLevel;
     private int currentLevelIndex;
-    private GameMode mode;
+    private GameMode mode = GameMode.Normal;
 
     public LevelSO CurrentLevel
     {
@@ -30,6 +29,9 @@ public class GameManager : Singleton<GameManager>
         }
         set => currentLevel = value;
     }
+    
+    public float NormalScore { get; set; }
+    public float ChallengeScore { get; set; }
 
     public float PlayerScore
     {
@@ -40,7 +42,16 @@ public class GameManager : Singleton<GameManager>
             else Debug.LogWarning("Score out of range");
         }
     }
-    public GameMode Mode => mode;
+
+    public GameMode Mode
+    {
+        get => mode;
+        set
+        {
+           if (mode == GameMode.Normal && score >= currentLevel.requiredScore) mode = value; 
+        }
+    }
+    
     public List<LevelSO> Levels { get => levels; private set => levels = value; }
 
     #region Load GameManager by Addressable
