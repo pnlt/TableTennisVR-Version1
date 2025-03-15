@@ -1939,7 +1939,7 @@ GameObject:
   - component: {fileID: 237766079}
   - component: {fileID: 237766082}
   - component: {fileID: 237766081}
-  - component: {fileID: 237766080}
+  - component: {fileID: 237766083}
   m_Layer: 2
   m_Name: PingPongPaddle-T3
   m_TagString: Untagged
@@ -1964,21 +1964,6 @@ Transform:
   - {fileID: 595956352}
   m_Father: {fileID: 1650403998}
   m_LocalEulerAnglesHint: {x: 410.956, y: 9.818, z: -48.248}
---- !u!114 &237766080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 237766078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa4cf59fc05063c4c928c9383df74f18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tolerance: 0.03
-  racketRender: {fileID: 237766081}
-  scoreSampleRacket: {fileID: 0}
 --- !u!23 &237766081
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2032,6 +2017,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 237766078}
   m_Mesh: {fileID: 735298258132635799, guid: 257216eb6e3b561429989b0879b94a36, type: 3}
+--- !u!114 &237766083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237766078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1f458df5007434aa9d7c691e1a57a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tolerance: 0.03
+  racketRender: {fileID: 237766081}
+  scoreSampleRacket: {fileID: 0}
 --- !u!1 &240621565
 GameObject:
   m_ObjectHideFlags: 0
