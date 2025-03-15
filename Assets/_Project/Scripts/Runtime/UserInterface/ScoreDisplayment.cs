@@ -15,6 +15,7 @@ public class ScoreDisplayment : MonoBehaviour
 
     private void Awake()
     {
+        gameManager = GameManager.Instance;
         ScoreTransfer(new ScoreData(0));
     }
 

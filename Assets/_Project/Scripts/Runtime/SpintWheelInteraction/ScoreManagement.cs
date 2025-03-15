@@ -81,7 +81,7 @@ public class ScoreManagement : MonoBehaviour
     /// </summary>
     private void ScoreFailed(Notification failedNotification, IScoreDecrease presentLevel)
     {
-        // Remain or decrease score in normal mode
+        // Remain or decrease score
         if (gameManager.Mode == GameMode.Normal)
             presentLevel.ScoreDecrease(gameManager, satisfiedConditions,  correctPose);
         
