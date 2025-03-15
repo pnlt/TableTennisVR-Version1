@@ -17,6 +17,7 @@ namespace Dorkbots.XR.Runtime.Spline
             if (correctCondition)
             {
                 EventBus<ConditionActivatedEvent>.Raise(new ConditionActivatedEvent());
+                UIManager.Instance.SetValueDebug("Spline ");
             }
         }
 
@@ -25,7 +26,6 @@ namespace Dorkbots.XR.Runtime.Spline
             if (!correctCondition)
             {
                 Debug.Log("Not perfect line");
-                //UIManager.Instance.SetValueDebug("Not perfect line");
                 return;
             }
             correctCondition = false;
