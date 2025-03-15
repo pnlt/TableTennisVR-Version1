@@ -33,7 +33,8 @@ public class Singleton<T> : MonoBehaviour where T : Component
         }
         else
         {
-            Destroy(gameObject);
+            Debug.LogWarning("[Singleton] " + typeof(T) + " already exists, destroying object!");
+            Destroy(this);
         }
     }
 }
