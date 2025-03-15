@@ -1,3 +1,4 @@
+using _Project.Scripts.Runtime.Enum;
 using _Project.Scripts.Runtime.Interfaces;
 using _Project.Scripts.Tests.Runtime.Test;
 using UnityEngine;
@@ -64,7 +65,12 @@ public class ScoreManagement : MonoBehaviour
     private void ScoreSuccessfully(Notification successfulNotification, IScoreIncrease presentLevel)
     {
         // Plus Score
-        presentLevel.UpdateScore(gameManager);
+        if (gameManager.Mode == GameMode.Normal)
+            presentLevel.UpdateScore(gameManager);
+        else if (gameManager.Mode == GameMode.Challenge)    // In challenge mode
+        {
+            presentLevel.ChallengeUpdate(gameManager);
+        }
         
         successfulNotification.ResetLine();
         ResetSatisfiedConditionNum();
@@ -75,8 +81,9 @@ public class ScoreManagement : MonoBehaviour
     /// </summary>
     private void ScoreFailed(Notification failedNotification, IScoreDecrease presentLevel)
     {
-        // Remain or decrease score
-        presentLevel.ScoreDecrease(gameManager, satisfiedConditions,  correctPose);
+        // Remain or decrease score in normal mode
+        if (gameManager.Mode == GameMode.Normal)
+            presentLevel.ScoreDecrease(gameManager, satisfiedConditions,  correctPose);
         
         failedNotification.ResetLine();
         ResetSatisfiedConditionNum();

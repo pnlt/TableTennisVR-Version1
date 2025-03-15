@@ -5,5 +5,16 @@ namespace Dorkbots.XR.Runtime.DataSO
     {
         public int requiredScore;
         public float limitedTime;
+
+        public void IncreaseScore(GameManager gameManager)
+        {
+            gameManager.ChallengeScore += 1;
+            // Save challenge score data
+
+            if (gameManager.ChallengeScore >= requiredScore)
+            {
+                // Unlock new level
+            }
+        }
     }
 }

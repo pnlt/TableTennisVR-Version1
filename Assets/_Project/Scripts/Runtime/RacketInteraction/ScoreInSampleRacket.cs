@@ -3,7 +3,7 @@ using UnityEngine;
 public class ScoreInSampleRacket : BaseScoreCalculation
 {
     [SerializeField] private ScoreManagement scoreManagement;
-    
+
     public override void SetCondition(bool flag)
     {
         correctCondition = flag;
