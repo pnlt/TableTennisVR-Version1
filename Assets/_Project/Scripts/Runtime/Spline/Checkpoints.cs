@@ -43,6 +43,7 @@ public class Checkpoints : MonoBehaviour
         }
         else
         {
+            UIManager.Instance.SetValueDebug("CC");
             LineAttainment(false);
         }
     }
