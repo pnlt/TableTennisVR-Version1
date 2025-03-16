@@ -65,7 +65,7 @@ public class Checkpoints : MonoBehaviour
     {
         checkpoints[_currentCheckpoint].ResetCountDown();
         checkpoints[_currentCheckpoint].IsInTurn = false;
-        ++_currentCheckpoint;
+        _currentCheckpoint += 1;
         
         // If number of checkpoints the racket has passed is equal the total of checkpoint => reset state
         if (_currentCheckpoint == _numberOfCheckpoints)
