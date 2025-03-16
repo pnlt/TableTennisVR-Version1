@@ -30,21 +30,11 @@ public class Checkpoints : MonoBehaviour
         LineAttainmentEvent.Subscribe(LineChecking);
     }
 
-    private void Start()
-    {
-        checkpoints[0].IsInTurn = true;     // The first checkpoint is always in turn
-    }
-
     private void LineChecking(LineData lineData)
     {
-        //UIManager.Instance.SetValueDebug($"{lineData.checkpoint.IsInTurn}");
         if (lineData.checkpoint.IsInTurn)
         {
             NextTurn();
-        }
-        else if (!lineData.checkpoint.IsInTurn)
-        {
-            LineAttainment(false);
         }
     }
 
@@ -65,7 +55,6 @@ public class Checkpoints : MonoBehaviour
     {
         checkpoints[_currentCheckpoint].ResetCountDown();
         checkpoints[_currentCheckpoint].IsInTurn = false;
-        UIManager.Instance.SetValueDebug(_currentCheckpoint.ToString());
         _currentCheckpoint += 1;
         
         // If number of checkpoints the racket has passed is equal the total of checkpoint => reset state
@@ -75,8 +64,6 @@ public class Checkpoints : MonoBehaviour
             return;
         }
         
-        UIManager.Instance.SetValueDebug(_currentCheckpoint.ToString());
-        checkpoints[_currentCheckpoint].IsInTurn = true;
         checkpoints[_currentCheckpoint].IsCountDown = true;
     }
 
@@ -86,11 +73,10 @@ public class Checkpoints : MonoBehaviour
     public void ResetLineState()
     {
         _currentCheckpoint = 0;
-        checkpoints[0].IsInTurn = true;
 
-        for (int i = 1; i < checkpoints.Count; i++)
+        foreach (var check in checkpoints)
         {
-            checkpoints[i].IsInTurn = false;
+            check.IsInTurn = true;
         }
     }
 

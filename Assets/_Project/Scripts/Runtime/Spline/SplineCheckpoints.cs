@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SplineCheckpoints : MonoBehaviour
@@ -13,6 +14,11 @@ public class SplineCheckpoints : MonoBehaviour
     }
     
     private bool _isInTurn;
+
+    private void Start()
+    {
+        _isInTurn = true;
+    }
 
     private void Update()
     {
@@ -39,6 +45,6 @@ public class SplineCheckpoints : MonoBehaviour
     public void ResetCountDown()
     {
         IsCountDown = false;
-        countDownTime = 5;
+        countDownTime = 3;
     }
 }
