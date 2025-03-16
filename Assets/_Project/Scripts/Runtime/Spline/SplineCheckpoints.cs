@@ -1,4 +1,3 @@
-using _Project.Scripts.Tests.Runtime.Test;
 using UnityEngine;
 
 public class SplineCheckpoints : MonoBehaviour
