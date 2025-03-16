@@ -1,3 +1,4 @@
+using System;
 using _Project.Scripts.Runtime.Enum;
 using _Project.Scripts.Runtime.Interfaces;
 using _Project.Scripts.Tests.Runtime.Test;
@@ -20,6 +21,7 @@ public class CheckingConditionEvent : IEvent
 public class ScoreManagement : MonoBehaviour
 {
     [SerializeField] private int conditionThreshold;
+    public LevelSO presentLevel;
     
     private GameManager gameManager;
     private int satisfiedConditions;    // Conditions need to be satisfied (spin wheel, right line) to score 
@@ -36,6 +38,11 @@ public class ScoreManagement : MonoBehaviour
         finalScoreEvents = new EventBinding<CheckingConditionEvent>(MeetCondition);
     }
 
+    private void Start()
+    {
+        presentLevel = gameManager.CurrentLevel;
+    }
+
     private void OnEnable()
     {
         EventBus<ConditionActivatedEvent>.Register(conditionEvents);
@@ -45,7 +52,6 @@ public class ScoreManagement : MonoBehaviour
     private void ActivateCondition()
     {
         satisfiedConditions += 1;
-        UIManager.Instance.SetValueDebug(satisfiedConditions.ToString());
     }
     
 
@@ -56,7 +62,7 @@ public class ScoreManagement : MonoBehaviour
 
     private void CheckConditionSatisfaction(Checkpoints checkingCheckpoint)
     {
-        var presentLevel = gameManager.CurrentLevel;
+        presentLevel = gameManager.CurrentLevel;
         if (satisfiedConditions >= conditionThreshold && correctPose)
             ScoreSuccessfully(new SuccessfulNotification(checkingCheckpoint), presentLevel);     
         else
@@ -66,6 +72,7 @@ public class ScoreManagement : MonoBehaviour
     private void ScoreSuccessfully(Notification successfulNotification, IScoreIncrease presentLevel)
     {
         // Plus Score
+        UIManager.Instance.SetValueDebug("Success");
         if (gameManager.Mode == GameMode.Normal)
             presentLevel.UpdateScore(gameManager);
         else if (gameManager.Mode == GameMode.Challenge)    // In challenge mode
@@ -82,6 +89,7 @@ public class ScoreManagement : MonoBehaviour
     /// </summary>
     private void ScoreFailed(Notification failedNotification, IScoreDecrease presentLevel)
     {
+        UIManager.Instance.SetValueDebug("Failed");
         // Remain or decrease score
         if (gameManager.Mode == GameMode.Normal)
             presentLevel.ScoreDecrease(gameManager, satisfiedConditions,  correctPose);

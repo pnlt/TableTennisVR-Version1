@@ -16,6 +16,11 @@ public class ScoreDisplayment : MonoBehaviour
     private void Awake()
     {
         gameManager = GameManager.Instance;
+    }
+
+    private void Start()
+    {
+        ModeFilter();
         ScoreTransfer(new ScoreData(0));
     }
 
@@ -26,13 +31,12 @@ public class ScoreDisplayment : MonoBehaviour
 
     private void ScoreTransfer(ScoreData scoreData)
     {
-        ModeFilter(ref requiredScore);
         // Using PlayerPref to store the real value that displayed on the UI
         UIScore = scoreData.Score;
         scoreTxt.text = UIScore.ToString(CultureInfo.CurrentUICulture) + $"/{requiredScore}";
     }
 
-    private void ModeFilter(ref int requiredScore)
+    private void ModeFilter()
     {
         if (gameManager.Mode == GameMode.Normal)
             requiredScore = gameManager.CurrentLevel.requiredScore;

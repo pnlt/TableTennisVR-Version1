@@ -17,10 +17,6 @@ public class ScoreInSampleRacket : BaseScoreCalculation
     {
         correctCondition = flag;
         scoreManagement.CorrectPose = correctCondition;
-        if (correctCondition)
-        {
-            UIManager.Instance.SetValueDebug("SampleRacket");
-        }
     }
 
     protected override void ResetCondition()
