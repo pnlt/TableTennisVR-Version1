@@ -32,7 +32,7 @@ public class SplineCheckpoints : MonoBehaviour
         {
             ResetCountDown();
             // Out of time => Failed line then resetting it
-            EventBus<CheckingConditionEvent>.Raise(new CheckingConditionEvent(checkpoints));
+            //EventBus<CheckingConditionEvent>.Raise(new CheckingConditionEvent(checkpoints));
         }
     }
 
