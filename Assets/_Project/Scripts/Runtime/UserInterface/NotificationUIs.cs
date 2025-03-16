@@ -2,8 +2,11 @@ using System;
 using Dorkbots.XR.Runtime;
 using UnityEngine;
 
-public class ModeNotification : MonoBehaviour
+public class NotificationUIs : MonoBehaviour
 {
+    public GameObject modeNoti;
+    public GameObject timeNoti;
+    
     private void OnEnable()
     {
         ModeAlterationNotificationEvent.Subscribe(ActivateNotification);
