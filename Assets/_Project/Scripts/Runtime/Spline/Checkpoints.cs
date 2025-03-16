@@ -37,7 +37,7 @@ public class Checkpoints : MonoBehaviour
 
     private void LineChecking(LineData lineData)
     {
-        UIManager.Instance.SetValueDebug($"{lineData.checkpoint.IsInTurn}");
+        //UIManager.Instance.SetValueDebug($"{lineData.checkpoint.IsInTurn}");
         if (lineData.checkpoint.IsInTurn)
         {
             NextTurn();
@@ -65,6 +65,7 @@ public class Checkpoints : MonoBehaviour
     {
         checkpoints[_currentCheckpoint].ResetCountDown();
         checkpoints[_currentCheckpoint].IsInTurn = false;
+        UIManager.Instance.SetValueDebug(_currentCheckpoint.ToString());
         _currentCheckpoint += 1;
         
         // If number of checkpoints the racket has passed is equal the total of checkpoint => reset state
@@ -74,6 +75,7 @@ public class Checkpoints : MonoBehaviour
             return;
         }
         
+        UIManager.Instance.SetValueDebug(_currentCheckpoint.ToString());
         checkpoints[_currentCheckpoint].IsInTurn = true;
         checkpoints[_currentCheckpoint].IsCountDown = true;
     }
