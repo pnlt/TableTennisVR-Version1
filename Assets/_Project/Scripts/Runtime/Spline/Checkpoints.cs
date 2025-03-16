@@ -37,13 +37,13 @@ public class Checkpoints : MonoBehaviour
 
     private void LineChecking(LineData lineData)
     {
+        UIManager.Instance.SetValueDebug($"{lineData.checkpoint.IsInTurn}");
         if (lineData.checkpoint.IsInTurn)
         {
             NextTurn();
         }
         else if (!lineData.checkpoint.IsInTurn)
         {
-            UIManager.Instance.SetValueDebug("CC");
             LineAttainment(false);
         }
     }
