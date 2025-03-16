@@ -14,7 +14,6 @@ public class ScoreInSpinWheel : BaseScoreCalculation
         correctCondition = flag;
         if (correctCondition)
         {
-            UIManager.Instance.SetValueDebug("Spline");
             EventBus<ConditionActivatedEvent>.Raise(new ConditionActivatedEvent());
         }
     }
