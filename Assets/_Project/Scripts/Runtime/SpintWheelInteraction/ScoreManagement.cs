@@ -71,7 +71,7 @@ public class ScoreManagement : MonoBehaviour
     private void ScoreSuccessfully(Notification successfulNotification, IScoreIncrease presentLevel)
     {
         // Plus Score
-        UIManager.Instance.SetValueDebug("Success " + satisfiedConditions);
+        UIManager.Instance.SetValueDebug("Success");
         if (gameManager.Mode == GameMode.Normal)
             presentLevel.UpdateScore(gameManager);
         else if (gameManager.Mode == GameMode.Challenge)    // In challenge mode
@@ -88,7 +88,7 @@ public class ScoreManagement : MonoBehaviour
     /// </summary>
     private void ScoreFailed(Notification failedNotification, IScoreDecrease presentLevel)
     {
-        UIManager.Instance.SetValueDebug("Failed " + satisfiedConditions);
+        UIManager.Instance.SetValueDebug("Failed");
         // Remain or decrease score
         if (gameManager.Mode == GameMode.Normal)
             presentLevel.ScoreDecrease(gameManager, satisfiedConditions,  correctPose);

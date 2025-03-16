@@ -6,15 +6,15 @@ using UnityEngine.UI;
 
 public class ModeBtnController : MonoBehaviour
 {
-    [SerializeField] private Button yesBtn;
-    [SerializeField] private Button noBtn;
+    [SerializeField] private Button yesButton;
+    [SerializeField] private Button noButton;
 
     private void OnEnable()
     {
-        if (yesBtn && noBtn)
+        if (yesButton && noButton)
         {
-            yesBtn.onClick.AddListener(OnYesClicked);
-            noBtn.onClick.AddListener(OnNoClicked);
+            yesButton.onClick.AddListener(OnYesClicked);
+            noButton.onClick.AddListener(OnNoClicked);
         }
     }
 
@@ -39,7 +39,7 @@ public class ModeBtnController : MonoBehaviour
 
     private void OnDisable()
     {
-        yesBtn.onClick.RemoveListener(OnYesClicked);
-        noBtn.onClick.RemoveListener(OnNoClicked);
+        yesButton.onClick.RemoveListener(OnYesClicked);
+        noButton.onClick.RemoveListener(OnNoClicked);
     }
 }
