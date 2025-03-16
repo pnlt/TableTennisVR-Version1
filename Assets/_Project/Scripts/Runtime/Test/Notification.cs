@@ -31,7 +31,8 @@ namespace _Project.Scripts.Tests.Runtime.Test
 
         private void StatsReset()
         {
-            _checkpoints.ResetLineState();
+            if (_checkpoints)
+                _checkpoints.ResetLineState();
     
             // Store the current cover lines before clearing
             var linesToReset = new List<CoverLine>(GuideLine.CoverLines);

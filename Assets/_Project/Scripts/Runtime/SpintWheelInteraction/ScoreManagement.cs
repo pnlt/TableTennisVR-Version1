@@ -1,4 +1,3 @@
-using System;
 using _Project.Scripts.Runtime.Enum;
 using _Project.Scripts.Runtime.Interfaces;
 using _Project.Scripts.Tests.Runtime.Test;
@@ -63,7 +62,7 @@ public class ScoreManagement : MonoBehaviour
     private void CheckConditionSatisfaction(Checkpoints checkingCheckpoint)
     {
         presentLevel = gameManager.CurrentLevel;
-        if (satisfiedConditions >= 1)
+        if (satisfiedConditions >= 2)
             ScoreSuccessfully(new SuccessfulNotification(checkingCheckpoint), presentLevel);     
         else
             ScoreFailed(new FailedNotification(checkingCheckpoint), presentLevel);
