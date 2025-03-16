@@ -36,7 +36,7 @@ public class InteractiveRacket : MonoBehaviour
 
     #endregion
     
-    #region Line Interaction
+    #region Other Interactions
     
     /// <summary>
     /// Handling the detection with the checkpoint to check perfect line
@@ -47,17 +47,17 @@ public class InteractiveRacket : MonoBehaviour
         // Get layer-mask of the collided game-object
         var checkpointLayer = 1 << collider.gameObject.layer;
         
-        // If collided object is on right area
-        if (collider.gameObject.TryGetComponent<ScoreInSpinWheel>(out var spinWheel))
-        {
-            spinWheel.SetCondition(true);
-        }
-
         // If the collided game-object's layer-mask is same as checkpoint's layer-mask
         if (checkpointLayer == interactLayer)
         {
             SplineCheckpoints splineCheckpoints = collider.gameObject.GetComponent<SplineCheckpoints>();
             LineAttainmentEvent.Invoke(new LineData(splineCheckpoints));
+        }
+        
+        // If collided object is on right area
+        if (collider.gameObject.TryGetComponent<ScoreInSpinWheel>(out var spinWheel))
+        {
+            spinWheel.SetCondition(true);
         }
         
         // If collided object is the sign of out of range
