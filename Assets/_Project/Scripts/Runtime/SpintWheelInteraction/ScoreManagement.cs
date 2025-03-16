@@ -27,7 +27,7 @@ public class ScoreManagement : MonoBehaviour
     private EventBinding<ConditionActivatedEvent> conditionEvents;
     private EventBinding<CheckingConditionEvent> finalScoreEvents;
     
-    public bool CorrectPose { get; set; }
+    public bool CorrectPose { get => correctPose; set => correctPose = value; }
 
     private void Awake()
     {
@@ -56,7 +56,7 @@ public class ScoreManagement : MonoBehaviour
     private void CheckConditionSatisfaction(Checkpoints checkingCheckpoint)
     {
         var presentLevel = gameManager.CurrentLevel;
-        if (satisfiedConditions >= conditionThreshold && CorrectPose)
+        if (satisfiedConditions >= conditionThreshold && correctPose)
             ScoreSuccessfully(new SuccessfulNotification(checkingCheckpoint), presentLevel);     
         else
             ScoreFailed(new FailedNotification(checkingCheckpoint), presentLevel);

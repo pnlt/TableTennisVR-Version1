@@ -3,5 +3,10 @@ using UnityEngine;
 
 public class FirstRacketIllustrationPoint : IllustrativeRacket
 {
+    public override void ConditionValidation(bool condition)
+    {
+        base.ConditionValidation(condition);
+        scoreSampleRacket.AddSampleRacket(this);
+    }
 }
 

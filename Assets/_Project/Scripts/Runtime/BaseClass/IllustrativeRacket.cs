@@ -17,6 +17,7 @@ namespace Dorkbots.XR.Runtime.SoundAndSFX
 
         protected void Awake() {
             ReferenceComponents();
+            originalMat = racketRender.material;
         }
 
         public virtual void ConditionValidation(bool condition) {
@@ -57,12 +58,10 @@ namespace Dorkbots.XR.Runtime.SoundAndSFX
             return (float)matchingVertices / sampleSize;
         }
 
-        /*public bool IsAlignedMesh(Transform original, Transform racket, MeshFilter mesh)
+        public virtual void SetMatToOrigin()
         {
-            float alignmentScore = CalculateAlignmentScore(original, racket, mesh);
-            return alignmentScore >= 0.7f; // 70% match is considered aligned
-        }*/
-
+            racketRender.material = originalMat;
+        }
 
         public void ChangeMaterial(Material material) {
             racketRender.material = material;

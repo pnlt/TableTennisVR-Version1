@@ -6,6 +6,7 @@ public class SecondRacketIllustrationPoint : IllustrativeRacket
 {
     public override void ConditionValidation(bool condition)
     {
+        scoreSampleRacket.AddSampleRacket(this);
         if (!isCorrectPose)
         {
             scoreSampleRacket.SetCondition(false);
