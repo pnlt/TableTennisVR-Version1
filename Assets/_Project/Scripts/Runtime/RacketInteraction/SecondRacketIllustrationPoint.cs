@@ -15,4 +15,9 @@ public class SecondRacketIllustrationPoint : IllustrativeRacket
         base.ConditionValidation(condition);
         scoreSampleRacket.SetCondition(true);
     }
+
+    public override void SetMatToOrigin()
+    {
+        racketRender.material = originalMat;
+    }
 }

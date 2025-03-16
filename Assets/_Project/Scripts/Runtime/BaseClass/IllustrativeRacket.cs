@@ -4,7 +4,7 @@ using UnityEngine.Serialization;
 
 namespace Dorkbots.XR.Runtime.SoundAndSFX
 {
-    public class IllustrativeRacket : MonoBehaviour
+    public abstract class IllustrativeRacket : MonoBehaviour
     {
         [Header("Accurate level")] [SerializeField]
         private float tolerance;
@@ -58,10 +58,7 @@ namespace Dorkbots.XR.Runtime.SoundAndSFX
             return (float)matchingVertices / sampleSize;
         }
 
-        public virtual void SetMatToOrigin()
-        {
-            racketRender.material = originalMat;
-        }
+        public abstract void SetMatToOrigin();
 
         public void ChangeMaterial(Material material) {
             racketRender.material = material;

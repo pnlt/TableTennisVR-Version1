@@ -8,5 +8,10 @@ public class FirstRacketIllustrationPoint : IllustrativeRacket
         base.ConditionValidation(condition);
         scoreSampleRacket.AddSampleRacket(this);
     }
+
+    public override void SetMatToOrigin()
+    {
+        racketRender.material = originalMat;
+    }
 }
 
