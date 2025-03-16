@@ -16,7 +16,6 @@ namespace Dorkbots.XR.Runtime.Spline
             correctCondition = flag;
             if (correctCondition)
             {
-                UIManager.Instance.SetValueDebug("Spline");
                 EventBus<ConditionActivatedEvent>.Raise(new ConditionActivatedEvent());
             }
         }

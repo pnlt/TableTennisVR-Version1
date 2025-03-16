@@ -45,6 +45,7 @@ public class ScoreManagement : MonoBehaviour
     private void ActivateCondition()
     {
         satisfiedConditions += 1;
+        UIManager.Instance.SetValueDebug(satisfiedConditions.ToString());
     }
     
 
