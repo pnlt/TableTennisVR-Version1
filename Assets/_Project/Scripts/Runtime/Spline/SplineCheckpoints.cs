@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SplineCheckpoints : MonoBehaviour
 {
-    [SerializeField] private float countDownTime = 3;       // The max length of time of each checkpoint
+    [SerializeField] private float countDownTime;       // The max length of time of each checkpoint
                                                             // allows user continuing to follow line 
     public Checkpoints checkpoints;
     public bool IsCountDown { get; set; }
@@ -39,6 +39,6 @@ public class SplineCheckpoints : MonoBehaviour
     public void ResetCountDown()
     {
         IsCountDown = false;
-        countDownTime = 3;
+        countDownTime = 5;
     }
 }
