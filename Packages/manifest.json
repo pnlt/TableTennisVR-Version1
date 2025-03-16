@@ -4,6 +4,7 @@
     "com.meta.movement": "https://github.com/oculus-samples/Unity-Movement.git",
     "com.meta.xr.sdk.all": "72.0.0",
     "com.siccity.gltfutility": "https://github.com/siccity/gltfutility.git",
+    "com.unity.2d.sprite": "1.0.0",
     "com.unity.addressables": "2.2.2",
     "com.unity.ai.navigation": "2.0.6",
     "com.unity.collab-proxy": "2.6.0",
