@@ -37,9 +37,6 @@ namespace _Project.Scripts.Tests.Runtime.Test
             // Store the current cover lines before clearing
             var linesToReset = new List<CoverLine>(GuideLine.CoverLines);
     
-            // UI for checking condition will be reset at initial state
-            RestoreChecking();
-    
             // Clear the static list
             GuideLine.RemoveAllElements();
     
@@ -47,13 +44,6 @@ namespace _Project.Scripts.Tests.Runtime.Test
             ResetLines(linesToReset);
         }
 
-        private void RestoreChecking()
-        {
-            foreach (var item in TestCheckpoint.listCheckUI)
-            {
-                item.ChangeColor(Color.white);
-            }
-        }
         
         private async void ResetLines(List<CoverLine> linesToReset)
         {

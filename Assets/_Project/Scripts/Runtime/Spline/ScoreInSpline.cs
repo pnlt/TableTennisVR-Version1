@@ -5,12 +5,6 @@ namespace Dorkbots.XR.Runtime.Spline
 {
     public class ScoreInSpline : BaseScoreCalculation
     {
-        private void Update()
-        {
-            if (correctCondition)
-                TestCheckpoint.listCheckUI[0].ChangeColor(Color.green);
-        }
-
         public override void SetCondition(bool flag)
         {
             correctCondition = flag;
