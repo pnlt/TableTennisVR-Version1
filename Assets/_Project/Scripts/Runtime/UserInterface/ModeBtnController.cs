@@ -25,7 +25,7 @@ public class ModeBtnController : MonoBehaviour
         TimeNotificationEvent.Invoke(new TimeNotificationData(true));
 
         // Play some anim
-        ModeAlterationNotificationEvent.Invoke(new ModeNotificationData(false));
+        GameActivationEvent.Invoke(new GameActivationData(false, null));
     }
 
     private void OnNoClicked()
@@ -33,7 +33,7 @@ public class ModeBtnController : MonoBehaviour
         //remain in normal mode
 
         // Play some anim
-        ModeAlterationNotificationEvent.Invoke(new ModeNotificationData(false));
+        GameActivationEvent.Invoke(new GameActivationData(false, null));
     }
 
 

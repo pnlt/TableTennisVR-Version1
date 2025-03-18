@@ -56,6 +56,23 @@ namespace Dorkbots.XR.Runtime
             this.score = score;
         }
     }
+    
+    public class GameActivationEvent : EventBase<GameActivationEvent, GameActivationData> {}
+
+    public readonly struct GameActivationData
+    {
+        private readonly GameObject @object;
+        private readonly bool flag;
+        
+        public GameObject gameObj => @object;
+        public bool Flag => flag;
+
+        public GameActivationData(bool flag, GameObject @object)
+        {
+            this.@object = @object;
+            this.flag = flag;
+        }
+    }
 
     public class ModeAlterationNotificationEvent : EventBase<ModeAlterationNotificationEvent, ModeNotificationData>
     { }
