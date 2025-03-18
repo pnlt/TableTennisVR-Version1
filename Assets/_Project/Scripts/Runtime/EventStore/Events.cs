@@ -7,7 +7,6 @@ namespace Dorkbots.XR.Runtime
     
     public class PlayMusicEvent : EventBase<PlaySFXEvent, PlayMusicEventData>
     { }
-
     public readonly struct PlayMusicEventData
     {
         public readonly SoundTypes audioType;
@@ -20,7 +19,6 @@ namespace Dorkbots.XR.Runtime
     
     public class PlaySFXEvent : EventBase<PlaySFXEvent, PlaySFXEventData>
     { }
-
     public readonly struct PlaySFXEventData
     {
         public readonly SoundTypes audioType;
@@ -48,7 +46,6 @@ namespace Dorkbots.XR.Runtime
 
     public class DisplayScoreEvent : EventBase<DisplayScoreEvent, ScoreData>
     { }
-
     public struct ScoreData
     {
         private readonly float score;
@@ -62,7 +59,6 @@ namespace Dorkbots.XR.Runtime
 
     public class ModeAlterationNotificationEvent : EventBase<ModeAlterationNotificationEvent, ModeNotificationData>
     { }
-
     public readonly struct ModeNotificationData
     {
         private readonly bool flag;
@@ -71,6 +67,33 @@ namespace Dorkbots.XR.Runtime
         public ModeNotificationData(bool flag)
         {
             this.flag = flag;
+        }
+    }
+    
+    
+    public class TimeNotificationEvent : EventBase<TimeNotificationEvent, TimeNotificationData>
+    { }
+    public readonly struct TimeNotificationData
+    {
+        private readonly bool flag;
+        public bool Flag => flag;
+
+        public TimeNotificationData(bool flag)
+        {
+            this.flag = flag;
+        }
+    }
+    
+    public class DisplayTimerEvent : EventBase<DisplayTimerEvent, DisplayTimerData> {}
+    public readonly struct DisplayTimerData
+    {
+        private readonly float elapsedTime;
+        
+        public float ElapsedTime => elapsedTime;
+
+        public DisplayTimerData(float elapsedTime)
+        {
+            this.elapsedTime = elapsedTime;
         }
     }
 }

@@ -7,28 +7,36 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class GameManager : PersistentSingleton<GameManager>
 {
-    [Header("Data")]
-    [SerializeField] private float score;
+    [Header("Data")] [SerializeField] private float score;
     [SerializeField] private float coin;
 
-    [Header("Level regulations")] 
-    [SerializeField] private AssetLabelReference levelDataLabel;
+    [Header("Level regulations")] [SerializeField]
+    private AssetLabelReference levelDataLabel;
+
     [SerializeField] private List<LevelSO> levels;
-    
+
     private LevelSO currentLevel;
     private int currentLevelIndex;
     private GameMode mode = GameMode.Normal;
+
+    #region GameStates
+
+    private bool _isGamePaused;
+
+    #endregion
+    
 
     public LevelSO CurrentLevel
     {
         get
         {
-            currentLevel = levels[currentLevelIndex];
+            if (currentLevelIndex < levels.Count)
+                currentLevel = levels[currentLevelIndex];
             return currentLevel;
         }
         set => currentLevel = value;
     }
-    
+
     public float NormalScore { get; set; }
     public float ChallengeScore { get; set; }
 
@@ -47,14 +55,18 @@ public class GameManager : PersistentSingleton<GameManager>
         get => mode;
         set
         {
-           if (mode == GameMode.Normal && score >= currentLevel.requiredScore) mode = value; 
+            if (mode == GameMode.Normal && score >= currentLevel.requiredScore) mode = value;
         }
     }
-    
-    public List<LevelSO> Levels { get => levels; private set => levels = value; }
+
+    public List<LevelSO> Levels
+    {
+        get => levels;
+        private set => levels = value;
+    }
 
     #region Load GameManager by Addressable
-    
+
     protected override void Awake()
     {
         base.Awake();
@@ -95,7 +107,7 @@ public class GameManager : PersistentSingleton<GameManager>
             Debug.Log(e);
         }
     }*/
-    
+
     #endregion
 
     private void Start()
@@ -106,9 +118,5 @@ public class GameManager : PersistentSingleton<GameManager>
     private void UpgradeLevel()
     {
         currentLevelIndex++;
-        
-        if (currentLevelIndex < levels.Count)
-            currentLevel = levels[currentLevelIndex]; 
     }
-
 }

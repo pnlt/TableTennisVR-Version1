@@ -3,12 +3,6 @@ using UnityEngine;
 
 public class ScoreInSpinWheel : BaseScoreCalculation
 {
-    private void Update()
-    {
-        if (correctCondition)
-            TestCheckpoint.listCheckUI[1].ChangeColor(Color.green);
-    }
-
     public override void SetCondition(bool flag)
     {
         correctCondition = flag;

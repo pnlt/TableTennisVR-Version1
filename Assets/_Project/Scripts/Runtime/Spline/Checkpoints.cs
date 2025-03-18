@@ -10,7 +10,7 @@ public class Checkpoints : MonoBehaviour
     private List<SplineCheckpoints> checkpoints = new List<SplineCheckpoints>();
     private int _checkpointIdxComparison;
     private int _currentCheckpoint;
-    private int _numberOfCheckpoints = 0;
+    private int _numberOfCheckpoints;
     
     public int NumberOfCheckpoints => _numberOfCheckpoints;
     public List<SplineCheckpoints> ListCheckpoints => checkpoints;

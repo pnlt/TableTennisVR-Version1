@@ -14,10 +14,12 @@ public class SplineCheckpoints : MonoBehaviour
     }
     
     private bool _isInTurn;
+    private float tempCountdownTime;
 
     private void Start()
     {
         _isInTurn = true;
+        tempCountdownTime = countDownTime;
     }
 
     private void Update()
@@ -33,8 +35,8 @@ public class SplineCheckpoints : MonoBehaviour
     /// </summary>
     private void CountingDown()
     {
-        countDownTime -= Time.deltaTime;
-        if (countDownTime <= 0)
+        tempCountdownTime -= Time.deltaTime;
+        if (tempCountdownTime <= 0)
         {
             ResetCountDown();
             UIManager.Instance.SetValueDebug("Countdown");
@@ -46,6 +48,6 @@ public class SplineCheckpoints : MonoBehaviour
     public void ResetCountDown()
     {
         IsCountDown = false;
-        countDownTime = 3;
+        tempCountdownTime = countDownTime;
     }
 }

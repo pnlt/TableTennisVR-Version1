@@ -9,16 +9,23 @@ public class NotificationUIs : MonoBehaviour
     
     private void OnEnable()
     {
-        ModeAlterationNotificationEvent.Subscribe(ActivateNotification);
+        ModeAlterationNotificationEvent.Subscribe(ActivateModeNotification);
+        TimeNotificationEvent.Subscribe(ActivateTimeLimitation);
     }
     
-    private void ActivateNotification(ModeNotificationData data)
+    private void ActivateModeNotification(ModeNotificationData data)
     {
-        gameObject.SetActive(data.Flag);
+        modeNoti.SetActive(data.Flag);
+    }
+
+    private void ActivateTimeLimitation(TimeNotificationData timeData)
+    {
+        timeNoti.SetActive(timeData.Flag);
     }
 
     private void OnDisable()
     {
-        ModeAlterationNotificationEvent.Unsubscribe(ActivateNotification);
+        ModeAlterationNotificationEvent.Unsubscribe(ActivateModeNotification);
+        TimeNotificationEvent.Unsubscribe(ActivateTimeLimitation);
     }
 }

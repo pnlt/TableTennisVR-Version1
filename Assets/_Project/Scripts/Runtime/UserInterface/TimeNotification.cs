@@ -1,42 +1,30 @@
 using System;
+using Dorkbots.XR.Runtime;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class TimeNotification : MonoBehaviour
+namespace _Project.Scripts.Runtime.UserInterface
 {
-    [Header ("Reference components")]
-    [SerializeField] private TextMeshProUGUI timeTxt;
-    
-    private LevelSO currentLevel;
-    private float limitedTime = 90;
-
-    private void Awake()
+    public class TimeNotification : MonoBehaviour
     {
-        currentLevel = GameManager.Instance.CurrentLevel;
-        limitedTime = currentLevel.respectiveChallenge.limitedTime;
-    }
+        [Header("Reference components")] [SerializeField]
+        private TextMeshProUGUI timeTxt;
 
-    private void Update()
-    {
-        TimePass();
-    }
-
-    private void TimePass()
-    {
-        if (IsOutOfTime(limitedTime))
+        private void OnEnable()
         {
-            // Trigger event
-            return;
+            DisplayTimerEvent.Subscribe(DisplayTime);   
         }
-        
-        timeTxt.text = TimeSpan.FromSeconds(limitedTime).ToString(@"mm\:ss");
-        limitedTime -= Time.deltaTime;   
-    }
 
-    private bool IsOutOfTime(float limitedTime)
-    {
-        if (limitedTime <= 0) return false;
+        private void DisplayTime(DisplayTimerData timerData)
+        {
+            var timeStr = TimeSpan.FromSeconds(timerData.ElapsedTime).ToString(@"mm\:ss");
+            timeTxt.text = timeStr;
+        }
 
-        return true;
+        private void OnDisable()
+        {
+            DisplayTimerEvent.Unsubscribe(DisplayTime);
+        }
     }
 }
