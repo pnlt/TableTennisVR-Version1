@@ -1,4 +1,3 @@
-using System;
 using _Project.Scripts.Runtime.Enum;
 using Dorkbots.XR.Runtime;
 using UnityEngine;
@@ -23,6 +22,7 @@ public class ModeBtnController : MonoBehaviour
         GameManager.Instance.Mode = GameMode.Challenge;
         DisplayScoreEvent.Invoke(new ScoreData(0));
         // Show user interface in challenge mode (time limitation)
+        TimeNotificationEvent.Invoke(new TimeNotificationData(true));
 
         // Play some anim
         ModeAlterationNotificationEvent.Invoke(new ModeNotificationData(false));

@@ -16,6 +16,11 @@ public class TimeNotification : MonoBehaviour
         limitedTime = currentLevel.respectiveChallenge.limitedTime;
     }
 
+    private void Start()
+    {
+        timeTxt.text = TimeSpan.FromSeconds(limitedTime).ToString(@"mm\:ss");
+    }
+
     private void Update()
     {
         TimePass();
@@ -35,8 +40,8 @@ public class TimeNotification : MonoBehaviour
 
     private bool IsOutOfTime(float limitedTime)
     {
-        if (limitedTime <= 0) return false;
+        if (limitedTime <= 0) return true;
 
-        return true;
+        return false;
     }
 }

@@ -73,4 +73,19 @@ namespace Dorkbots.XR.Runtime
             this.flag = flag;
         }
     }
+    
+    
+    public class TimeNotificationEvent : EventBase<TimeNotificationEvent, TimeNotificationData>
+    { }
+
+    public readonly struct TimeNotificationData
+    {
+        private readonly bool flag;
+        public bool Flag => flag;
+
+        public TimeNotificationData(bool flag)
+        {
+            this.flag = flag;
+        }
+    }
 }
