@@ -76,6 +76,7 @@ public class Checkpoints : MonoBehaviour
         foreach (var check in checkpoints)
         {
             check.IsInTurn = true;
+            check.IsCountDown = false;
         }
     }
 
