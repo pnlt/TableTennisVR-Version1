@@ -1835,7 +1835,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8624530873661452966, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
       propertyPath: countDownTime
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9131932097231672964, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3762,7 +3762,7 @@ Transform:
   m_GameObject: {fileID: 595956351}
   serializedVersion: 2
   m_LocalRotation: {x: 0.3595817, y: 0.2456758, z: -0.40120834, w: -0.8058389}
-  m_LocalPosition: {x: -0.1035, y: 0.1031, z: -0.0007}
+  m_LocalPosition: {x: -0.1172, y: 0.1021, z: -0.0067}
   m_LocalScale: {x: 0.8622121, y: 0.60142195, z: 0.6768344}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3787,7 +3787,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.04
+  m_Radius: 0.06
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &595956354
 MonoBehaviour:
