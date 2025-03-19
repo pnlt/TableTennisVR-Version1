@@ -57,7 +57,7 @@ namespace Dorkbots.XR.Runtime
         }
     }
     
-    public class GameActivationEvent : EventBase<GameActivationEvent, GameActivationData> {}
+    /*public class GameActivationEvent<T> : EventBase<T, GameActivationData> {}
 
     public readonly struct GameActivationData
     {
@@ -72,8 +72,10 @@ namespace Dorkbots.XR.Runtime
             this.@object = @object;
             this.flag = flag;
         }
-    }
+    }*/
 
+    #region GameObjectToggle
+    
     public class ModeAlterationNotificationEvent : EventBase<ModeAlterationNotificationEvent, ModeNotificationData>
     { }
     public readonly struct ModeNotificationData
@@ -101,6 +103,8 @@ namespace Dorkbots.XR.Runtime
         }
     }
     
+    #endregion
+    
     public class DisplayTimerEvent : EventBase<DisplayTimerEvent, DisplayTimerData> {}
     public readonly struct DisplayTimerData
     {
@@ -113,4 +117,6 @@ namespace Dorkbots.XR.Runtime
             this.elapsedTime = elapsedTime;
         }
     }
+    
+    
 }

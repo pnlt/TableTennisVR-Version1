@@ -1510,6 +1510,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1061518650}
     m_Modifications:
+    - target: {fileID: 2771104902445722491, guid: 80d2915e8322faf4c8b0ea870ec77fe8, type: 3}
+      propertyPath: levels.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2771104902445722491, guid: 80d2915e8322faf4c8b0ea870ec77fe8, type: 3}
+      propertyPath: 'levels.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 6862dc88f2bafb14992da66bf0369960, type: 2}
     - target: {fileID: 5649874904661496048, guid: 80d2915e8322faf4c8b0ea870ec77fe8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1721,6 +1729,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 108934506216390898, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.6912565
+      objectReference: {fileID: 0}
+    - target: {fileID: 108934506216390898, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4156036
+      objectReference: {fileID: 0}
+    - target: {fileID: 108934506216390898, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.2826917
+      objectReference: {fileID: 0}
     - target: {fileID: 347423624124440777, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
       propertyPath: m_Radius
       value: 0.7
@@ -1748,6 +1768,18 @@ PrefabInstance:
     - target: {fileID: 2423387126448692490, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.128
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945412838375120984, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945412838375120984, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945412838375120984, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -22.78
       objectReference: {fileID: 0}
     - target: {fileID: 3026217460575505830, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
       propertyPath: m_Radius
@@ -6908,7 +6940,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1292989693
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6942,7 +6974,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modeNoti: {fileID: 1031691074}
-  timeNoti: {fileID: 0}
+  timeNoti: {fileID: 1962913771}
+  time: {fileID: 1777080433059348701}
 --- !u!114 &1308940014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9631,7 +9664,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1962913772
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10326,11 +10359,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: CountdownTimer
       objectReference: {fileID: 0}
+    - target: {fileID: 8305313199165141699, guid: 23f470d0d50c8d64f87d1f8e383833bf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23f470d0d50c8d64f87d1f8e383833bf, type: 3}
+--- !u!114 &1777080433059348701 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3493468466291390505, guid: 23f470d0d50c8d64f87d1f8e383833bf, type: 3}
+  m_PrefabInstance: {fileID: 1777080433059348700}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41223f2a418f7ea428200d05a7804b31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6098457613152701917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2595256692968854022, guid: f58073a4a60b04445b9a2dc15ffbcfc5, type: 3}
