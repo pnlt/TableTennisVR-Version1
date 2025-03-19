@@ -56,7 +56,26 @@ namespace Dorkbots.XR.Runtime
             this.score = score;
         }
     }
+    
+    /*public class GameActivationEvent<T> : EventBase<T, GameActivationData> {}
 
+    public readonly struct GameActivationData
+    {
+        private readonly GameObject @object;
+        private readonly bool flag;
+        
+        public GameObject gameObj => @object;
+        public bool Flag => flag;
+
+        public GameActivationData(bool flag, GameObject @object)
+        {
+            this.@object = @object;
+            this.flag = flag;
+        }
+    }*/
+
+    #region GameObjectToggle
+    
     public class ModeAlterationNotificationEvent : EventBase<ModeAlterationNotificationEvent, ModeNotificationData>
     { }
     public readonly struct ModeNotificationData
@@ -84,6 +103,8 @@ namespace Dorkbots.XR.Runtime
         }
     }
     
+    #endregion
+    
     public class DisplayTimerEvent : EventBase<DisplayTimerEvent, DisplayTimerData> {}
     public readonly struct DisplayTimerData
     {
@@ -96,4 +117,6 @@ namespace Dorkbots.XR.Runtime
             this.elapsedTime = elapsedTime;
         }
     }
+    
+    
 }

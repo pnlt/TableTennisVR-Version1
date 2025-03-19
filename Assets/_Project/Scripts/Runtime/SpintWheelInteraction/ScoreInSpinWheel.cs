@@ -6,14 +6,19 @@ public class ScoreInSpinWheel : BaseScoreCalculation
     public override void SetCondition(bool flag)
     {
         correctCondition = flag;
-        if (correctCondition)
+        if (!isInAction)
         {
-            EventBus<ConditionActivatedEvent>.Raise(new ConditionActivatedEvent());
+            isInAction = true;
+            if (correctCondition)
+            {
+                EventBus<ConditionActivatedEvent>.Raise(new ConditionActivatedEvent());
+            }
         }
     }
 
     protected override void ResetCondition()
     {
+        isInAction = false;
         if (!correctCondition)
         {
             Debug.Log("Did not hit right spin wheel area");

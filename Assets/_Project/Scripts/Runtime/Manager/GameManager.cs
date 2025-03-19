@@ -1,8 +1,12 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using _Project.Scripts.Runtime.Enum;
+using _Project.Scripts.Runtime.UserInterface;
+using Dorkbots.XR.Runtime;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.InputSystem;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class GameManager : PersistentSingleton<GameManager>
@@ -24,7 +28,6 @@ public class GameManager : PersistentSingleton<GameManager>
     private bool _isGamePaused;
 
     #endregion
-    
 
     public LevelSO CurrentLevel
     {

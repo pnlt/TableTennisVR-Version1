@@ -61,10 +61,9 @@ public class Checkpoints : MonoBehaviour
         if (_currentCheckpoint == _numberOfCheckpoints)
         {
             LineAttainment(true);
-            return;
         }
-        
-        checkpoints[_currentCheckpoint].IsCountDown = true;
+        else
+            checkpoints[_currentCheckpoint].IsCountDown = true;
     }
 
     /// <summary>

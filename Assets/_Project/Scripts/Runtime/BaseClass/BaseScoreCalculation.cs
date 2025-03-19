@@ -5,6 +5,8 @@ public abstract class BaseScoreCalculation : MonoBehaviour
 {
     [SerializeField] protected bool correctCondition;
 
+    protected bool isInAction = false;
+
     protected void OnEnable()
     {
         ResetConditionEvent.Subscribe(ResetCondition);
