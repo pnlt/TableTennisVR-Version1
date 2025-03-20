@@ -56,6 +56,7 @@ public class Checkpoints : MonoBehaviour
         checkpoints[_currentCheckpoint].ResetCountDown();
         checkpoints[_currentCheckpoint].IsInTurn = false;
         _currentCheckpoint += 1;
+        UIManager.Instance.SetValueDebug(_currentCheckpoint.ToString());
         
         // If number of checkpoints the racket has passed is equal the total of checkpoint => reset state
         if (_currentCheckpoint == _numberOfCheckpoints)
@@ -76,7 +77,6 @@ public class Checkpoints : MonoBehaviour
         foreach (var check in checkpoints)
         {
             check.IsInTurn = true;
-            check.IsCountDown = false;
         }
     }
 

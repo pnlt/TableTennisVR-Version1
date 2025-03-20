@@ -38,7 +38,6 @@ public class SplineCheckpoints : MonoBehaviour
         if (tempCountdownTime <= 0)
         {
             ResetCountDown();
-            UIManager.Instance.SetValueDebug("Countdown " + gameObject.name);
             // Out of time => Failed line then resetting it
             EventBus<CheckingConditionEvent>.Raise(new CheckingConditionEvent(checkpoints));
         }
