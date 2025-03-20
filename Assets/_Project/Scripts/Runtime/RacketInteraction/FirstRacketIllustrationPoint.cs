@@ -3,15 +3,12 @@ using UnityEngine;
 
 public class FirstRacketIllustrationPoint : IllustrativeRacket
 {
-    public override void ConditionValidation(bool condition)
-    {
-        base.ConditionValidation(condition);
+    public override void ConditionValidation(bool condition) {
         scoreSampleRacket.AddSampleRacket(this);
+        base.ConditionValidation(condition);
     }
 
-    public override void SetMatToOrigin()
-    {
+    public override void SetMatToOrigin() {
         racketRender.material = originalMat;
     }
 }
-

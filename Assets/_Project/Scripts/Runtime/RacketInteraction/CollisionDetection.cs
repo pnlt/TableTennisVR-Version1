@@ -25,8 +25,12 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
         private bool isCorrectPose;
         private bool inCenter;
         private int collisionLayerValue;
-        
-        public bool OutOfRange { get => isOutOfRange; set => isOutOfRange = value; }
+
+        public bool OutOfRange
+        {
+            get => isOutOfRange;
+            set => isOutOfRange = value;
+        }
 
         private void Awake() {
             ReferenceComponents();
@@ -37,16 +41,14 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
             sampleRacketCollider = GetComponent<Collider>();
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            
+        private void OnTriggerEnter(Collider other) {
             collisionLayerValue = 1 << other.gameObject.layer;
         }
 
         private void OnTriggerStay(Collider other) {
             if (isOutOfRange)
                 return;
-            
+
             if (collisionLayerValue != racketLayer.value) return;
 
             var distance = Vector3.Distance(sampleRacketCollider.bounds.center, racketCollider.bounds.center);
@@ -71,11 +73,12 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
                 }
                 else
                 {
-                    racket.ConditionValidation(false);
+                    //racket.ConditionValidation(false);
+                    racket.ConditionValidation(true); // Delete
                 }
             }
         }
-        
+
         private float currentAlignmentScore = 0f;
         private float smoothingFactor = 0.3f; // Adjust for more/less smoothing
 

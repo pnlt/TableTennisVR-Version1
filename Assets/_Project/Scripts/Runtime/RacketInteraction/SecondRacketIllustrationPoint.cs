@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class SecondRacketIllustrationPoint : IllustrativeRacket
 {
-    public override void ConditionValidation(bool condition)
-    {
+    public override void ConditionValidation(bool condition) {
         scoreSampleRacket.AddSampleRacket(this);
         if (!isCorrectPose)
         {
-            scoreSampleRacket.SetCondition(false);
+            //scoreSampleRacket.SetCondition(false);
+            scoreSampleRacket.SetCondition(true);
             return;
         }
+
         base.ConditionValidation(condition);
         scoreSampleRacket.SetCondition(true);
     }
 
-    public override void SetMatToOrigin()
-    {
+    public override void SetMatToOrigin() {
         racketRender.material = originalMat;
     }
 }
