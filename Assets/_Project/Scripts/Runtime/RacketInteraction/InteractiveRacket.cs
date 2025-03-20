@@ -50,7 +50,7 @@ public class InteractiveRacket : MonoBehaviour
         // If the collided game-object's layer-mask is same as checkpoint's layer-mask
         if (checkpointLayer == interactLayer)
         {
-            SplineCheckpoints splineCheckpoint = collider.gameObject.GetComponent<SplineCheckpoints>();
+            SplineCheckpoint splineCheckpoint = collider.gameObject.GetComponent<SplineCheckpoint>();
             LineAttainmentEvent.Invoke(new LineData(splineCheckpoint));
         }
         

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SplineCheckpoints : MonoBehaviour
+public class SplineCheckpoint : MonoBehaviour
 {
     [SerializeField] private float countDownTime;       // The max length of time of each checkpoint
                                                             // allows user continuing to follow line 

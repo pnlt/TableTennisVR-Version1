@@ -7,13 +7,12 @@ using UnityEngine;
 
 public class Checkpoints : MonoBehaviour
 {
-    private List<SplineCheckpoints> checkpoints = new List<SplineCheckpoints>();
-    private int _checkpointIdxComparison;
+    private List<SplineCheckpoint> checkpoints = new List<SplineCheckpoint>();
     private int _currentCheckpoint;
     private int _numberOfCheckpoints;
     
     public int NumberOfCheckpoints => _numberOfCheckpoints;
-    public List<SplineCheckpoints> ListCheckpoints => checkpoints;
+    public List<SplineCheckpoint> ListCheckpoints => checkpoints;
     public ScoreInSpline lineScore;
     
     private void Awake()
@@ -21,7 +20,7 @@ public class Checkpoints : MonoBehaviour
         _currentCheckpoint = 0;
         
         _numberOfCheckpoints = gameObject.transform.childCount;         // Get number of currently checkpoints in the line
-        checkpoints = gameObject.GetComponentsInChildren<SplineCheckpoints>().ToList();
+        checkpoints = gameObject.GetComponentsInChildren<SplineCheckpoint>().ToList();
         lineScore = GetComponentInParent<ScoreInSpline>();
     }
 
@@ -32,7 +31,7 @@ public class Checkpoints : MonoBehaviour
 
     private void LineChecking(LineData lineData)
     {
-        if (lineData.checkpoint.IsInTurn)
+        if (lineData.Checkpoint.IsInTurn)
         {
             NextTurn();
         }
@@ -53,10 +52,10 @@ public class Checkpoints : MonoBehaviour
     /// </summary>
     private void NextTurn()
     {
-        checkpoints[_currentCheckpoint].ResetCountDown();
         checkpoints[_currentCheckpoint].IsInTurn = false;
+        UIManager.Instance.SetValueDebug($"{checkpoints[_currentCheckpoint].IsInTurn}");
+        checkpoints[_currentCheckpoint].ResetCountDown();
         _currentCheckpoint += 1;
-        UIManager.Instance.SetValueDebug(_currentCheckpoint.ToString());
         
         // If number of checkpoints the racket has passed is equal the total of checkpoint => reset state
         if (_currentCheckpoint == _numberOfCheckpoints)
