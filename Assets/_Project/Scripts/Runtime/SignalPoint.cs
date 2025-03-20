@@ -11,6 +11,6 @@ public class SignalPoint : MonoBehaviour
     }
     
     public void OutOfRangeSignal() {
-        collisionDetection.OutOfRange = true;
+        //collisionDetection.OutOfRange = true;
     }
 }
