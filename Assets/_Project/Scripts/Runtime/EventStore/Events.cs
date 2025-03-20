@@ -36,11 +36,11 @@ namespace Dorkbots.XR.Runtime
 
     public class LineData
     {
-        public SplineCheckpoints checkpoint;
+        public SplineCheckpoint Checkpoint;
 
-        public LineData(SplineCheckpoints checkpoint)
+        public LineData(SplineCheckpoint checkpoint)
         {
-            this.checkpoint = checkpoint;
+            this.Checkpoint = checkpoint;
         }
     }
 
