@@ -52,8 +52,16 @@ public class Checkpoints : MonoBehaviour
     /// </summary>
     private void NextTurn(SplineCheckpoint checkpoint)
     {
+        var checkpointIdx = checkpoints.IndexOf(checkpoint);
         checkpoint.IsInTurn = false;
         checkpoint.ResetCountDown();
+        
+        if (checkpointIdx != _currentCheckpoint)
+        {
+            LineAttainment(false);
+            return;
+        }
+        
         _currentCheckpoint += 1;
         
         // If number of checkpoints the racket has passed is equal the total of checkpoint => reset state
