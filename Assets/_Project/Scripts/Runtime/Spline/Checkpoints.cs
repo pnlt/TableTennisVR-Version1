@@ -33,6 +33,7 @@ public class Checkpoints : MonoBehaviour
     {
         if (lineData.Checkpoint.IsInTurn)
         {
+            UIManager.Instance.SetValueDebug($"{lineData.Checkpoint.gameObject.name} {checkpoints[_currentCheckpoint].IsInTurn}");
             NextTurn();
         }
     }
@@ -53,7 +54,6 @@ public class Checkpoints : MonoBehaviour
     private void NextTurn()
     {
         checkpoints[_currentCheckpoint].IsInTurn = false;
-        UIManager.Instance.SetValueDebug($"{checkpoints[_currentCheckpoint].IsInTurn}");
         checkpoints[_currentCheckpoint].ResetCountDown();
         _currentCheckpoint += 1;
         
