@@ -1,38 +1,53 @@
+using System;
 using UnityEngine;
 
 namespace Dorkbots.XR.Runtime.DataSO
 {
     [System.Serializable]
-    public class Challenges
+    public class Challenges : IDisposable
     {
         public int requiredScore;
         public float limitedTime;
-        public bool _isTimeOut = false;
+        public float challengeScore;
 
         public Challenges()
         {
-            Timer.OnTimeOut += OutTime;
+            Timer.OnTimerEnded += CheckedChallenge;
+            challengeScore = 0;
         }
 
         private void OutTime(bool value)
         {
-            _isTimeOut = value;
         }
 
-        public void IncreaseScore(GameManager gameManager)
+        public void IncreaseScore()
         {
-            gameManager.ChallengeScore += 1;
             // Save challenge score data
-
+            challengeScore++;
+            DisplayScoreEvent.Invoke(new ScoreData(challengeScore));
+            ChallengeFulfillment();
         }
 
-        private void FinishChallenge(GameManager gameManager)
+        private void ChallengeFulfillment()
         {
-            if (gameManager.ChallengeScore >= requiredScore)
-            {
-                // Unlock new level
-                
-            }
+            // Display congratulation and confirm notification
+            
+            // Upgrade level/Go back to practice mode
+            
+            // Disable countdown timer UI   
+        }
+
+        private void CheckedChallenge()
+        {
+            // Disable score management - Player can not score anymore 
+            
+            // Display failed notification - Player has two options (face challenge again or move back to normal for more practices)
+        }
+
+        public void Dispose()
+        {
+            Timer.OnTimerEnded -= CheckedChallenge;
+            GC.SuppressFinalize(this);
         }
     }
 }

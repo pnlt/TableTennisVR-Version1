@@ -38,7 +38,7 @@ public class ScoreDisplayment : MonoBehaviour
 
     private void ModeFilter()
     {
-        if (gameManager.Mode == GameMode.Normal)
+        if (gameManager.Mode == GameMode.Practice)
             requiredScore = gameManager.CurrentLevel.requiredScore;
         else if (gameManager.Mode == GameMode.Challenge)
             requiredScore = gameManager.CurrentLevel.respectiveChallenge.requiredScore;

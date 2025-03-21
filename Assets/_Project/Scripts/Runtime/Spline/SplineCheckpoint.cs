@@ -1,10 +1,13 @@
+using System;
+using Dorkbots.XR.Runtime;
 using UnityEngine;
 
 public class SplineCheckpoint : MonoBehaviour
 {
     [SerializeField] private float countDownTime;       // The max length of time of each checkpoint
                                                             // allows user continuing to follow line 
-    public Checkpoints checkpoints;
+    [SerializeField] private LayerMask racketLayer;
+    private Checkpoints checkpoints;
     public bool IsCountDown { get; set; }
     public bool IsInTurn
     {
@@ -14,6 +17,11 @@ public class SplineCheckpoint : MonoBehaviour
     
     private bool _isInTurn;
     private float tempCountdownTime;
+
+    private void Awake()
+    {
+        checkpoints = GetComponentInParent<Checkpoints>();
+    }
 
     private void Start()
     {
@@ -26,6 +34,15 @@ public class SplineCheckpoint : MonoBehaviour
         if (IsCountDown)
         {
             CountingDown();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        var targetLayer = 1 << other.gameObject.layer;
+        if (targetLayer == racketLayer.value)
+        {
+            LineAttainmentEvent.Invoke(new LineData(this));
         }
     }
 

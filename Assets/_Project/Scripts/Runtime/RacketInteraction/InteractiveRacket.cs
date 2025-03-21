@@ -1,11 +1,9 @@
 using _Project.Scripts.Tests.Runtime.RacketInteraction;
-using Dorkbots.XR.Runtime;
 using UnityEngine;
 
 public class InteractiveRacket : MonoBehaviour
 {
     [Header("Detection layer")]
-    public LayerMask interactLayer;
     public LayerMask wheelLayer;
     
     [Header("References")]
@@ -44,16 +42,6 @@ public class InteractiveRacket : MonoBehaviour
     /// <param name="collider"></param>
     private void OnTriggerEnter(Collider collider)
     {
-        // Get layer-mask of the collided game-object
-        var checkpointLayer = 1 << collider.gameObject.layer;
-        
-        // If the collided game-object's layer-mask is same as checkpoint's layer-mask
-        if (checkpointLayer == interactLayer)
-        {
-            SplineCheckpoint splineCheckpoint = collider.gameObject.GetComponent<SplineCheckpoint>();
-            LineAttainmentEvent.Invoke(new LineData(splineCheckpoint));
-        }
-        
         // If collided object is on right area
         if (collider.gameObject.TryGetComponent<ScoreInSpinWheel>(out var spinWheel))
         {

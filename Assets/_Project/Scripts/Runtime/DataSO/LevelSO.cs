@@ -29,9 +29,9 @@ public class LevelSO : ScriptableObject, IScoreDecrease, IScoreIncrease
         }
     }
 
-    public void ChallengeUpdate(GameManager gameManager)
+    public void ChallengeUpdate()
     {
-        respectiveChallenge.IncreaseScore(gameManager);
+        respectiveChallenge.IncreaseScore();
     }
 
     public void ScoreDecrease(GameManager gameManager, int satisfiedCondition, bool correctPose)

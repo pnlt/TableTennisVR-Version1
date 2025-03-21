@@ -1,4 +1,3 @@
-using System;
 using Dorkbots.XR.Runtime.SoundAndSFX;
 using UnityEngine;
 
@@ -67,19 +66,19 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
             else if (inCenter)
             {
                 isOutOfRange = true;
+                PoseCorrectionSignal();
                 if (isCorrectPose)
                 {
                     racket.ConditionValidation(true);
                 }
                 else
                 {
-                    //racket.ConditionValidation(false);
-                    racket.ConditionValidation(true); // Delete
+                    racket.ConditionValidation(false);
                 }
             }
         }
 
-        private float currentAlignmentScore = 0f;
+        private float currentAlignmentScore;
         private float smoothingFactor = 0.3f; // Adjust for more/less smoothing
 
         private void PoseCorrectionSignal() {
@@ -103,8 +102,6 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
         }
 
         private void OnTriggerExit(Collider other) {
-            //var distance = Vector3.Distance(sampleRacketCollider.bounds.center, racketCollider.bounds.center);
-            //PoseDetection(distance);
             ResetState();
         }
 

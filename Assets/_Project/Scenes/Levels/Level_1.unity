@@ -1747,7 +1747,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 532812489606019902, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
       propertyPath: countDownTime
-      value: 7
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 532812489606019902, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
+      propertyPath: racketLayer.m_Bits
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 641650796878226793, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
       propertyPath: m_Name
@@ -1761,9 +1765,17 @@ PrefabInstance:
       propertyPath: countDownTime
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1046848194787923726, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
+      propertyPath: racketLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 1639306400077715514, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
       propertyPath: countDownTime
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1639306400077715514, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
+      propertyPath: racketLayer.m_Bits
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 2423387126448692490, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1809,6 +1821,10 @@ PrefabInstance:
       propertyPath: countDownTime
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4292773982611715413, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
+      propertyPath: racketLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 4660689734369572758, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.3
@@ -1820,6 +1836,10 @@ PrefabInstance:
     - target: {fileID: 6134066721790714656, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
       propertyPath: countDownTime
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6134066721790714656, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
+      propertyPath: racketLayer.m_Bits
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 6383502835687340194, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1851,7 +1871,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8624530873661452966, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
       propertyPath: countDownTime
-      value: 7
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8624530873661452966, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
+      propertyPath: racketLayer.m_Bits
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 9131932097231672964, guid: a3c0dd1d4d263d84d84e2a98dc4b1c45, type: 3}
       propertyPath: m_LocalPosition.x
