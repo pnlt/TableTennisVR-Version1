@@ -70,20 +70,17 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
 
     #region Load GameManager by Addressable
 
-    protected override void Awake()
-    {
+    protected override void Awake() {
         base.Awake();
         //LoadSOReferences();
     }
 
-    private void LoadSOReferences()
-    {
+    private void LoadSOReferences() {
         levels = new List<LevelSO>();
         Addressables.LoadAssetsAsync<ScriptableObject>(levelDataLabel.labelString).Completed += LoadedData;
     }
 
-    private void LoadedData(AsyncOperationHandle<IList<ScriptableObject>> obj)
-    {
+    private void LoadedData(AsyncOperationHandle<IList<ScriptableObject>> obj) {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
             foreach (var singleLevel in obj.Result)
@@ -113,24 +110,19 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
 
     #endregion
 
-    private void Start()
-    {
+    private void Start() {
         currentLevel = levels[currentLevelIndex];
-        UIManager.Instance.SetValueDebug(score.ToString());
     }
 
-    private void UpgradeLevel()
-    {
+    private void UpgradeLevel() {
         currentLevelIndex++;
     }
 
-    public void LoadData(GameData gameData)
-    {
+    public void LoadData(GameData gameData) {
         score = gameData.playerCoin;
     }
 
-    public void SaveData(ref GameData gameData)
-    {
+    public void SaveData(ref GameData gameData) {
         gameData.playerCoin = ++score;
     }
 }
