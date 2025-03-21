@@ -8,13 +8,11 @@ public class SecondRacketIllustrationPoint : IllustrativeRacket
         scoreSampleRacket.AddSampleRacket(this);
         if (!isCorrectPose)
         {
-            UIManager.Instance.SetValueDebug($"nhu cc {condition}");
             scoreSampleRacket.SetCondition(false);
             return;
         }
 
         base.ConditionValidation(condition);
-        UIManager.Instance.SetValueDebug($"Good to go {condition}");
         scoreSampleRacket.SetCondition(true);
     }
 

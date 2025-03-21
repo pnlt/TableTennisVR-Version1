@@ -58,7 +58,7 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
             if (!inCenter)
                 PoseCorrectionSignal();
 
-            if (distance < .03f)
+            if (distance < .05f)
             {
                 inCenter = true;
                 PoseCorrectionSignal();
@@ -70,9 +70,11 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
                 if (isCorrectPose)
                 {
                     racket.ConditionValidation(true);
+                    UIManager.Instance.SetValueDebug("correctPose");
                 }
                 else
                 {
+                    UIManager.Instance.SetValueDebug("wrongPose");
                     racket.ConditionValidation(false);
                 }
             }
