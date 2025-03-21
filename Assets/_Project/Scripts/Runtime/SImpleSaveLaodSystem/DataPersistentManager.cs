@@ -1,0 +1,65 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+namespace _Project.Scripts.Runtime.SImpleSaveLaodSystem
+{
+    public class DataPersistentManager : MonoBehaviour
+    {
+        [Header ("File storage config")]
+        [SerializeField] private string fileName;
+        
+        public static DataPersistentManager Instance;
+        
+        private GameData gameData;
+        private List<IDataPersistence> dataPersistence;
+        private FileDataHandler fileDataHandler;
+
+        private void Start()
+        {
+            dataPersistence = FindPersistentDataObject();
+            fileDataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+            LoadGame();
+        }
+
+        private List<IDataPersistence> FindPersistentDataObject()
+        {
+            IEnumerable<IDataPersistence> persistentDataObjects =
+                FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None)
+                    .OfType<IDataPersistence>();
+            return new List<IDataPersistence>(persistentDataObjects);
+        }
+
+        private void NewGame()
+        {
+            gameData = new GameData();
+        }
+
+        private void LoadGame()
+        {
+            gameData = fileDataHandler.LoadDataToFile();
+            if (gameData == null)
+                NewGame();
+
+            foreach (var iDataPersistence in dataPersistence)
+            {
+                iDataPersistence.LoadData(gameData);
+            }
+        }
+
+        private void SaveGame()
+        {
+            foreach (var iDataPersistence in dataPersistence)
+            {
+                iDataPersistence.SaveData(ref gameData);
+            }
+            fileDataHandler.SaveDataToFile(gameData);
+        }
+
+        private void OnApplicationQuit()
+        {
+            SaveGame();
+        }
+    }
+}
