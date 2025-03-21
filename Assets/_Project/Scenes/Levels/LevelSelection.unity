@@ -14185,7 +14185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5371618421252242329, guid: 167fca4645d7fcc4387b3714ff8225b3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 186.01001
       objectReference: {fileID: 0}
     - target: {fileID: 5371618421252242329, guid: 167fca4645d7fcc4387b3714ff8225b3, type: 3}
       propertyPath: m_SizeDelta.y
@@ -57618,13 +57618,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chapters:
   - chapterID: Chapter 1
-    title: Chapter 1
+    title: Level 1
     background: {fileID: 21300000, guid: ab37509a37ce7374489273653784a60f, type: 3}
-    description: This is a description field. You can say something about the chapter
-      here. This is a multi-line field and is automatically sized depending on its
-      content. You can also use any TMP-supported rich text. You can use the 'Chapter
-      Manager' component to make any changes to the chapter panel. Don't worry, it's
-      really easy to use!
+    description: 
     defaultState: 2
     titleKey: Chapter1Title
     descriptionKey: Chapter1Description
