@@ -60,7 +60,7 @@ public class ScoreManagement : MonoBehaviour
 
     private void CheckConditionSatisfaction(Checkpoints checkingCheckpoint) {
         presentLevel = gameManager.CurrentLevel;
-        if (satisfiedConditions >= 2 && correctPose)
+        if (satisfiedConditions >= 2)
             ScoreSuccessfully(new SuccessfulNotification(checkingCheckpoint), presentLevel);
         else
             ScoreFailed(new FailedNotification(checkingCheckpoint), presentLevel);
