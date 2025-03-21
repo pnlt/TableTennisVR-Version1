@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 public class Timer : MonoBehaviour
 {
     public delegate void CheckTime(bool isTimeOut);
-    public static event CheckTime OnTimeOut;
+    public delegate void OnTimeOut();
+    public static event OnTimeOut OnTimerEnded;
     
     private LevelSO currentLevel;
     private float limitedTime = 90;
@@ -25,11 +26,6 @@ public class Timer : MonoBehaviour
     private void Update()
     {
         TimePass();
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            OnTimeOut?.Invoke(true);
-            Debug.Log("<color>Event</color>");
-        }
     }
     
     private void TimePass()
@@ -37,7 +33,7 @@ public class Timer : MonoBehaviour
         _isTimeOut = IsOutOfTime(limitedTime);
         if (_isTimeOut)
         {
-            OnTimeOut?.Invoke(_isTimeOut);
+            OnTimerEnded?.Invoke();
             return;
         }
         

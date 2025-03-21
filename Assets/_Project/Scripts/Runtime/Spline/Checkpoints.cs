@@ -53,7 +53,7 @@ public class Checkpoints : MonoBehaviour
 
         if (checkpointIdx != _currentCheckpoint)
         {
-            //LineAttainment(false);
+            LineAttainment(false);
             return;
         }
 
@@ -61,9 +61,7 @@ public class Checkpoints : MonoBehaviour
 
         // If number of checkpoints the racket has passed is equal the total of checkpoint => reset state
         if (_currentCheckpoint == _numberOfCheckpoints)
-        {
             LineAttainment(true);
-        }
         else
             checkpoints[_currentCheckpoint].IsCountDown = true;
     }

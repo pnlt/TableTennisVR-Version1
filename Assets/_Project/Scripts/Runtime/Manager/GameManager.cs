@@ -21,7 +21,7 @@ public class GameManager : PersistentSingleton<GameManager>
 
     private LevelSO currentLevel;
     private int currentLevelIndex;
-    private GameMode mode = GameMode.Normal;
+    private GameMode mode = GameMode.Practice;
 
     #region GameStates
 
@@ -41,7 +41,6 @@ public class GameManager : PersistentSingleton<GameManager>
     }
 
     public float NormalScore { get; set; }
-    public float ChallengeScore { get; set; }
 
     public float PlayerScore
     {
@@ -58,7 +57,7 @@ public class GameManager : PersistentSingleton<GameManager>
         get => mode;
         set
         {
-            if (mode == GameMode.Normal && score >= currentLevel.requiredScore) mode = value;
+            if (mode == GameMode.Practice && score >= currentLevel.requiredScore) mode = value;
         }
     }
 

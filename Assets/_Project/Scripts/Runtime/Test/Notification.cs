@@ -17,8 +17,6 @@ namespace _Project.Scripts.Tests.Runtime.Test
         {
             _checkpoints = checkpoints;
         }
-        // Handle perfect line completion
-
 
         /// <summary>
         /// Reset to the initial state of guideline
