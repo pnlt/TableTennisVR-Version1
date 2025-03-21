@@ -14,7 +14,7 @@ public class ScoreInSampleRacket : BaseScoreCalculation
 
     public override void SetCondition(bool flag) {
         correctCondition = flag;
-        UIManager.Instance.SetValueDebug($"{correctCondition}");
+        //UIManager.Instance.SetValueDebug($"{correctCondition}");
 
         if (scoreManagement)
             scoreManagement.CorrectPose = correctCondition;
