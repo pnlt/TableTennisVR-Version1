@@ -9,8 +9,8 @@ public class SignalPoint : MonoBehaviour
     private void Awake() {
         collisionDetection = GetComponentInParent<CollisionDetection>();
     }
-    
+
     public void OutOfRangeSignal() {
-        //collisionDetection.OutOfRange = true;
+        collisionDetection.OutOfRange = true;
     }
 }

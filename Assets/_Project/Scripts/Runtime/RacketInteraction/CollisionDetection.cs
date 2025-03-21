@@ -65,7 +65,6 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
             }
             else if (inCenter)
             {
-                isOutOfRange = true;
                 PoseCorrectionSignal();
                 if (isCorrectPose)
                 {
