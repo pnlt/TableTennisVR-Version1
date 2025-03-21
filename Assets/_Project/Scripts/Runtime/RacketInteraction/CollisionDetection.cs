@@ -51,7 +51,8 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
             if (collisionLayerValue != racketLayer.value) return;
 
             var distance = Vector3.Distance(sampleRacketCollider.bounds.center, racketCollider.bounds.center);
-            PoseDetection(distance);
+            UIManager.Instance.SetValueDebug($"{racket.gameObject.name} {distance.ToString("0.00")}");
+            //PoseDetection(distance);
         }
 
         private void PoseDetection(float distance) {
