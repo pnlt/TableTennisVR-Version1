@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using _Project.Scripts.Runtime.Enum;
+using _Project.Scripts.Runtime.SImpleSaveLaodSystem;
 using _Project.Scripts.Runtime.UserInterface;
 using Dorkbots.XR.Runtime;
 using UnityEngine;
@@ -9,7 +10,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class GameManager : PersistentSingleton<GameManager>
+public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
 {
     [Header("Data")] [SerializeField] private float score;
     [SerializeField] private float coin;
@@ -115,10 +116,21 @@ public class GameManager : PersistentSingleton<GameManager>
     private void Start()
     {
         currentLevel = levels[currentLevelIndex];
+        UIManager.Instance.SetValueDebug(score.ToString());
     }
 
     private void UpgradeLevel()
     {
         currentLevelIndex++;
+    }
+
+    public void LoadData(GameData gameData)
+    {
+        score = gameData.playerCoin;
+    }
+
+    public void SaveData(ref GameData gameData)
+    {
+        gameData.playerCoin = ++score;
     }
 }
