@@ -1,39 +1,37 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DetectOverlapping : MonoBehaviour
 {
     public Transform target;
     public MeshFilter meshFilter;
+    public bool isContinue;
+    public bool isEnd;
+    public float count;
 
     private void Update()
     {
-        if (Overlapping(this.transform, target, meshFilter))
-        {
-            Debug.Log(this.transform.name + " is overlapping.");
-        }
-        else
-        {
-            Debug.Log(this.transform.name + " is not overlapping.");
-        }
     }
 
-    private bool Overlapping(Transform original, Transform target, MeshFilter meshFilter)
+    private void OnTriggerStay(Collider other)
     {
-        Mesh mesh = meshFilter.sharedMesh;
-        Vector3[] vertices = mesh.vertices;
+        if (isContinue) return;
         
-        foreach (Vector3 vertex in vertices)
-        {
-            var worldVertexA = original.TransformPoint(vertex);
-            var worldVertexB = target.TransformPoint(vertex);
+        count += Time.deltaTime;
+        Stop();
+    }
 
-            if (Vector3.Distance(worldVertexA, worldVertexB) > 0.15f)
-            {
-                return false;
-            }
+    public void Stop()
+    {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+             isEnd = true;   
         }
-        
-        return true;
+        else if (Keyboard.current.aKey.wasPressedThisFrame && isEnd)
+        {
+            isContinue = true;
+            Debug.Log("CC toi");
+        }
     }
 }
