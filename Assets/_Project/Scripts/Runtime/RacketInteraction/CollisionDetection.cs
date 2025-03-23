@@ -51,15 +51,14 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
             if (collisionLayerValue != racketLayer.value) return;
 
             var distance = Vector3.Distance(sampleRacketCollider.bounds.center, racketCollider.bounds.center);
-            UIManager.Instance.SetValueDebug($"{racket.gameObject.name} {distance.ToString("0.00")}");
-            //PoseDetection(distance);
+            PoseDetection(distance);
         }
 
         private void PoseDetection(float distance) {
             if (!inCenter)
                 PoseCorrectionSignal();
 
-            if (distance < .05f)
+            if (distance < .02f)
             {
                 inCenter = true;
                 PoseCorrectionSignal();
@@ -67,6 +66,7 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
             else if (inCenter)
             {
                 PoseCorrectionSignal();
+                isOutOfRange = true;
                 if (isCorrectPose)
                 {
                     racket.ConditionValidation(true);
