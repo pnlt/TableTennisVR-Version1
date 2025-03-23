@@ -13,7 +13,6 @@ public class DataManager : MonoBehaviour
 
     private void InitializeData()
     {
-        PlayerPrefs.SetFloat("NormalScore", gameManager.NormalScore);
     }
 }
 

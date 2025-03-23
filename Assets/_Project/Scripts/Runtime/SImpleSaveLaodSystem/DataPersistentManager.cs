@@ -1,21 +1,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Project.Scripts.Runtime.SImpleSaveLaodSystem
 {
-    public class DataPersistentManager : MonoBehaviour
+    public class DataPersistentManager : PersistentSingleton<DataPersistentManager>
     {
         [Header ("File storage config")]
         [SerializeField] private string fileName;
         
-        public static DataPersistentManager Instance;
-        
         private GameData gameData;
         private List<IDataPersistence> dataPersistence;
         private FileDataHandler fileDataHandler;
-
+        
         private void Start()
         {
             dataPersistence = FindPersistentDataObject();
@@ -48,8 +47,9 @@ namespace _Project.Scripts.Runtime.SImpleSaveLaodSystem
             }
         }
 
-        private void SaveGame()
+        public void SaveGame()
         {
+            Debug.LogWarning(dataPersistence.Count);
             foreach (var iDataPersistence in dataPersistence)
             {
                 iDataPersistence.SaveData(ref gameData);

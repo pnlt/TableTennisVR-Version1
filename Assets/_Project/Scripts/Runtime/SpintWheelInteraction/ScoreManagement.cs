@@ -2,10 +2,10 @@ using _Project.Scripts.Runtime.Enum;
 using _Project.Scripts.Runtime.Interfaces;
 using _Project.Scripts.Tests.Runtime.Test;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public struct ConditionActivatedEvent : IEvent
-{
-}
+{ }
 
 public class CheckingConditionEvent : IEvent
 {
@@ -28,6 +28,13 @@ public class ScoreManagement : MonoBehaviour
     private bool correctPose; // Needed condition to get score (have correction swinging pose)
     private EventBinding<ConditionActivatedEvent> conditionEvents;
     private EventBinding<CheckingConditionEvent> finalScoreEvents;
+
+    public void Test()
+    {
+        gameManager.CurrentLevel.respectiveChallenge.ChallengeFulfillment();
+        SceneTransitionManager.singleton.GoToSceneAsync(1);
+    }
+    
 
     public bool CorrectPose
     {
@@ -86,7 +93,7 @@ public class ScoreManagement : MonoBehaviour
     private void ScoreFailed(Notification failedNotification, IScoreDecrease presentLevel) {
         UIManager.Instance.SetValueDebug("Failed");
         // Remain or decrease score
-        if (gameManager.Mode == GameMode.Practice)
+        if (gameManager.Mode == GameMode.Challenge)
             presentLevel.ScoreDecrease(gameManager, satisfiedConditions, correctPose);
 
         failedNotification.ResetLine();

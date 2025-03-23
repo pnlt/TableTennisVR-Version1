@@ -1,26 +1,32 @@
 using _Project.Scripts.Runtime.Interfaces;
+using _Project.Scripts.Runtime.SImpleSaveLaodSystem;
 using Dorkbots.XR.Runtime;
 using Dorkbots.XR.Runtime.DataSO;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Level", menuName = "Level Data")]
-public class LevelSO : ScriptableObject, IScoreDecrease, IScoreIncrease
+public class LevelSO : ScriptableObject, IScoreDecrease, IScoreIncrease, IDataPersistence
 {
     public int levelNum;
     public Challenges respectiveChallenge;
     public int requiredScore; // Score needed to move to next level
     public bool overScore;
+    public bool isUnlock;
+    private float practiceScore;
 
     public void UpdateScore(GameManager gameManager)
     {
         gameManager.PlayerScore += 1;
-        gameManager.NormalScore += 1;
-        // Save the normal score data for future upload
-        
-        // Display score on UI
-        DisplayScoreEvent.Invoke(new ScoreData(gameManager.NormalScore));
 
-        if (gameManager.PlayerScore >= requiredScore && !overScore)
+        if (!overScore)
+        {
+            practiceScore += 1;
+            // Display score on UI
+            DisplayScoreEvent.Invoke(new ScoreData(practiceScore));
+            
+        }
+
+        if (practiceScore >= requiredScore && !overScore)
         {
             overScore = true;
             
@@ -62,5 +68,13 @@ public class LevelSO : ScriptableObject, IScoreDecrease, IScoreIncrease
         {
             gameManager.PlayerScore -= (decreaseCoefficient + 0.5f);
         }
+    }
+
+    public void LoadData(GameData gameData)
+    {
+    }
+
+    public void SaveData(ref GameData gameData)
+    {
     }
 }

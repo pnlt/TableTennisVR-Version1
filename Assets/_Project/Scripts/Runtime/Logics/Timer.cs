@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class Timer : MonoBehaviour
 {
-    public delegate void CheckTime(bool isTimeOut);
     public delegate void OnTimeOut();
     public static event OnTimeOut OnTimerEnded;
     
