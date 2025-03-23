@@ -16,14 +16,16 @@ public class LevelSelectionController : MonoBehaviour
 
             if (GameManager.Instance.IsLevelUnlocked(i))
             {
-                if (i == GameManager.Instance.currentLevelIndex)
+                /*if (i == GameManager.Instance.currentLevelIndex)
                 {
                     ChapterManager.SetCurrent(chapterId);
                 }
                 else
                 {
                     ChapterManager.SetUnlocked(chapterId);
-                }
+                }*/
+                ChapterManager.SetUnlocked(chapterId);
+                //ChapterManager
             }
             else
             {

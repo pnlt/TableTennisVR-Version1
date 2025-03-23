@@ -18,7 +18,7 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
     [SerializeField] private List<LevelSO> levels;
 
     private LevelSO currentLevel;
-    private int currentLevelIndex;
+    public int currentLevelIndex;
     private GameMode mode = GameMode.Practice;
     private List<bool> levelCompletionStatus = new();
 
@@ -68,6 +68,7 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
 
     protected override void Awake() {
         base.Awake();
+        InitializationLevelStatus();
         //LoadSOReferences();
     }
 
@@ -107,24 +108,21 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
     #endregion
 
     private void Start() {
-        InitializationLevelStatus();
         currentLevel = levels[currentLevelIndex];
     }
 
-    private void InitializationLevelStatus()
-    {
+    private void InitializationLevelStatus() {
         if (levelCompletionStatus == null || levelCompletionStatus.Count != levels.Count)
         {
             levelCompletionStatus = new();
             for (int i = 0; i < levels.Count; i++)
             {
-                levelCompletionStatus.Add((i == 0));
+                levelCompletionStatus.Add(i == 0);
             }
         }
     }
 
-    public void CompleteCurrentLevel()
-    {
+    public void CompleteCurrentLevel() {
         if (currentLevelIndex < levelCompletionStatus.Count)
         {
             levelCompletionStatus[currentLevelIndex] = true;
@@ -132,14 +130,12 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
             {
                 levelCompletionStatus[currentLevelIndex + 1] = true;
             }
-            
         }
-        
+
         DataPersistentManager.Instance.SaveGame();
     }
 
-    public bool IsLevelUnlocked(int levelIdx)
-    {
+    public bool IsLevelUnlocked(int levelIdx) {
         if (levelIdx < levelCompletionStatus.Count)
         {
             return levelCompletionStatus[levelIdx];
