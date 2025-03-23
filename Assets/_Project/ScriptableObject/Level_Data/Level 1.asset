@@ -16,6 +16,7 @@ MonoBehaviour:
   respectiveChallenge:
     requiredScore: 10
     limitedTime: 90
-    _isTimeOut: 1
+    challengeScore: 0
   requiredScore: 5
-  overScore: 0
+  overScore: 1
+  isUnlock: 0

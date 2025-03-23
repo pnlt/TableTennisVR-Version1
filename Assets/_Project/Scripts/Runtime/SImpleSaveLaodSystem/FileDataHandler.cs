@@ -48,7 +48,6 @@ namespace _Project.Scripts.Runtime.SImpleSaveLaodSystem
                 Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);
 
                 string dataToStore = JsonUtility.ToJson(gameData, true);
-                Debug.Log(dataToStore + " saved");
 
                 using FileStream fileStream = new FileStream(fullPath, FileMode.Create);
                 using StreamWriter streamWriter = new StreamWriter(fileStream);

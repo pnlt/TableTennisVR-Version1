@@ -9,6 +9,7 @@ namespace Dorkbots.XR.Runtime.DataSO
         public int requiredScore;
         public float limitedTime;
         public float challengeScore;
+        public event Action OnChallengeCompleted;
 
         public Challenges()
         {
@@ -28,13 +29,15 @@ namespace Dorkbots.XR.Runtime.DataSO
             ChallengeFulfillment();
         }
 
-        private void ChallengeFulfillment()
+        public void ChallengeFulfillment()
         {
-            // Display congratulation and confirm notification
-            
-            // Upgrade level/Go back to practice mode
+            // Display level up confirm notification
             
             // Disable countdown timer UI   
+            
+            // Upgrade level/Go back to practice mode
+            OnChallengeCompleted?.Invoke();
+            //GameManager.Instance.CurrentLevel.isUnlock = true;
         }
 
         private void CheckedChallenge()

@@ -9,8 +9,6 @@ namespace _Project.Scripts.Tests.Runtime.RacketInteraction
         [SerializeField] private Rigidbody _rigidbody;
         
         private float rotationMultiplier = 1f;
-        private Collider childCollider;
-        private Collider parentCollider;
         
         // Tweak these for your desired spin effect
         [Header("Spin Audio Settings")]
@@ -24,14 +22,8 @@ namespace _Project.Scripts.Tests.Runtime.RacketInteraction
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            childCollider = GetComponentInChildren<Collider>();
-            parentCollider = GetComponent<Collider>();
         }
 
-        private void Start()
-        {
-            Physics.IgnoreCollision(parentCollider, childCollider);
-        }
         private void Update()
         {
             // 1) Get how fast the wheel is spinning
