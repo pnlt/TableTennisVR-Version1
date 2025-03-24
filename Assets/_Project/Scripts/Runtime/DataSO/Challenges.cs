@@ -17,10 +17,6 @@ namespace Dorkbots.XR.Runtime.DataSO
             challengeScore = 0;
         }
 
-        private void OutTime(bool value)
-        {
-        }
-
         public void IncreaseScore()
         {
             // Save challenge score data
@@ -37,7 +33,6 @@ namespace Dorkbots.XR.Runtime.DataSO
             
             // Upgrade level/Go back to practice mode
             OnChallengeCompleted?.Invoke();
-            //GameManager.Instance.CurrentLevel.isUnlock = true;
         }
 
         private void CheckedChallenge()

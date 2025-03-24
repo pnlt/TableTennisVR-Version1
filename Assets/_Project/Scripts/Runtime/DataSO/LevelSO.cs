@@ -11,7 +11,6 @@ public class LevelSO : ScriptableObject, IScoreDecrease, IScoreIncrease, IDataPe
     public Challenges respectiveChallenge;
     public int requiredScore; // Score needed to move to next level
     public bool overScore;
-    public bool isUnlock;
     private float practiceScore;
 
     public void UpdateScore(GameManager gameManager)
