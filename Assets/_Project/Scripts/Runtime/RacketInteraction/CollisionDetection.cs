@@ -22,7 +22,6 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
         private bool isOutOfRange;
 
         private bool isCorrectPose;
-        private bool inCenter;
         private int collisionLayerValue;
 
         public bool OutOfRange
@@ -31,59 +30,53 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
             set => isOutOfRange = value;
         }
 
-        private void Awake() {
+        private void Awake()
+        {
             ReferenceComponents();
         }
 
-        private void ReferenceComponents() {
+        private void ReferenceComponents()
+        {
             racket = GetComponentInParent<IllustrativeRacket>();
             sampleRacketCollider = GetComponent<Collider>();
         }
 
-        private void OnTriggerEnter(Collider other) {
+        private void OnTriggerEnter(Collider other)
+        {
             collisionLayerValue = 1 << other.gameObject.layer;
         }
 
-        private void OnTriggerStay(Collider other) {
-            if (isOutOfRange)
+        private void OnTriggerStay(Collider other)
+        {
+            if (collisionLayerValue != other.gameObject.layer)
                 return;
-
-            if (collisionLayerValue != racketLayer.value) return;
-
-            var distance = Vector3.Distance(sampleRacketCollider.bounds.center, racketCollider.bounds.center);
-            PoseDetection(distance);
+            
+            if (isOutOfRange)
+            {
+                PoseDetection();   
+                return;
+            }
+            PoseCorrectionSignal();
         }
 
-        private void PoseDetection(float distance) {
-            if (!inCenter)
-                PoseCorrectionSignal();
-
-            if (distance < .02f)
+        private void PoseDetection()
+        {
+            if (isCorrectPose)
             {
-                inCenter = true;
-                PoseCorrectionSignal();
-            }
-            else if (inCenter)
+                UIManager.Instance.SetValueDebug($"correct pose + {racket.gameObject.name}");
+                racket.ConditionValidation(true); }
+            else
             {
-                PoseCorrectionSignal();
-                isOutOfRange = true;
-                if (isCorrectPose)
-                {
-                    racket.ConditionValidation(true);
-                    UIManager.Instance.SetValueDebug("correctPose");
-                }
-                else
-                {
-                    UIManager.Instance.SetValueDebug("wrongPose");
-                    racket.ConditionValidation(false);
-                }
+                UIManager.Instance.SetValueDebug($"wrong pose + {racket.gameObject.name}");
+                racket.ConditionValidation(false);
             }
         }
 
         private float currentAlignmentScore;
         private float smoothingFactor = 0.3f; // Adjust for more/less smoothing
 
-        private void PoseCorrectionSignal() {
+        private void PoseCorrectionSignal()
+        {
             // Call racket's method to check alignment, the tolerance is used inside the racket class
             float alignmentScore = racket.CalculateAlignmentScore(transform.parent, playerRacket, meshShape);
 
@@ -103,13 +96,15 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
             }
         }
 
-        private void OnTriggerExit(Collider other) {
-            ResetState();
+        private void OnTriggerExit(Collider other)
+        {
+            if (collisionLayerValue == other.gameObject.layer)
+                ResetState();
         }
 
-        private void ResetState() {
+        private void ResetState()
+        {
             isOutOfRange = false;
-            inCenter = false;
             isCorrectPose = false;
         }
     }

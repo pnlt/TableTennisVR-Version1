@@ -6,7 +6,7 @@ namespace _Project.Scripts.Runtime.Logics
 {
     public class LevelController : MonoBehaviour
     {
-        private void Start()
+        private void OnEnable()
         {
            GameManager.Instance.CurrentLevel.respectiveChallenge.OnChallengeCompleted += HandleChallengeCompleted;
         }
@@ -16,7 +16,7 @@ namespace _Project.Scripts.Runtime.Logics
             GameManager.Instance.CompleteCurrentLevel();
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             if (GameManager.Instance.CurrentLevel.respectiveChallenge != null)
             {

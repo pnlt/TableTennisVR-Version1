@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class PaddleControl : MonoBehaviour
 {
+    [Header("Controls")]
     [SerializeField] private Grabbable _grabbable;
     [SerializeField] private Rigidbody _rigidbody;
 
+    [Header("Audio")]
+    [SerializeField] SoundData soundData;
+    
     private const float _velocityThreshold = 0.01f;
     private const float _velocityMultiplier = 2f;
     private Vector3 _previousVelocity;
     private Vector3 acceleration;
     private Vector3 controllerVelocity;
-
-    [SerializeField] SoundData soundData;
 
     // Sound and swing detection variables
     private float _swingThreshold = 15.0f;

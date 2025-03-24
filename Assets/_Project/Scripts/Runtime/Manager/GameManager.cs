@@ -68,7 +68,6 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
 
     protected override void Awake() {
         base.Awake();
-        InitializationLevelStatus();
         //LoadSOReferences();
     }
 
@@ -108,6 +107,7 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
     #endregion
 
     private void Start() {
+        InitializationLevelStatus();
         currentLevel = levels[currentLevelIndex];
     }
 
