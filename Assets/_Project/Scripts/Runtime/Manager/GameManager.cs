@@ -106,6 +106,7 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
     #endregion
 
     private void Start() {
+        InitializationLevelStatus();
         currentLevel = levels[currentLevelIndex];
     }
 
@@ -151,10 +152,6 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
         if (gameData.levelCompletionStatus != null && gameData.levelCompletionStatus.Count > 0)
         {
             levelCompletionStatus = gameData.levelCompletionStatus;
-        }
-        else
-        {
-            InitializationLevelStatus();
         }
     }
 
