@@ -35,7 +35,7 @@ namespace _Project.Scripts.Runtime.SImpleSaveLaodSystem
             gameData = new GameData();
         }
 
-        private void LoadGame()
+        public void LoadGame()
         {
             gameData = fileDataHandler.LoadDataToFile();
             if (gameData == null)
