@@ -14,8 +14,8 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
     [Header("Level regulations")] [SerializeField]
     private AssetLabelReference levelDataLabel;
 
-    [Header("Level Data")]
-    [SerializeField] private List<LevelSO> levels;
+    [Header("Level Data")] [SerializeField]
+    private List<LevelSO> levels;
 
     private LevelSO currentLevel;
     public int currentLevelIndex;
@@ -107,7 +107,6 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
     #endregion
 
     private void Start() {
-        InitializationLevelStatus();
         currentLevel = levels[currentLevelIndex];
     }
 
@@ -153,6 +152,10 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
         if (gameData.levelCompletionStatus != null && gameData.levelCompletionStatus.Count > 0)
         {
             levelCompletionStatus = gameData.levelCompletionStatus;
+        }
+        else
+        {
+            InitializationLevelStatus();
         }
     }
 
