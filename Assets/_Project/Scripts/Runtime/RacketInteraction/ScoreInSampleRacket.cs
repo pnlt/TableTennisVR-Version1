@@ -6,7 +6,7 @@ using UnityEngine;
 public class ScoreInSampleRacket : BaseScoreCalculation
 {
     [SerializeField] private ScoreManagement scoreManagement;
-    [SerializeField] private List<IllustrativeRacket> illustratives = new List<IllustrativeRacket>();
+    [SerializeField] private List<IllustrativeRacket> illustratives = new();
 
     public void AddSampleRacket(IllustrativeRacket illustrativeRacket) {
         illustratives.Add(illustrativeRacket);

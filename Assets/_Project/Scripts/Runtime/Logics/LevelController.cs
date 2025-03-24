@@ -11,6 +11,11 @@ namespace _Project.Scripts.Runtime.Logics
            GameManager.Instance.CurrentLevel.respectiveChallenge.OnChallengeCompleted += HandleChallengeCompleted;
         }
 
+        private void Start()
+        {
+            UIManager.Instance.SetValueDebug(Application.persistentDataPath);   
+        }
+
         private void HandleChallengeCompleted()
         {
             GameManager.Instance.CompleteCurrentLevel();

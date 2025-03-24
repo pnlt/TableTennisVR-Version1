@@ -14,6 +14,7 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
     [Header("Level regulations")] [SerializeField]
     private AssetLabelReference levelDataLabel;
 
+    [Header("Level Data")]
     [SerializeField] private List<LevelSO> levels;
 
     private LevelSO currentLevel;

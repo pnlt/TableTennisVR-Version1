@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Project.Scripts.Runtime.SImpleSaveLaodSystem
@@ -35,7 +33,7 @@ namespace _Project.Scripts.Runtime.SImpleSaveLaodSystem
             gameData = new GameData();
         }
 
-        public void LoadGame()
+        private void LoadGame()
         {
             gameData = fileDataHandler.LoadDataToFile();
             if (gameData == null)
@@ -49,7 +47,6 @@ namespace _Project.Scripts.Runtime.SImpleSaveLaodSystem
 
         public void SaveGame()
         {
-            Debug.LogWarning(dataPersistence.Count);
             foreach (var iDataPersistence in dataPersistence)
             {
                 iDataPersistence.SaveData(ref gameData);
