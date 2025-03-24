@@ -108,7 +108,7 @@ namespace Michsky.UI.Heat
             isInteractable = value;
 
             if (!isInteractable) { StartCoroutine("SetDisabled"); }
-            else if (isInteractable && !isSelected) { StartCoroutine("SetNormal"); }
+            //else if (isInteractable && !isSelected) { StartCoroutine("SetNormal"); }
         }
 
         public void AddUINavigation()
