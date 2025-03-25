@@ -6,7 +6,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public struct ConditionActivatedEvent : IEvent
-{ }
+{
+}
 
 public class CheckingConditionEvent : IEvent
 {
@@ -22,8 +23,8 @@ public class CheckingConditionEvent : IEvent
 public class ScoreManagement : MonoBehaviour
 {
     [SerializeField] private int conditionThreshold;
-    public LevelSO presentLevel;
 
+    private LevelSO presentLevel;
     private GameManager gameManager;
     private int satisfiedConditions; // Conditions need to be satisfied (spin wheel, right line) to score 
     private bool correctPose; // Needed condition to get score (have correction swinging pose)
@@ -61,17 +62,18 @@ public class ScoreManagement : MonoBehaviour
 
     private void CheckConditionSatisfaction(Checkpoints checkingCheckpoint) {
         presentLevel = gameManager.CurrentLevel;
+        UIManager.Instance.SetValueDebug($"Correct Pose: {correctPose} + {satisfiedConditions}");
         if (satisfiedConditions >= 2 && correctPose)
             ScoreSuccessfully(new SuccessfulNotification(checkingCheckpoint), presentLevel);
         else
             ScoreFailed(new FailedNotification(checkingCheckpoint), presentLevel);
-        
+
         ResetSatisfiedConditionNum();
     }
 
     private void ScoreSuccessfully(Notification successfulNotification, IScoreIncrease level) {
         // Plus Score
-        UIManager.Instance.SetValueDebug("Success");
+        //UIManager.Instance.SetValueDebug("Success");
         if (gameManager.Mode == GameMode.Practice)
             level.UpdateScore(gameManager);
         else if (gameManager.Mode == GameMode.Challenge) // In challenge mode
@@ -86,7 +88,7 @@ public class ScoreManagement : MonoBehaviour
     /// Player failed at hitting right area on spin wheel or did not complete the line correctly
     /// </summary>
     private void ScoreFailed(Notification failedNotification, IScoreDecrease level) {
-        UIManager.Instance.SetValueDebug("Failed");
+        //UIManager.Instance.SetValueDebug("Failed");
         // Remain or decrease score
         if (gameManager.Mode == GameMode.Challenge)
             level.ScoreDecrease(satisfiedConditions, correctPose);

@@ -16,7 +16,9 @@ public class ScoreInSampleRacket : BaseScoreCalculation
         correctCondition = flag;
 
         if (scoreManagement)
+        {
             scoreManagement.CorrectPose = correctCondition;
+        }
     }
 
     protected override void ResetCondition() {
@@ -24,7 +26,6 @@ public class ScoreInSampleRacket : BaseScoreCalculation
         if (!correctCondition)
         {
             // Notify the failure of posing sample racket
-
             return;
         }
 

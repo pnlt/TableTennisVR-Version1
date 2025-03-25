@@ -15,12 +15,11 @@ public class LevelSO : ScriptableObject, IScoreDecrease, IScoreIncrease
     public bool overScore;
     public float practiceScore;
 
-    private void OnEnable()
-    {
+    private void OnEnable() {
+        //LoadDataPlay();
     }
 
-    public void LoadDataPlay()
-    {
+    public void LoadDataPlay() {
         if (GameManager.Instance.levelData.TryGetValue(levelNum, out var levelData))
         {
             overScore = levelData.overScore;
@@ -28,14 +27,13 @@ public class LevelSO : ScriptableObject, IScoreDecrease, IScoreIncrease
         }
     }
 
-    public void UpdateScore(GameManager gameManager)
-    {
+    public void UpdateScore(GameManager gameManager) {
         gameManager.PlayerScore += 1;
 
         if (!overScore)
         {
             practiceScore += 1;
-            
+
             // Display score on UI
             DisplayScoreEvent.Invoke(new ScoreData(practiceScore));
         }
@@ -43,19 +41,17 @@ public class LevelSO : ScriptableObject, IScoreDecrease, IScoreIncrease
         if (practiceScore >= requiredScore && !overScore)
         {
             overScore = true;
-            
+
             // Display notification for player to choose if they want to move to challenge and appear the button to show the notification again.
-            ModeAlterationNotificationEvent.Invoke(new ModeNotificationData(true));
+            //ModeAlterationNotificationEvent.Invoke(new ModeNotificationData(true));
         }
     }
 
-    public void ChallengeUpdate()
-    {
+    public void ChallengeUpdate() {
         respectiveChallenge.IncreaseScore();
     }
 
-    public void ScoreDecrease(int satisfiedCondition, bool correctPose)
-    {
+    public void ScoreDecrease(int satisfiedCondition, bool correctPose) {
         respectiveChallenge.DecreaseScore(levelNum, satisfiedCondition, correctPose);
     }
 }

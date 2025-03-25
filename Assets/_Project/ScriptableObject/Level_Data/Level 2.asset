@@ -18,5 +18,5 @@ MonoBehaviour:
     limitedTime: 90
     challengeScore: 0
   requiredScore: 300
-  overScore: 1
-  practiceScore: 10
+  overScore: 0
+  practiceScore: 0

@@ -15,8 +15,7 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
     [Header("Level regulations")] [SerializeField]
     private AssetLabelReference levelDataLabel;
 
-    [Header("Level Data")] [SerializeField]
-    private List<LevelSO> levels;
+    [Header("All Level")] [SerializeField] private List<LevelSO> levels;
 
     private LevelSO currentLevel;
     private int currentLevelIndex;
@@ -66,20 +65,17 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
 
     #region Load GameManager by Addressable
 
-    protected override void Awake()
-    {
+    protected override void Awake() {
         base.Awake();
         //LoadSOReferences();
     }
 
-    private void LoadSOReferences()
-    {
+    private void LoadSOReferences() {
         levels = new List<LevelSO>();
         Addressables.LoadAssetsAsync<ScriptableObject>(levelDataLabel.labelString).Completed += LoadedData;
     }
 
-    private void LoadedData(AsyncOperationHandle<IList<ScriptableObject>> obj)
-    {
+    private void LoadedData(AsyncOperationHandle<IList<ScriptableObject>> obj) {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
             foreach (var singleLevel in obj.Result)
@@ -109,13 +105,11 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
 
     #endregion
 
-    private void Start()
-    {
+    private void Start() {
         currentLevel = levels[currentLevelIndex];
     }
 
-    private void InitializationLevelStatus()
-    {
+    private void InitializationLevelStatus() {
         if (levelCompletionStatus == null || levelCompletionStatus.Count != levels.Count)
         {
             levelCompletionStatus = new();
@@ -126,8 +120,7 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
         }
     }
 
-    public void CompleteCurrentLevel()
-    {
+    public void CompleteCurrentLevel() {
         if (currentLevelIndex < levelCompletionStatus.Count)
         {
             levelCompletionStatus[currentLevelIndex] = true;
@@ -142,8 +135,7 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
         Mode = GameMode.Practice;
     }
 
-    public bool IsLevelUnlocked(int levelIdx)
-    {
+    public bool IsLevelUnlocked(int levelIdx) {
         if (levelIdx < levelCompletionStatus.Count)
         {
             return levelCompletionStatus[levelIdx];
@@ -152,8 +144,7 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
         return false;
     }
 
-    public void LoadData(GameData gameData)
-    {
+    public void LoadData(GameData gameData) {
         score = gameData.playerCoin;
         levelData = gameData.levels;
         if (gameData.levelCompletionStatus != null && gameData.levelCompletionStatus.Count > 0)
@@ -166,8 +157,7 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
         }
     }
 
-    public void SaveData(ref GameData gameData)
-    {
+    public void SaveData(ref GameData gameData) {
         foreach (var singleLevel in levels)
         {
             var presentLevel = new GameData.Level(singleLevel.overScore, singleLevel.practiceScore);
