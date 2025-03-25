@@ -49,7 +49,7 @@ public class InteractiveRacket : MonoBehaviour
         }
         
         // If collided object is the sign of out of range
-        if (collider.TryGetComponent<SignalPoint>(out var signalPoint))
+        if (collider.gameObject.TryGetComponent<SignalPoint>(out var signalPoint))
         {
             signalPoint.OutOfRangeSignal();
         }

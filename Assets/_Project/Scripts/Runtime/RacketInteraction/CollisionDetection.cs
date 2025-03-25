@@ -5,23 +5,20 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
 {
     public class CollisionDetection : MonoBehaviour
     {
-        [Header("Reference components")] [SerializeField]
-        private Transform playerRacket;
+        [Header("Reference components")] 
+        [SerializeField] private Transform playerRacket;
 
-        public Collider racketCollider;
-        public LayerMask racketLayer;
+        [SerializeField] private LayerMask racketLayer;
         [SerializeField] private MeshFilter meshShape;
 
-        [Header("Materials")] [SerializeField] private Material correctMat;
+        [Header("Materials")] 
+        [SerializeField] private Material correctMat;
         [SerializeField] private Material incorrectMat;
 
         [Header("Threshold")] [SerializeField] private float distanceThreshold;
 
         private IllustrativeRacket racket;
-        private Collider sampleRacketCollider;
         private bool isOutOfRange;
-
-        private bool isCorrectPose;
         private int collisionLayerValue;
 
         public bool OutOfRange
@@ -38,7 +35,6 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
         private void ReferenceComponents()
         {
             racket = GetComponentInParent<IllustrativeRacket>();
-            sampleRacketCollider = GetComponent<Collider>();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -48,28 +44,13 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
 
         private void OnTriggerStay(Collider other)
         {
-            if (collisionLayerValue != other.gameObject.layer)
+            if (collisionLayerValue != racketLayer)
+                return;
+
+            if (isOutOfRange)
                 return;
             
-            if (isOutOfRange)
-            {
-                PoseDetection();   
-                return;
-            }
             PoseCorrectionSignal();
-        }
-
-        private void PoseDetection()
-        {
-            if (isCorrectPose)
-            {
-                UIManager.Instance.SetValueDebug($"correct pose + {racket.gameObject.name}");
-                racket.ConditionValidation(true); }
-            else
-            {
-                UIManager.Instance.SetValueDebug($"wrong pose + {racket.gameObject.name}");
-                racket.ConditionValidation(false);
-            }
         }
 
         private float currentAlignmentScore;
@@ -84,28 +65,27 @@ namespace Dorkbots.XR.Runtime.RacketInteraction
             currentAlignmentScore = Mathf.Lerp(currentAlignmentScore, alignmentScore, smoothingFactor);
 
             // Use smoothed score for feedback
-            if (currentAlignmentScore > 0.7f)
+            if (currentAlignmentScore > 0.65f)
             {
                 racket.ChangeMaterial(correctMat);
-                isCorrectPose = true;
+                racket.ConditionValidation(true); 
             }
             else
             {
                 racket.ChangeMaterial(incorrectMat);
-                isCorrectPose = false;
+                racket.ConditionValidation(false);
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (collisionLayerValue == other.gameObject.layer)
+            if (collisionLayerValue == racketLayer)
                 ResetState();
         }
 
         private void ResetState()
         {
             isOutOfRange = false;
-            isCorrectPose = false;
         }
     }
 }

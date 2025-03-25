@@ -1,19 +1,24 @@
 using System;
+using System.Collections.Generic;
+using _Project.Scripts.Runtime.SImpleSaveLaodSystem;
 using Dorkbots.XR.Runtime.DataSO;
+using Dreamteck.Splines.Primitives;
 using UnityEngine;
 
 namespace _Project.Scripts.Runtime.Logics
 {
     public class LevelController : MonoBehaviour
     {
-        private void OnEnable()
+        private GameManager gameManager;
+
+        private void Awake()
         {
-           GameManager.Instance.CurrentLevel.respectiveChallenge.OnChallengeCompleted += HandleChallengeCompleted;
+            gameManager = GameManager.Instance;
         }
 
-        private void Start()
+        private void OnEnable()
         {
-            UIManager.Instance.SetValueDebug(Application.persistentDataPath);   
+           gameManager.CurrentLevel.respectiveChallenge.OnChallengeCompleted += HandleChallengeCompleted;
         }
 
         private void HandleChallengeCompleted()
@@ -23,9 +28,9 @@ namespace _Project.Scripts.Runtime.Logics
 
         private void OnDisable()
         {
-            if (GameManager.Instance.CurrentLevel.respectiveChallenge != null)
+            if (gameManager.CurrentLevel.respectiveChallenge != null)
             {
-                GameManager.Instance.CurrentLevel.respectiveChallenge.OnChallengeCompleted -= HandleChallengeCompleted;
+                gameManager.CurrentLevel.respectiveChallenge.OnChallengeCompleted -= HandleChallengeCompleted;
             }
         }
     }

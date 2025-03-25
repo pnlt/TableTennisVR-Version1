@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class SignalPoint : MonoBehaviour
 {
-    private CollisionDetection collisionDetection;
-
-    private void Awake() {
-        collisionDetection = GetComponentInParent<CollisionDetection>();
-    }
+    public CollisionDetection collisionDetection;
 
     public void OutOfRangeSignal() {
         collisionDetection.OutOfRange = true;

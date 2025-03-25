@@ -17,6 +17,6 @@ MonoBehaviour:
     requiredScore: 10
     limitedTime: 90
     challengeScore: 0
-  requiredScore: 5
-  overScore: 1
-  isUnlock: 0
+  requiredScore: 1
+  overScore: 0
+  practiceScore: 2

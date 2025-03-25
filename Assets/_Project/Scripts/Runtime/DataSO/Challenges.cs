@@ -16,6 +16,8 @@ namespace Dorkbots.XR.Runtime.DataSO
             Timer.OnTimerEnded += CheckedChallenge;
             challengeScore = 0;
         }
+        
+        #region Score calculation
 
         public void IncreaseScore()
         {
@@ -25,21 +27,60 @@ namespace Dorkbots.XR.Runtime.DataSO
             ChallengeFulfillment();
         }
 
+        public void DecreaseScore(int levelNum, int satisfiedCondition, bool correctPose)
+        {
+            switch (levelNum)
+            {
+                case 1:
+                    challengeScore -= 0;
+                    break;
+                case 2:
+                    ScoreRegulation(satisfiedCondition, correctPose, 0);
+                    break;
+                case 3:
+                    ScoreRegulation(satisfiedCondition, correctPose, 0.5f);
+                    break;
+            }
+            
+            DisplayScoreEvent.Invoke(new ScoreData(challengeScore));
+        }
+
+        private void ScoreRegulation(int satisfiedCondition, bool correctPose,
+            float decreaseCoefficient)
+        {
+            if ((correctPose && satisfiedCondition == 1) || (!correctPose && satisfiedCondition == 2) ||
+                (!correctPose && satisfiedCondition == 1))
+            {
+                challengeScore -= decreaseCoefficient;
+            }
+            else
+            {
+                challengeScore -= (decreaseCoefficient + 0.5f);
+            }
+        }
+        
+        #endregion
+
         public void ChallengeFulfillment()
         {
-            // Display level up confirm notification
-            
-            // Disable countdown timer UI   
-            
-            // Upgrade level/Go back to practice mode
-            OnChallengeCompleted?.Invoke();
+            if (challengeScore >= requiredScore)
+            {
+                // TODO - Display level up confirm notification
+
+                // TODO - Disable countdown timer UI   
+
+                // TODO - Upgrade level/Go back to practice mode
+                OnChallengeCompleted?.Invoke();
+
+                // TODO - Transition to menu scene
+            }
         }
 
         private void CheckedChallenge()
         {
-            // Disable score management - Player can not score anymore 
-            
-            // Display failed notification - Player has two options (face challenge again or move back to normal for more practices)
+            // TODO - Disable score management - Player can not score anymore 
+
+            // TODO - Display failed notification - Player has two options (face challenge again or move back to normal for more practices)
         }
 
         public void Dispose()

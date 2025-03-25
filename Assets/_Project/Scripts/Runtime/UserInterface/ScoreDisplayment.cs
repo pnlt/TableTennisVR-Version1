@@ -20,7 +20,6 @@ public class ScoreDisplayment : MonoBehaviour
 
     private void Start()
     {
-        ModeFilter();
         ScoreTransfer(new ScoreData(0));
     }
 
@@ -31,6 +30,8 @@ public class ScoreDisplayment : MonoBehaviour
 
     private void ScoreTransfer(ScoreData scoreData)
     {
+        ModeFilter();
+        
         // Using PlayerPref to store the real value that displayed on the UI
         UIScore = scoreData.Score;
         scoreTxt.text = UIScore.ToString(CultureInfo.CurrentUICulture) + $"/{requiredScore}";

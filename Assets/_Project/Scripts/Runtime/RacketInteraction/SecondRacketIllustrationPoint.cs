@@ -1,6 +1,4 @@
-using System;
 using Dorkbots.XR.Runtime.SoundAndSFX;
-using UnityEngine;
 
 public class SecondRacketIllustrationPoint : IllustrativeRacket
 {
@@ -12,11 +10,11 @@ public class SecondRacketIllustrationPoint : IllustrativeRacket
             return;
         }
 
-        base.ConditionValidation(condition);
-        scoreSampleRacket.SetCondition(true);
+        scoreSampleRacket.SetCondition(condition);
     }
 
     public override void SetMatToOrigin() {
         racketRender.material = originalMat;
     }
+    
 }
