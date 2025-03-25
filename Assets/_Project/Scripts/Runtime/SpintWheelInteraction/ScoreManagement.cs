@@ -1,8 +1,9 @@
+using System;
 using _Project.Scripts.Runtime.Enum;
 using _Project.Scripts.Runtime.Interfaces;
 using _Project.Scripts.Tests.Runtime.Test;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public struct ConditionActivatedEvent : IEvent
 { }
@@ -28,13 +29,6 @@ public class ScoreManagement : MonoBehaviour
     private bool correctPose; // Needed condition to get score (have correction swinging pose)
     private EventBinding<ConditionActivatedEvent> conditionEvents;
     private EventBinding<CheckingConditionEvent> finalScoreEvents;
-
-    public void Test()
-    {
-        gameManager.CurrentLevel.respectiveChallenge.ChallengeFulfillment();
-        SceneTransitionManager.singleton.GoToSceneAsync(1);
-    }
-    
 
     public bool CorrectPose
     {
@@ -71,33 +65,33 @@ public class ScoreManagement : MonoBehaviour
             ScoreSuccessfully(new SuccessfulNotification(checkingCheckpoint), presentLevel);
         else
             ScoreFailed(new FailedNotification(checkingCheckpoint), presentLevel);
+        
+        ResetSatisfiedConditionNum();
     }
 
-    private void ScoreSuccessfully(Notification successfulNotification, IScoreIncrease presentLevel) {
+    private void ScoreSuccessfully(Notification successfulNotification, IScoreIncrease level) {
         // Plus Score
         UIManager.Instance.SetValueDebug("Success");
         if (gameManager.Mode == GameMode.Practice)
-            presentLevel.UpdateScore(gameManager);
+            level.UpdateScore(gameManager);
         else if (gameManager.Mode == GameMode.Challenge) // In challenge mode
         {
-            presentLevel.ChallengeUpdate();
+            level.ChallengeUpdate();
         }
 
         successfulNotification.ResetLine();
-        ResetSatisfiedConditionNum();
     }
 
     /// <summary>
     /// Player failed at hitting right area on spin wheel or did not complete the line correctly
     /// </summary>
-    private void ScoreFailed(Notification failedNotification, IScoreDecrease presentLevel) {
+    private void ScoreFailed(Notification failedNotification, IScoreDecrease level) {
         UIManager.Instance.SetValueDebug("Failed");
         // Remain or decrease score
         if (gameManager.Mode == GameMode.Challenge)
-            presentLevel.ScoreDecrease(gameManager, satisfiedConditions, correctPose);
+            level.ScoreDecrease(satisfiedConditions, correctPose);
 
         failedNotification.ResetLine();
-        ResetSatisfiedConditionNum();
     }
 
     /// <summary>

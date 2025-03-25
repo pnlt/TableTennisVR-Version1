@@ -1,17 +1,32 @@
+using System;
 using _Project.Scripts.Runtime.Interfaces;
 using _Project.Scripts.Runtime.SImpleSaveLaodSystem;
 using Dorkbots.XR.Runtime;
 using Dorkbots.XR.Runtime.DataSO;
 using UnityEngine;
 
+[Serializable]
 [CreateAssetMenu(fileName = "Level", menuName = "Level Data")]
-public class LevelSO : ScriptableObject, IScoreDecrease, IScoreIncrease, IDataPersistence
+public class LevelSO : ScriptableObject, IScoreDecrease, IScoreIncrease
 {
     public int levelNum;
     public Challenges respectiveChallenge;
     public int requiredScore; // Score needed to move to next level
     public bool overScore;
-    private float practiceScore;
+    public float practiceScore;
+
+    private void OnEnable()
+    {
+    }
+
+    public void LoadDataPlay()
+    {
+        if (GameManager.Instance.levelData.TryGetValue(levelNum, out var levelData))
+        {
+            overScore = levelData.overScore;
+            practiceScore = levelData.practiceScore;
+        }
+    }
 
     public void UpdateScore(GameManager gameManager)
     {
@@ -20,9 +35,9 @@ public class LevelSO : ScriptableObject, IScoreDecrease, IScoreIncrease, IDataPe
         if (!overScore)
         {
             practiceScore += 1;
+            
             // Display score on UI
             DisplayScoreEvent.Invoke(new ScoreData(practiceScore));
-            
         }
 
         if (practiceScore >= requiredScore && !overScore)
@@ -39,41 +54,8 @@ public class LevelSO : ScriptableObject, IScoreDecrease, IScoreIncrease, IDataPe
         respectiveChallenge.IncreaseScore();
     }
 
-    public void ScoreDecrease(GameManager gameManager, int satisfiedCondition, bool correctPose)
+    public void ScoreDecrease(int satisfiedCondition, bool correctPose)
     {
-        switch (levelNum)
-        {
-            case 1:
-                gameManager.PlayerScore -= 0;
-                break;
-            case 2:
-                ScoreRegulation(gameManager, satisfiedCondition, correctPose, 0);
-                break;
-            case 3:
-                ScoreRegulation(gameManager, satisfiedCondition, correctPose, 0.5f);
-                break;
-        }
-    }
-
-    private void ScoreRegulation(GameManager gameManager, int satisfiedCondition, bool correctPose,
-        float decreaseCoefficient)
-    {
-        if ((correctPose && satisfiedCondition == 1) || (!correctPose && satisfiedCondition == 2) ||
-            (!correctPose && satisfiedCondition == 1))
-        {
-            gameManager.PlayerScore -= decreaseCoefficient;
-        }
-        else
-        {
-            gameManager.PlayerScore -= (decreaseCoefficient + 0.5f);
-        }
-    }
-
-    public void LoadData(GameData gameData)
-    {
-    }
-
-    public void SaveData(ref GameData gameData)
-    {
+        respectiveChallenge.DecreaseScore(levelNum, satisfiedCondition, correctPose);
     }
 }

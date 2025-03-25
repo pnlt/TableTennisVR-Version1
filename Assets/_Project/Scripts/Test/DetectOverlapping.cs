@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class DetectOverlapping : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class DetectOverlapping : MonoBehaviour
 
     private void Update()
     {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+            SceneManager.LoadSceneAsync("Level_1_nin");
     }
 
     private void OnTriggerStay(Collider other)

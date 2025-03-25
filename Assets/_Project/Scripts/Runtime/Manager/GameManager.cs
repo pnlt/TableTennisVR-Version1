@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using _Project.Scripts.Runtime.Enum;
 using _Project.Scripts.Runtime.SImpleSaveLaodSystem;
+using Meta.XR.ImmersiveDebugger.UserInterface;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -18,15 +19,18 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
     private List<LevelSO> levels;
 
     private LevelSO currentLevel;
-    public int currentLevelIndex;
+    private int currentLevelIndex;
     private GameMode mode = GameMode.Practice;
     private List<bool> levelCompletionStatus = new();
+    public GameData.LevelData levelData = new();
 
     #region GameStates
 
     private bool _isGamePaused;
 
     #endregion
+
+    public void CurrentLevelIndex(int value) => currentLevelIndex = value;
 
     public LevelSO CurrentLevel
     {
@@ -58,25 +62,24 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
         }
     }
 
-    public List<LevelSO> Levels
-    {
-        get => levels;
-        private set => levels = value;
-    }
+    public List<LevelSO> Levels => levels;
 
     #region Load GameManager by Addressable
 
-    protected override void Awake() {
+    protected override void Awake()
+    {
         base.Awake();
         //LoadSOReferences();
     }
 
-    private void LoadSOReferences() {
+    private void LoadSOReferences()
+    {
         levels = new List<LevelSO>();
         Addressables.LoadAssetsAsync<ScriptableObject>(levelDataLabel.labelString).Completed += LoadedData;
     }
 
-    private void LoadedData(AsyncOperationHandle<IList<ScriptableObject>> obj) {
+    private void LoadedData(AsyncOperationHandle<IList<ScriptableObject>> obj)
+    {
         if (obj.Status == AsyncOperationStatus.Succeeded)
         {
             foreach (var singleLevel in obj.Result)
@@ -106,11 +109,13 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
 
     #endregion
 
-    private void Start() {
+    private void Start()
+    {
         currentLevel = levels[currentLevelIndex];
     }
 
-    private void InitializationLevelStatus() {
+    private void InitializationLevelStatus()
+    {
         if (levelCompletionStatus == null || levelCompletionStatus.Count != levels.Count)
         {
             levelCompletionStatus = new();
@@ -121,7 +126,8 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
         }
     }
 
-    public void CompleteCurrentLevel() {
+    public void CompleteCurrentLevel()
+    {
         if (currentLevelIndex < levelCompletionStatus.Count)
         {
             levelCompletionStatus[currentLevelIndex] = true;
@@ -132,9 +138,12 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
         }
 
         DataPersistentManager.Instance.SaveGame();
+        currentLevelIndex++;
+        Mode = GameMode.Practice;
     }
 
-    public bool IsLevelUnlocked(int levelIdx) {
+    public bool IsLevelUnlocked(int levelIdx)
+    {
         if (levelIdx < levelCompletionStatus.Count)
         {
             return levelCompletionStatus[levelIdx];
@@ -143,12 +152,10 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
         return false;
     }
 
-    private void UpgradeLevel() {
-        currentLevelIndex++;
-    }
-
-    public void LoadData(GameData gameData) {
+    public void LoadData(GameData gameData)
+    {
         score = gameData.playerCoin;
+        levelData = gameData.levels;
         if (gameData.levelCompletionStatus != null && gameData.levelCompletionStatus.Count > 0)
         {
             levelCompletionStatus = gameData.levelCompletionStatus;
@@ -159,7 +166,19 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
         }
     }
 
-    public void SaveData(ref GameData gameData) {
+    public void SaveData(ref GameData gameData)
+    {
+        foreach (var singleLevel in levels)
+        {
+            var presentLevel = new GameData.Level(singleLevel.overScore, singleLevel.practiceScore);
+            if (gameData.levels.TryGetValue(singleLevel.levelNum, out var level))
+            {
+                gameData.levels[singleLevel.levelNum] = presentLevel;
+            }
+            else
+                gameData.levels.Add(singleLevel.levelNum, presentLevel);
+        }
+
         gameData.playerCoin = score;
         gameData.levelCompletionStatus = levelCompletionStatus;
     }

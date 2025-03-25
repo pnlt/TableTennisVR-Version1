@@ -21,20 +21,15 @@ public class ModeBtnController : MonoBehaviour
     {
         GameManager.Instance.Mode = GameMode.Challenge;
         DisplayScoreEvent.Invoke(new ScoreData(0));
-        // Show user interface in challenge mode (time limitation)
+        
+        // TODO - Show user interface in challenge mode (time limitation)
         TimeNotificationEvent.Invoke(new TimeNotificationData(true));
-
-        // Play some anim
-        //GameActivationEvent<>.Invoke(new GameActivationData<GameObject>(false, ));
         
     }
 
     private void OnNoClicked()
     {
         //remain in normal mode
-
-        // Play some anim
-        //GameActivationEvent.Invoke(new GameActivationData(false, null));
     }
 
 

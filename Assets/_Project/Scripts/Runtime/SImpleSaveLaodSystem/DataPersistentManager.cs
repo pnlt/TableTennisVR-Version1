@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _Project.Scripts.Runtime.SImpleSaveLaodSystem
@@ -12,11 +14,9 @@ namespace _Project.Scripts.Runtime.SImpleSaveLaodSystem
         private GameData gameData;
         private List<IDataPersistence> dataPersistence;
         private FileDataHandler fileDataHandler;
-        
+
         private void Start()
         {
-            dataPersistence = FindPersistentDataObject();
-            fileDataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
             LoadGame();
         }
 
@@ -33,8 +33,11 @@ namespace _Project.Scripts.Runtime.SImpleSaveLaodSystem
             gameData = new GameData();
         }
 
-        private void LoadGame()
+        public void LoadGame()
         {
+            dataPersistence = FindPersistentDataObject();
+            fileDataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+            
             gameData = fileDataHandler.LoadDataToFile();
             if (gameData == null)
                 NewGame();

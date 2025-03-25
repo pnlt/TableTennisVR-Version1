@@ -6,18 +6,22 @@ public class GameData
 {
     public float playerCoin = 0;
     public List<bool> levelCompletionStatus = new();
+    public LevelData levels = new();
 
 
     [Serializable]
     public struct Level
     {
         public bool overScore;
-        public int levelNum;
+        public float practiceScore;
 
-        public Level(bool overScore, int levelNum)
+        public Level(bool overScore, float practiceScore)
         {
             this.overScore = overScore;
-            this.levelNum = levelNum;
+            this.practiceScore = practiceScore;
         }
     }
+    
+    [Serializable]
+    public sealed class LevelData : SerializableDictionary<int, Level> {}
 }
