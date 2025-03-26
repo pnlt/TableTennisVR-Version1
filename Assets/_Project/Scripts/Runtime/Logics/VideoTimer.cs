@@ -16,7 +16,10 @@ public class VideoTimer : MonoBehaviour
 
     private void Start()
     {
-        videoLength = videoPlayer.clip.length;
+        var totalFrame = videoPlayer.clip.frameCount;
+        var frameRate = videoPlayer.clip.frameRate;
+        videoLength = totalFrame / frameRate;
+        
         videoPlayer.Play();
     }
 
