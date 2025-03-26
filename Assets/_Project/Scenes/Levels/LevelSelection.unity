@@ -36934,6 +36934,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae4666d06da1ed4eafab2e25b13aea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1195069059
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 918409049572753861, guid: 7a090b6aadae2e8479ce54b4a94917dc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.45402995
+      objectReference: {fileID: 0}
+    - target: {fileID: 918409049572753861, guid: 7a090b6aadae2e8479ce54b4a94917dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.83086944
+      objectReference: {fileID: 0}
+    - target: {fileID: 918409049572753861, guid: 7a090b6aadae2e8479ce54b4a94917dc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.7341896
+      objectReference: {fileID: 0}
+    - target: {fileID: 918409049572753861, guid: 7a090b6aadae2e8479ce54b4a94917dc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 918409049572753861, guid: 7a090b6aadae2e8479ce54b4a94917dc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 918409049572753861, guid: 7a090b6aadae2e8479ce54b4a94917dc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 918409049572753861, guid: 7a090b6aadae2e8479ce54b4a94917dc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 918409049572753861, guid: 7a090b6aadae2e8479ce54b4a94917dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 918409049572753861, guid: 7a090b6aadae2e8479ce54b4a94917dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 918409049572753861, guid: 7a090b6aadae2e8479ce54b4a94917dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5032646983197388716, guid: 7a090b6aadae2e8479ce54b4a94917dc, type: 3}
+      propertyPath: m_Name
+      value: SetFPS
+      objectReference: {fileID: 0}
+    - target: {fileID: 5032646983197388716, guid: 7a090b6aadae2e8479ce54b4a94917dc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7a090b6aadae2e8479ce54b4a94917dc, type: 3}
 --- !u!1001 &1198973800
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55221,37 +55282,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818367762}
   m_CullTransparentMesh: 1
---- !u!1 &1819280582
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1819280583}
-  m_Layer: 0
-  m_Name: vintage-table-tennis-set-cuzsckhtfdrfl9py_0
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1819280583
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1819280582}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1822969401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58363,37 +58393,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d952c175ec3c6554199fd744548ce50a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1976438910
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1976438911}
-  m_Layer: 0
-  m_Name: depositphotos_594241604-stock-photo-ping-pong-table-rackets-balls_0
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1976438911
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1976438910}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1984452244
 GameObject:
   m_ObjectHideFlags: 0
@@ -61596,37 +61595,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9480998de676f6f46a59ce95b921fa36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2074245980
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2074245981}
-  m_Layer: 0
-  m_Name: table-tennis-eim5rmgffhsqhj62_0
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &2074245981
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2074245980}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2082302940
 GameObject:
   m_ObjectHideFlags: 0
@@ -61696,37 +61664,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &2096702467
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2096702468}
-  m_Layer: 0
-  m_Name: wallpaperflare.com_wallpaper_0
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &2096702468
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2096702467}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2097437309
 GameObject:
   m_ObjectHideFlags: 0
@@ -69354,7 +69291,4 @@ SceneRoots:
   - {fileID: 526883995}
   - {fileID: 1741856999}
   - {fileID: 2053157224}
-  - {fileID: 1976438911}
-  - {fileID: 2074245981}
-  - {fileID: 1819280583}
-  - {fileID: 2096702468}
+  - {fileID: 1195069059}

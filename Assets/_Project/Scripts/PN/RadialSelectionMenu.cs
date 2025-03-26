@@ -35,7 +35,6 @@ public class RadialSelectionMenu : MonoBehaviour
             // Reset all parts to their default state
             for (int i = 0; i < radialParts.Count; i++)
             {
-                radialParts[i].GetComponent<Image>().color = defaultColors[i];
                 radialParts[i].transform.localScale = Vector3.one;
             }
 
@@ -87,14 +86,12 @@ public class RadialSelectionMenu : MonoBehaviour
             // Reset the previously selected part
             if (currentSelectedRadialPart >= 0 && currentSelectedRadialPart < radialParts.Count)
             {
-                radialParts[currentSelectedRadialPart].GetComponent<Image>().color =
-                    defaultColors[currentSelectedRadialPart];
                 radialParts[currentSelectedRadialPart].transform.localScale = Vector3.one;
             }
 
             // Update to the new selection
             currentSelectedRadialPart = newSelectedRadialPart;
-            pathTrigger = pathTriggers[currentSelectedRadialPart];
+            pathTrigger = pathTriggers[newSelectedRadialPart];
 
             // Highlight the new part only if it’s enabled
             if (pathTrigger.IsEnabled)

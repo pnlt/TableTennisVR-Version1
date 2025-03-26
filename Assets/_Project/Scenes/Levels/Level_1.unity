@@ -750,7 +750,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &9218564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9296,6 +9296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9d96bce9bd4a39b1e8f20b12835e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levels: []
 --- !u!4 &1850908179
 Transform:
   m_ObjectHideFlags: 0
@@ -10223,7 +10224,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2125497376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10392,6 +10393,10 @@ PrefabInstance:
       propertyPath: scoreManagement
       value: 
       objectReference: {fileID: 670738830}
+    - target: {fileID: 880014028102621244, guid: 9f55b3a1602a87e4ebdea9686948b206, type: 3}
+      propertyPath: tolerance
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 2259473342226441149, guid: 9f55b3a1602a87e4ebdea9686948b206, type: 3}
       propertyPath: meshShape
       value: 
@@ -10422,7 +10427,7 @@ PrefabInstance:
       objectReference: {fileID: 753870218}
     - target: {fileID: 4391405315033103785, guid: 9f55b3a1602a87e4ebdea9686948b206, type: 3}
       propertyPath: tolerance
-      value: 0.02
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 4765606208712526941, guid: 9f55b3a1602a87e4ebdea9686948b206, type: 3}
       propertyPath: m_Name

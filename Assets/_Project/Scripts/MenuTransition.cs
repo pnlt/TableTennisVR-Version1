@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace _Project.Scripts
@@ -14,7 +15,8 @@ namespace _Project.Scripts
         }
 
         public void OnPathTriggered() {
-            SceneTransitionManager.singleton.GoToSceneAsync(1);
+            SceneManager.LoadSceneAsync(1);
+            //SceneTransitionManager.singleton.GoToSceneAsync(1);
         }
     }
 }

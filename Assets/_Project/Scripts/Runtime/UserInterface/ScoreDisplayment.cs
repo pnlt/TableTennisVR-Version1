@@ -13,40 +13,34 @@ public class ScoreDisplayment : MonoBehaviour
     private int requiredScore;
     private GameManager gameManager;
 
-    private void Awake()
-    {
+    private void Awake() {
         gameManager = GameManager.Instance;
     }
 
-    private void Start()
-    {
-        ScoreTransfer(new ScoreData(0));
+    private void Start() {
+        ScoreTransfer(new ScoreData(gameManager.CurrentLevel.practiceScore));
     }
 
-    private void OnEnable()
-    {
+    private void OnEnable() {
         DisplayScoreEvent.Subscribe(ScoreTransfer);
     }
 
-    private void ScoreTransfer(ScoreData scoreData)
-    {
+    private void ScoreTransfer(ScoreData scoreData) {
         ModeFilter();
-        
+
         // Using PlayerPref to store the real value that displayed on the UI
         UIScore = scoreData.Score;
         scoreTxt.text = UIScore.ToString(CultureInfo.CurrentUICulture) + $"/{requiredScore}";
     }
 
-    private void ModeFilter()
-    {
+    private void ModeFilter() {
         if (gameManager.Mode == GameMode.Practice)
             requiredScore = gameManager.CurrentLevel.requiredScore;
         else if (gameManager.Mode == GameMode.Challenge)
             requiredScore = gameManager.CurrentLevel.respectiveChallenge.requiredScore;
     }
 
-    private void OnDisable()
-    {
+    private void OnDisable() {
         DisplayScoreEvent.Unsubscribe(ScoreTransfer);
     }
 }

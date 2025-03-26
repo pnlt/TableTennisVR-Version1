@@ -28,6 +28,9 @@ public class ChallengePathTrigger : MonoBehaviour, IPathTrigger
         get => isEnabled;
         set
         {
+            if (!originalGradient)
+                originalGradient = GetComponent<UIGradient>();
+
             isEnabled = value;
             // Update the visual state when enabled/disabled
             SetBtnColor(isEnabled);
