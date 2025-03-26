@@ -15,18 +15,6 @@ public class LevelSO : ScriptableObject, IScoreDecrease, IScoreIncrease
     public bool overScore;
     public float practiceScore;
 
-    private void OnEnable() {
-        //LoadDataPlay();
-    }
-
-    public void LoadDataPlay() {
-        if (GameManager.Instance.levelData.TryGetValue(levelNum, out var levelData))
-        {
-            overScore = levelData.overScore;
-            practiceScore = levelData.practiceScore;
-        }
-    }
-
     public void UpdateScore(GameManager gameManager) {
         gameManager.PlayerScore += 1;
 
