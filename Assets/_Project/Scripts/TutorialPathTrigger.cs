@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialPathTrigger : MonoBehaviour, IPathTrigger
 {
@@ -11,5 +12,6 @@ public class TutorialPathTrigger : MonoBehaviour, IPathTrigger
     }
 
     public void OnPathTriggered() {
+        SceneManager.LoadSceneAsync(2);
     }
 }

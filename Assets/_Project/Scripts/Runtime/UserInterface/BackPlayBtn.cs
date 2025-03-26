@@ -3,9 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class BackPlayBtn : MonoBehaviour
 {
-    public void OnClick()
-    {
+    public void OnClick() {
         // TODO - Go back to play scene
-        SceneManager.LoadSceneAsync(2);
+        SceneManager.LoadSceneAsync(3);
     }
 }
