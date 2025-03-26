@@ -33,6 +33,7 @@ public class GameStartMenu : MonoBehaviour
     }
 
     private void ClearDataFile() {
+        TutorialManager.ResetTutorial();
         string path = Path.Combine(Application.persistentDataPath, "data");
         if (File.Exists(path))
         {
