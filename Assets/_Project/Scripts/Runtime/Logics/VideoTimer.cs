@@ -16,18 +16,13 @@ public class VideoTimer : MonoBehaviour
 
     private void Start()
     {
-        var totalFrame = videoPlayer.clip.frameCount;
-        var frameRate = videoPlayer.clip.frameRate;
-        videoLength = totalFrame / frameRate;
-        
         videoPlayer.Play();
     }
 
     private void Update()
     {
-        timer += Time.deltaTime;
 
-        if (timer >= videoLength)
+        if (!videoPlayer.isPlaying)
         {
             // TODO - transition back to the play scene   
             SceneManager.LoadSceneAsync(2);
