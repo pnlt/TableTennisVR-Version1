@@ -5,27 +5,23 @@ using UnityEngine.Video;
 public class VideoTimer : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
-    
+
     private float timer = 0f;
     private double videoLength;
 
-    private void Awake()
-    {
+    private void Awake() {
         videoPlayer = GetComponent<VideoPlayer>();
     }
 
-    private void Start()
-    {
+    private void Start() {
         videoPlayer.Play();
     }
 
-    private void Update()
-    {
-
+    private void Update() {
         if (!videoPlayer.isPlaying)
         {
             // TODO - transition back to the play scene   
-            SceneManager.LoadSceneAsync(2);
+            SceneManager.LoadSceneAsync(3);
         }
     }
 }
