@@ -43,7 +43,7 @@ public class LevelSO : ScriptableObject, IScoreDecrease, IScoreIncrease
             overScore = true;
 
             // Display notification for player to choose if they want to move to challenge and appear the button to show the notification again.
-            //ModeAlterationNotificationEvent.Invoke(new ModeNotificationData(true));
+            ModeAlterationNotificationEvent.Invoke(new ModeNotificationData(true));
         }
     }
 

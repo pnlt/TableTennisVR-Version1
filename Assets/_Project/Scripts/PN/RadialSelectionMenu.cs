@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using Oculus.Interaction.OVR.Input;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
 
 public class RadialSelectionMenu : MonoBehaviour
 {
@@ -12,10 +10,11 @@ public class RadialSelectionMenu : MonoBehaviour
     public Transform radialPartCanvas;
     public Transform handTransform;
 
-    private IPathTrigger pathTrigger;
-
     private List<GameObject> radialParts = new List<GameObject>();
     private List<IPathTrigger> pathTriggers = new List<IPathTrigger>();
+    private List<Color> defaultColors = new List<Color>();
+    private IPathTrigger pathTrigger;
+
     private int currentSelectedRadialPart = -1;
 
     private void Awake() {
@@ -25,6 +24,7 @@ public class RadialSelectionMenu : MonoBehaviour
             Transform child = radialPartCanvas.GetChild(i);
             radialParts.Add(child.gameObject);
             pathTriggers.Add(child.GetComponent<IPathTrigger>());
+            defaultColors.Add(child.GetComponent<Image>().color);
         }
     }
 
@@ -32,6 +32,14 @@ public class RadialSelectionMenu : MonoBehaviour
         if (OVRInput.GetDown(spawnButton))
         {
             radialPartCanvas.gameObject.SetActive(true);
+            // Reset all parts to their default state
+            for (int i = 0; i < radialParts.Count; i++)
+            {
+                radialParts[i].GetComponent<Image>().color = defaultColors[i];
+                radialParts[i].transform.localScale = Vector3.one;
+            }
+
+            currentSelectedRadialPart = -1; // Reset selection
             radialPartCanvas.position = handTransform.position;
             radialPartCanvas.rotation = handTransform.rotation;
         }
@@ -48,8 +56,16 @@ public class RadialSelectionMenu : MonoBehaviour
     }
 
     private void HideAndTriggerSelected() {
-        if (pathTrigger != null)
+        if (pathTrigger != null && pathTrigger.IsEnabled)
             pathTrigger.OnPathTriggered();
+
+        // Reset the selected part’s visuals
+        if (currentSelectedRadialPart >= 0 && currentSelectedRadialPart < radialParts.Count)
+        {
+            radialParts[currentSelectedRadialPart].GetComponent<Image>().color =
+                defaultColors[currentSelectedRadialPart];
+            radialParts[currentSelectedRadialPart].transform.localScale = Vector3.one;
+        }
 
         radialPartCanvas.gameObject.SetActive(false);
     }
@@ -63,19 +79,37 @@ public class RadialSelectionMenu : MonoBehaviour
         if (angle < 0)
             angle += 360;
 
-        currentSelectedRadialPart = (int)(angle * numberOfRadialPart / 360f);
-        pathTrigger = pathTriggers[currentSelectedRadialPart];
+        int newSelectedRadialPart = (int)(angle * numberOfRadialPart / 360f);
 
-        for (int i = 0; i < radialParts.Count; i++)
+        // Update visuals only if selection changes
+        if (newSelectedRadialPart != currentSelectedRadialPart)
         {
-            if (i == currentSelectedRadialPart)
+            // Reset the previously selected part
+            if (currentSelectedRadialPart >= 0 && currentSelectedRadialPart < radialParts.Count)
             {
-                radialParts[i].transform.localScale = 1.1f * Vector3.one;
+                radialParts[currentSelectedRadialPart].GetComponent<Image>().color =
+                    defaultColors[currentSelectedRadialPart];
+                radialParts[currentSelectedRadialPart].transform.localScale = Vector3.one;
             }
-            else
+
+            // Update to the new selection
+            currentSelectedRadialPart = newSelectedRadialPart;
+            pathTrigger = pathTriggers[currentSelectedRadialPart];
+
+            // Highlight the new part only if it’s enabled
+            if (pathTrigger.IsEnabled)
             {
-                radialParts[i].transform.localScale = Vector3.one;
+                //radialParts[currentSelectedRadialPart].GetComponent<Image>().color = Color.red;
+                radialParts[currentSelectedRadialPart].transform.localScale = 1.1f * Vector3.one;
             }
+        }
+    }
+
+    //method to enable a specific radial part by index
+    public void EnableRadialPart(int index) {
+        if (index >= 0 && index < pathTriggers.Count)
+        {
+            pathTriggers[index].IsEnabled = true;
         }
     }
 }

@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Project/Scenes/Test/Level_1_nin.unity
     guid: d0cc167c2f3ccde4e902e147199831dc
+  - enabled: 0
+    path: "Assets/Samples/Meta XR Interaction \u200BSDK/71.0.0/Example Scenes/RayExamples.unity"
+    guid: 1b2d3f90c0f50b94cb910c66c773d00d
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 530ebd75181a6a84c898a6b34b763105, type: 2}
     com.unity.addressableassets: {fileID: 11400000, guid: a028a238346a6714bbb9df644e8dd3bc, type: 2}

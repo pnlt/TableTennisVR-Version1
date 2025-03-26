@@ -52,6 +52,13 @@ public class ScoreManagement : MonoBehaviour
         EventBus<CheckingConditionEvent>.Register(finalScoreEvents);
     }
 
+    private void Update() {
+        if (OVRInput.Get(OVRInput.Button.Two))
+        {
+            presentLevel.UpdateScore(gameManager);
+        }
+    }
+
     private void ActivateCondition() {
         satisfiedConditions += 1;
     }
