@@ -107,8 +107,8 @@ namespace Michsky.UI.Heat
         {
             isInteractable = value;
 
-            if (!isInteractable) { StartCoroutine("SetDisabled"); }
-            //else if (isInteractable && !isSelected) { StartCoroutine("SetNormal"); }
+            if (!isInteractable && gameObject.activeSelf) { StartCoroutine("SetDisabled"); }
+            else if (isInteractable && !isSelected && gameObject.activeSelf) { StartCoroutine("SetNormal"); }
         }
 
         public void AddUINavigation()
@@ -241,8 +241,8 @@ namespace Michsky.UI.Heat
             isSelected = value;
 
             if (navbar != null) { navbar.LitButtons(this); }
-            if (isSelected) { StartCoroutine("SetSelect"); onSelect.Invoke(); }
-            else { StartCoroutine("SetNormal"); }
+            if (isSelected && gameObject.activeSelf) { StartCoroutine("SetSelect"); onSelect.Invoke(); }
+            else if (gameObject.activeSelf) { StartCoroutine("SetNormal"); }
         }
 
         IEnumerator SetDisabled()
