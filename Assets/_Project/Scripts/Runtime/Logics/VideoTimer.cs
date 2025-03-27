@@ -9,19 +9,26 @@ public class VideoTimer : MonoBehaviour
     private float timer = 0f;
     private double videoLength;
 
-    private void Awake() {
-        videoPlayer = GetComponent<VideoPlayer>();
+    private void Start()
+    {
+        //videoPlayer = GetComponentInChildren<VideoPlayer>();
+        videoLength = videoPlayer.clip.length;
     }
 
-    private void Start() {
-        videoPlayer.Play();
+    private void Update()
+    {
+        //CountdownTimer();
     }
 
-    private void Update() {
-        if (!videoPlayer.isPlaying)
+    private void CountdownTimer()
+    {
+        if (videoPlayer)
         {
-            // TODO - transition back to the play scene   
-            SceneManager.LoadSceneAsync(3);
+            timer += Time.deltaTime;
+            if (timer >= videoLength)
+            {
+                // TODO - Transition to new scene
+            }
         }
     }
 }
