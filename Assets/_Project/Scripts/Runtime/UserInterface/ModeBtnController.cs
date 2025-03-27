@@ -19,11 +19,6 @@ public class ModeBtnController : MonoBehaviour
 
     private void OnYesClicked()
     {
-        GameManager.Instance.Mode = GameMode.Challenge;
-        DisplayScoreEvent.Invoke(new ScoreData(0));
-        
-        // TODO - Show user interface in challenge mode (time limitation)
-        TimeNotificationEvent.Invoke(new TimeNotificationData(true));
         
     }
 

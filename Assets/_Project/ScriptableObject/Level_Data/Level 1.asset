@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelNum: 1
   respectiveChallenge:
-    requiredScore: 10
-    limitedTime: 90
+    requiredScore: 1
+    limitedTime: 20
     challengeScore: 0
   requiredScore: 1
   overScore: 0

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Dorkbots.XR.Runtime.DataSO
 {
@@ -68,16 +69,19 @@ namespace Dorkbots.XR.Runtime.DataSO
                 // TODO - Display level up confirm notification
 
                 // TODO - Disable countdown timer UI   
+                TimerActivationEvent.Invoke(new TimerData(false));
 
                 // TODO - Upgrade level/Go back to practice mode
                 OnChallengeCompleted?.Invoke();
 
                 // TODO - Transition to menu scene
+                SceneManager.LoadSceneAsync("LevelSelection");
             }
         }
 
         private void CheckedChallenge()
         {
+            UIManager.Instance.SetValueDebug("You're out");
             // TODO - Disable score management - Player can not score anymore 
 
             // TODO - Display failed notification - Player has two options (face challenge again or move back to normal for more practices)
