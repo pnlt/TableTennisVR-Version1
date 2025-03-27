@@ -5147,7 +5147,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modeNoti: {fileID: 1292989692}
   timeNoti: {fileID: 1535609576}
-  time: {fileID: 1777080433059348701}
   notificationDuration: 3
   radialSelectionMenu: {fileID: 1163807014}
   challengePartIndex: 3
@@ -7200,7 +7199,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modeNoti: {fileID: 1031691074}
   timeNoti: {fileID: 1962913771}
-  time: {fileID: 1777080433059348701}
   notificationDuration: 3
   radialSelectionMenu: {fileID: 0}
   challengePartIndex: 2
@@ -10335,24 +10333,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8305313199165141699, guid: 23f470d0d50c8d64f87d1f8e383833bf, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23f470d0d50c8d64f87d1f8e383833bf, type: 3}
---- !u!114 &1777080433059348701 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3493468466291390505, guid: 23f470d0d50c8d64f87d1f8e383833bf, type: 3}
-  m_PrefabInstance: {fileID: 1777080433059348700}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41223f2a418f7ea428200d05a7804b31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2596133552436683660
 PrefabInstance:
   m_ObjectHideFlags: 0

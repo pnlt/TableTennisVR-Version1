@@ -4,11 +4,10 @@ using _Project.Scripts.Runtime.UserInterface;
 using Dorkbots.XR.Runtime;
 using UnityEngine;
 
-public class NotificationUIs : MonoBehaviour
+public class NotificationUis : MonoBehaviour
 {
     public GameObject modeNoti;
     public GameObject timeNoti;
-    public Timer time;
     [SerializeField] private float notificationDuration = 2f;
     public RadialSelectionMenu radialSelectionMenu;
     public int challengePartIndex = 3;
@@ -38,7 +37,6 @@ public class NotificationUIs : MonoBehaviour
 
     private void TimeNotification(TimeNotificationData data) {
         timeNoti.SetActive(data.Flag);
-        time.gameObject.SetActive(data.Flag);
     }
 
     private void OnDisable() {

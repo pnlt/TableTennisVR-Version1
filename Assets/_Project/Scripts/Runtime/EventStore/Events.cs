@@ -4,9 +4,10 @@ using VadimskyiLab.Events;
 
 namespace Dorkbots.XR.Runtime
 {
-    
     public class PlayMusicEvent : EventBase<PlaySFXEvent, PlayMusicEventData>
-    { }
+    {
+    }
+
     public readonly struct PlayMusicEventData
     {
         public readonly SoundTypes audioType;
@@ -16,9 +17,11 @@ namespace Dorkbots.XR.Runtime
             this.audioType = audioType;
         }
     }
-    
+
     public class PlaySFXEvent : EventBase<PlaySFXEvent, PlaySFXEventData>
-    { }
+    {
+    }
+
     public readonly struct PlaySFXEventData
     {
         public readonly SoundTypes audioType;
@@ -30,9 +33,14 @@ namespace Dorkbots.XR.Runtime
             this.position = position;
         }
     }
-    
-    public class ResetConditionEvent : EventBase<ResetConditionEvent> {}
-    public class LineAttainmentEvent : EventBase<LineAttainmentEvent, LineData> {}
+
+    public class ResetConditionEvent : EventBase<ResetConditionEvent>
+    {
+    }
+
+    public class LineAttainmentEvent : EventBase<LineAttainmentEvent, LineData>
+    {
+    }
 
     public class LineData
     {
@@ -45,7 +53,9 @@ namespace Dorkbots.XR.Runtime
     }
 
     public class DisplayScoreEvent : EventBase<DisplayScoreEvent, ScoreData>
-    { }
+    {
+    }
+
     public struct ScoreData
     {
         private readonly float score;
@@ -56,14 +66,14 @@ namespace Dorkbots.XR.Runtime
             this.score = score;
         }
     }
-    
+
     /*public class GameActivationEvent<T> : EventBase<T, GameActivationData> {}
 
     public readonly struct GameActivationData
     {
         private readonly GameObject @object;
         private readonly bool flag;
-        
+
         public GameObject gameObj => @object;
         public bool Flag => flag;
 
@@ -75,9 +85,11 @@ namespace Dorkbots.XR.Runtime
     }*/
 
     #region GameObjectToggle
-    
+
     public class ModeAlterationNotificationEvent : EventBase<ModeAlterationNotificationEvent, ModeNotificationData>
-    { }
+    {
+    }
+
     public readonly struct ModeNotificationData
     {
         private readonly bool flag;
@@ -88,10 +100,12 @@ namespace Dorkbots.XR.Runtime
             this.flag = flag;
         }
     }
-    
-    
+
+
     public class TimeNotificationEvent : EventBase<TimeNotificationEvent, TimeNotificationData>
-    { }
+    {
+    }
+
     public readonly struct TimeNotificationData
     {
         private readonly bool flag;
@@ -102,14 +116,31 @@ namespace Dorkbots.XR.Runtime
             this.flag = flag;
         }
     }
-    
+
+    public class TimerActivationEvent : EventBase<TimerActivationEvent, TimerData>
+    { }
+
+    public readonly struct TimerData
+    {
+        private readonly bool flag;
+        public bool Flag => flag;
+
+        public TimerData(bool flag)
+        {
+            this.flag = flag;
+        }
+    }
+
     #endregion
-    
-    public class DisplayTimerEvent : EventBase<DisplayTimerEvent, DisplayTimerData> {}
+
+    public class DisplayTimerEvent : EventBase<DisplayTimerEvent, DisplayTimerData>
+    {
+    }
+
     public readonly struct DisplayTimerData
     {
         private readonly float elapsedTime;
-        
+
         public float ElapsedTime => elapsedTime;
 
         public DisplayTimerData(float elapsedTime)
@@ -117,6 +148,4 @@ namespace Dorkbots.XR.Runtime
             this.elapsedTime = elapsedTime;
         }
     }
-    
-    
 }

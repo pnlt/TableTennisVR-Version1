@@ -1,6 +1,6 @@
+using System;
 using Dorkbots.XR.Runtime;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Timer : MonoBehaviour
 {
@@ -10,16 +10,33 @@ public class Timer : MonoBehaviour
     private LevelSO currentLevel;
     private float limitedTime = 90;
     private bool _isTimeOut;
+    private bool isStartTimer;
+    
+    public bool IsStartTimer => isStartTimer;
 
     private void Awake()
     {
-        currentLevel = GameManager.Instance.CurrentLevel;
-        limitedTime = currentLevel.respectiveChallenge.limitedTime;
+        //currentLevel = GameManager.Instance.CurrentLevel;
+        //limitedTime = currentLevel.respectiveChallenge.limitedTime;
     }
 
     private void OnEnable()
     {
+        TimerActivationEvent.Unsubscribe(ActivateTimer);
+        TimerActivationEvent.Subscribe(ActivateTimer);
+        
         DisplayTimerEvent.Invoke(new DisplayTimerData(limitedTime));
+    }
+
+    private void Start()
+    {
+        if (gameObject.activeSelf)
+            gameObject.SetActive(false);
+    }
+
+    private void ActivateTimer(TimerData data)
+    {
+        gameObject.SetActive(data.Flag);
     }
 
     private void Update()

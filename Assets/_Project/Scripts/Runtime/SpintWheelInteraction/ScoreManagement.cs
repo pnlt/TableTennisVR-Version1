@@ -55,7 +55,10 @@ public class ScoreManagement : MonoBehaviour
     private void Update() {
         if (OVRInput.Get(OVRInput.Button.Two))
         {
-            presentLevel.UpdateScore(gameManager);
+            if (gameManager.Mode == GameMode.Practice)
+                presentLevel.UpdateScore(gameManager);
+            else if (gameManager.Mode == GameMode.Challenge)
+                presentLevel.ChallengeUpdate();
         }
     }
 
