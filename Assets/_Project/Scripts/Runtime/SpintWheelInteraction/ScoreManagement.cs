@@ -60,6 +60,14 @@ public class ScoreManagement : MonoBehaviour
             else if (gameManager.Mode == GameMode.Challenge)
                 presentLevel.ChallengeUpdate();
         }
+        
+        /*if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            if (gameManager.Mode == GameMode.Practice)
+                presentLevel.UpdateScore(gameManager);
+            else if (gameManager.Mode == GameMode.Challenge)
+                presentLevel.ChallengeUpdate();
+        }*/
     }
 
     private void ActivateCondition() {
