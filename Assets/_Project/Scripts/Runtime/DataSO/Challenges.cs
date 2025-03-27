@@ -73,11 +73,12 @@ namespace Dorkbots.XR.Runtime.DataSO
                 // TODO - Disable countdown timer UI   
                 TimeNotificationEvent.Invoke(new TimeNotificationData(false));
                 TimerActivationEvent.Invoke(new TimerData(false));
-                
-                // TODO - Display the score of practice mode
 
                 // TODO - Upgrade level/Go back to practice mode
                 OnChallengeCompleted?.Invoke();
+                
+                // TODO - Display the score of practice mode
+                DisplayScoreEvent.Invoke(new ScoreData(GameManager.Instance.CurrentLevel.practiceScore));
             }
         }
 
