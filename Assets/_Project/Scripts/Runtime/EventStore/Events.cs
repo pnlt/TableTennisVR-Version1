@@ -138,6 +138,20 @@ namespace Dorkbots.XR.Runtime
             this.flag = flag;
         }
     }
+    
+    public class FailedChallengeNotification : EventBase<FailedChallengeNotification, FailedChallengeNotificationData>
+    {}
+    
+    public readonly struct FailedChallengeNotificationData
+    {
+        private readonly bool flag;
+        public bool Flag => flag;
+
+        public FailedChallengeNotificationData(bool flag)
+        {
+            this.flag = flag;
+        }
+    }
 
     #endregion
 

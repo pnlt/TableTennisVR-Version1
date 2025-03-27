@@ -66,7 +66,7 @@ namespace Dorkbots.XR.Runtime.DataSO
 
                 // TODO - Disable Challenge Radial Button
 
-                // TODO - Disable countdown timer UI   
+                // TODO - Disable countdown timer UI
                 TimeNotificationEvent.Invoke(new TimeNotificationData(false));
                 TimerActivationEvent.Invoke(new TimerData(false));
 
@@ -78,11 +78,14 @@ namespace Dorkbots.XR.Runtime.DataSO
             }
         }
 
-        private void CheckedChallenge() {
-            UIManager.Instance.SetValueDebug("You're out");
-            // TODO - Disable score management - Player can not score anymore 
+        private void CheckedChallenge()
+        {
+            challengeScore = 0;
+            // TODO - Disable score management - Player can not score anymore
+            EventBus<ScoreActivationEvent>.Raise(new ScoreActivationEvent(false));
 
             // TODO - Display failed notification - Player has two options (face challenge again or move back to normal for more practices)
+            FailedChallengeNotification.Invoke(new FailedChallengeNotificationData(true));
         }
 
         public void Dispose() {

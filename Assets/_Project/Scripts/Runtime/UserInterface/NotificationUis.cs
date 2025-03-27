@@ -6,10 +6,13 @@ using UnityEngine;
 
 public class NotificationUis : MonoBehaviour
 {
+    [SerializeField] private float notificationDuration = 2f;
+
     public GameObject modeNoti;
     public GameObject timeNoti;
     public GameObject finishNoti;
     [SerializeField] private float notificationDuration = 2f;
+    public GameObject failedChallengeNoti;
     public RadialSelectionMenu radialSelectionMenu;
     public int challengePartIndex = 3;
 
@@ -17,6 +20,8 @@ public class NotificationUis : MonoBehaviour
         ModeAlterationNotificationEvent.Subscribe(ModeActivation);
         TimeNotificationEvent.Subscribe(TimeNotification);
         FinishNotificationEvent.Subscribe(FinishNotification);
+        TimeNotificationEvent.Subscribe(TimeNotificationState);
+        FailedChallengeNotification.Subscribe(FailedChallengeNotificationState);
     }
 
     private void ModeActivation(ModeNotificationData data) {
@@ -47,8 +52,12 @@ public class NotificationUis : MonoBehaviour
         finishNoti.SetActive(false);
     }
 
+    private void FailedChallengeNotificationState(FailedChallengeNotificationData data)
+    {
+        failedChallengeNoti.SetActive(data.Flag);
+    }
 
-    private void TimeNotification(TimeNotificationData data) {
+    private void TimeNotificationState(TimeNotificationData data) {
         timeNoti.SetActive(data.Flag);
     }
 
@@ -56,5 +65,7 @@ public class NotificationUis : MonoBehaviour
         ModeAlterationNotificationEvent.Unsubscribe(ModeActivation);
         TimeNotificationEvent.Unsubscribe(TimeNotification);
         FinishNotificationEvent.Unsubscribe(FinishNotification);
+        TimeNotificationEvent.Unsubscribe(TimeNotificationState);
+        FailedChallengeNotification.Unsubscribe(FailedChallengeNotificationState);
     }
 }
