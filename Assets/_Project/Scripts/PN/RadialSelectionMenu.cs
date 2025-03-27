@@ -14,7 +14,6 @@ public class RadialSelectionMenu : MonoBehaviour
     private List<IPathTrigger> pathTriggers = new List<IPathTrigger>();
     private List<Color> defaultColors = new List<Color>();
     private IPathTrigger pathTrigger;
-
     private int currentSelectedRadialPart = -1;
 
     private void Awake() {
@@ -25,6 +24,37 @@ public class RadialSelectionMenu : MonoBehaviour
             radialParts.Add(child.gameObject);
             pathTriggers.Add(child.GetComponent<IPathTrigger>());
             defaultColors.Add(child.GetComponent<Image>().color);
+        }
+
+        // Enable challenge part if practice mode was completed for this level
+        if (LevelManager.Instance != null)
+        {
+            int level = LevelManager.Instance.levelNumber;
+            int challengeIndex = GetChallengePartIndex();
+            if (challengeIndex != -1 && PlayerPrefs.GetInt("PracticeCompleted_Level" + level, 0) == 1)
+            {
+                EnableRadialPart(challengeIndex);
+            }
+        }
+    }
+
+    private int GetChallengePartIndex() {
+        for (int i = 0; i < pathTriggers.Count; i++)
+        {
+            if (pathTriggers[i] is ChallengePathTrigger)
+            {
+                return i;
+            }
+        }
+
+        return -1; // Return -1 if no ChallengePathTrigger is found
+    }
+
+    public void EnableChallengePart() {
+        int challengeIndex = GetChallengePartIndex();
+        if (challengeIndex != -1)
+        {
+            EnableRadialPart(challengeIndex);
         }
     }
 

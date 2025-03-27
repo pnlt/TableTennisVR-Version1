@@ -13,7 +13,6 @@ public class NotificationUis : MonoBehaviour
     public GameObject finishNoti;
     public GameObject failedChallengeNoti;
     public RadialSelectionMenu radialSelectionMenu;
-    public int challengePartIndex = 3;
 
     private void OnEnable() {
         ModeAlterationNotificationEvent.Subscribe(ModeActivation);
@@ -36,8 +35,15 @@ public class NotificationUis : MonoBehaviour
 
     private void EnableChallengePart() {
         if (radialSelectionMenu != null)
-            radialSelectionMenu.EnableRadialPart(challengePartIndex);
+        {
+            radialSelectionMenu.EnableChallengePart();
+            if (LevelManager.Instance != null)
+            {
+                PlayerPrefs.SetInt("PracticeCompleted_Level" + LevelManager.Instance.levelNumber, 1);
+            }
+        }
     }
+
 
     private void FinishNotification(FinishNotificationData data) {
         finishNoti.SetActive(data.Flag);
