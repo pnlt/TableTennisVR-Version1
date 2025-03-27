@@ -2354,6 +2354,72 @@ MonoBehaviour:
   _disablePitchFromSource: 0
   _disableYawFromSource: 0
   _disableRollFromSource: 0
+--- !u!1001 &276385911
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1061518650}
+    m_Modifications:
+    - target: {fileID: 2393485600164340379, guid: 458a2395adbeab249b5d2a22b5cb3879, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2393485600164340379, guid: 458a2395adbeab249b5d2a22b5cb3879, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2393485600164340379, guid: 458a2395adbeab249b5d2a22b5cb3879, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2393485600164340379, guid: 458a2395adbeab249b5d2a22b5cb3879, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2393485600164340379, guid: 458a2395adbeab249b5d2a22b5cb3879, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2393485600164340379, guid: 458a2395adbeab249b5d2a22b5cb3879, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2393485600164340379, guid: 458a2395adbeab249b5d2a22b5cb3879, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2393485600164340379, guid: 458a2395adbeab249b5d2a22b5cb3879, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2393485600164340379, guid: 458a2395adbeab249b5d2a22b5cb3879, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2393485600164340379, guid: 458a2395adbeab249b5d2a22b5cb3879, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5303083770989439977, guid: 458a2395adbeab249b5d2a22b5cb3879, type: 3}
+      propertyPath: m_Name
+      value: LevelManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334659754086378444, guid: 458a2395adbeab249b5d2a22b5cb3879, type: 3}
+      propertyPath: levelNumber
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 458a2395adbeab249b5d2a22b5cb3879, type: 3}
+--- !u!4 &276385912 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2393485600164340379, guid: 458a2395adbeab249b5d2a22b5cb3879, type: 3}
+  m_PrefabInstance: {fileID: 276385911}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &296675464
 GameObject:
   m_ObjectHideFlags: 0
@@ -5145,11 +5211,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe921bb04d62fa04a982f1e431c6e550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notificationDuration: 3
   modeNoti: {fileID: 1292989692}
   timeNoti: {fileID: 1535609576}
-  notificationDuration: 3
+  finishNoti: {fileID: 0}
+  failedChallengeNoti: {fileID: 0}
   radialSelectionMenu: {fileID: 1163807014}
-  challengePartIndex: 3
 --- !u!1 &838691181
 GameObject:
   m_ObjectHideFlags: 0
@@ -6360,6 +6427,7 @@ Transform:
   - {fileID: 240621567}
   - {fileID: 883409951}
   - {fileID: 2002675273}
+  - {fileID: 276385912}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1064428562
@@ -7197,11 +7265,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe921bb04d62fa04a982f1e431c6e550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notificationDuration: 3
   modeNoti: {fileID: 1031691074}
   timeNoti: {fileID: 1962913771}
-  notificationDuration: 3
+  finishNoti: {fileID: 0}
+  failedChallengeNoti: {fileID: 0}
   radialSelectionMenu: {fileID: 0}
-  challengePartIndex: 2
 --- !u!114 &1308940014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9254,6 +9323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels: []
+  radialSelectionMenu: {fileID: 0}
 --- !u!4 &1850908179
 Transform:
   m_ObjectHideFlags: 0

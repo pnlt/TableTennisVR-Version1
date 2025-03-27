@@ -10625,6 +10625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels: []
+  radialSelectionMenu: {fileID: 1163807014}
 --- !u!4 &1850908179
 Transform:
   m_ObjectHideFlags: 0

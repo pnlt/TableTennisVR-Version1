@@ -11,14 +11,24 @@ namespace _Project.Scripts.Runtime.Logics
         private GameManager gameManager;
         public List<LevelSO> levels;
 
-        private void Awake()
-        {
+        public RadialSelectionMenu radialSelectionMenu;
+        private Challenges challenges;
+
+        private void Awake() {
             gameManager = GameManager.Instance;
             levels = gameManager.Levels;
         }
 
-        private void OnEnable()
-        {
+        void Start() {
+            if (radialSelectionMenu == null)
+            {
+                radialSelectionMenu = FindObjectOfType<RadialSelectionMenu>(); // Fallback if not assigned in Inspector
+            }
+
+            challenges = new Challenges(radialSelectionMenu);
+        }
+
+        private void OnEnable() {
             gameManager.CurrentLevel.respectiveChallenge.OnChallengeCompleted += HandleChallengeCompleted;
             foreach (var level in levels)
             {
@@ -26,8 +36,7 @@ namespace _Project.Scripts.Runtime.Logics
             }
         }
 
-        private void LoadLevelData(LevelSO level)
-        {
+        private void LoadLevelData(LevelSO level) {
             if (GameManager.Instance.levelData.TryGetValue(level.levelNum, out var levelData))
             {
                 level.overScore = levelData.overScore;
@@ -36,13 +45,11 @@ namespace _Project.Scripts.Runtime.Logics
         }
 
 
-        private void HandleChallengeCompleted()
-        {
+        private void HandleChallengeCompleted() {
             gameManager.CompleteCurrentLevel();
         }
 
-        private void OnDisable()
-        {
+        private void OnDisable() {
             if (gameManager.CurrentLevel.respectiveChallenge != null)
             {
                 gameManager.CurrentLevel.respectiveChallenge.OnChallengeCompleted -= HandleChallengeCompleted;

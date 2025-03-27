@@ -33,17 +33,20 @@ public class NotificationUis : MonoBehaviour
         EnableChallengePart();
     }
 
+
     private void EnableChallengePart() {
         if (radialSelectionMenu != null)
         {
             radialSelectionMenu.EnableChallengePart();
             if (LevelManager.Instance != null)
             {
-                PlayerPrefs.SetInt("PracticeCompleted_Level" + LevelManager.Instance.levelNumber, 1);
+                int level = LevelManager.Instance.levelNumber;
+                PlayerPrefs.SetInt("PracticeCompleted_Level" + level, 1);
+                PlayerPrefs.SetInt("ChallengeCompleted_Level" + level, 0); // Ensure challenge not completed yet
+                PlayerPrefs.Save();
             }
         }
     }
-
 
     private void FinishNotification(FinishNotificationData data) {
         finishNoti.SetActive(data.Flag);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,17 +26,26 @@ public class RadialSelectionMenu : MonoBehaviour
             pathTriggers.Add(child.GetComponent<IPathTrigger>());
             defaultColors.Add(child.GetComponent<Image>().color);
         }
+    }
 
-        // Enable challenge part if practice mode was completed for this level
+    private void Start() {
         if (LevelManager.Instance != null)
         {
             int level = LevelManager.Instance.levelNumber;
             int challengeIndex = GetChallengePartIndex();
-            if (challengeIndex != -1 && PlayerPrefs.GetInt("PracticeCompleted_Level" + level, 0) == 1)
+            if (challengeIndex != -1)
             {
-                EnableRadialPart(challengeIndex);
+                bool practiceCompleted = PlayerPrefs.GetInt("PracticeCompleted_Level" + level, 0) == 1;
+                bool challengeCompleted = PlayerPrefs.GetInt("ChallengeCompleted_Level" + level, 0) == 1;
+                pathTriggers[challengeIndex].IsEnabled = practiceCompleted && !challengeCompleted;
             }
         }
+    }
+
+    public void DisableChallengePart() {
+        int challengeIndex = GetChallengePartIndex();
+        if (challengeIndex != -1)
+            pathTriggers[challengeIndex].IsEnabled = false;
     }
 
     private int GetChallengePartIndex() {
@@ -54,7 +64,7 @@ public class RadialSelectionMenu : MonoBehaviour
         int challengeIndex = GetChallengePartIndex();
         if (challengeIndex != -1)
         {
-            EnableRadialPart(challengeIndex);
+            pathTriggers[challengeIndex].IsEnabled = true;
         }
     }
 

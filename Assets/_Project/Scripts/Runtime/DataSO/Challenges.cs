@@ -11,8 +11,10 @@ namespace Dorkbots.XR.Runtime.DataSO
         public float limitedTime;
         public float challengeScore;
         public event Action OnChallengeCompleted;
+        private RadialSelectionMenu radialSelectionMenu;
 
-        public Challenges() {
+        public Challenges(RadialSelectionMenu radialSelectionMenu = null) {
+            this.radialSelectionMenu = radialSelectionMenu;
             Timer.OnTimerEnded += CheckedChallenge;
             challengeScore = 0;
         }
@@ -64,7 +66,21 @@ namespace Dorkbots.XR.Runtime.DataSO
                 // TODO - Display level up confirm notification
                 FinishNotificationEvent.Invoke(new FinishNotificationData(true));
 
-                // TODO - Disable Challenge Radial Button
+
+                // TODO - Disable Challenge Radial Part
+                if (radialSelectionMenu != null)
+                {
+                    radialSelectionMenu.DisableChallengePart();
+                }
+
+
+                // Persist challenge completion
+                if (LevelManager.Instance != null)
+                {
+                    int currentLevel = LevelManager.Instance.levelNumber;
+                    PlayerPrefs.SetInt("ChallengeCompleted_Level" + currentLevel, 1);
+                    PlayerPrefs.Save();
+                }
 
                 // TODO - Disable countdown timer UI
                 TimeNotificationEvent.Invoke(new TimeNotificationData(false));
@@ -78,8 +94,7 @@ namespace Dorkbots.XR.Runtime.DataSO
             }
         }
 
-        private void CheckedChallenge()
-        {
+        private void CheckedChallenge() {
             challengeScore = 0;
             // TODO - Disable score management - Player can not score anymore
             EventBus<ScoreActivationEvent>.Raise(new ScoreActivationEvent(false));
