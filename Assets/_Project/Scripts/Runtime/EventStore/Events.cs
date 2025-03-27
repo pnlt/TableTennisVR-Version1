@@ -118,7 +118,8 @@ namespace Dorkbots.XR.Runtime
     }
 
     public class TimerActivationEvent : EventBase<TimerActivationEvent, TimerData>
-    { }
+    {
+    }
 
     public readonly struct TimerData
     {
@@ -126,6 +127,20 @@ namespace Dorkbots.XR.Runtime
         public bool Flag => flag;
 
         public TimerData(bool flag)
+        {
+            this.flag = flag;
+        }
+    }
+    
+    public class FailedChallengeNotification : EventBase<FailedChallengeNotification, FailedChallengeNotificationData>
+    {}
+    
+    public readonly struct FailedChallengeNotificationData
+    {
+        private readonly bool flag;
+        public bool Flag => flag;
+
+        public FailedChallengeNotificationData(bool flag)
         {
             this.flag = flag;
         }

@@ -41,12 +41,23 @@ public class Timer : MonoBehaviour
         _isTimeOut = IsOutOfTime(limitedTime);
         if (_isTimeOut)
         {
+            // TODO - Display Notification and reset the challenge state
             OnTimerEnded?.Invoke();
+            
+            ResetTimer();
+            
+            gameObject.SetActive(false);
             return;
         }
 
         DisplayTimerEvent.Invoke(new DisplayTimerData(limitedTime));
         limitedTime -= Time.deltaTime;
+    }
+
+    private void ResetTimer()
+    {
+        _isTimeOut = false;
+        limitedTime = currentLevel.respectiveChallenge.limitedTime;
     }
 
     private bool IsOutOfTime(float limitedTime) {

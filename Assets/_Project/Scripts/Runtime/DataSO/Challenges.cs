@@ -84,10 +84,12 @@ namespace Dorkbots.XR.Runtime.DataSO
 
         private void CheckedChallenge()
         {
-            UIManager.Instance.SetValueDebug("You're out");
+            challengeScore = 0;
             // TODO - Disable score management - Player can not score anymore 
-
+            EventBus<ScoreActivationEvent>.Raise(new ScoreActivationEvent(false));
+            
             // TODO - Display failed notification - Player has two options (face challenge again or move back to normal for more practices)
+            FailedChallengeNotification.Invoke(new FailedChallengeNotificationData(true));
         }
 
         public void Dispose()

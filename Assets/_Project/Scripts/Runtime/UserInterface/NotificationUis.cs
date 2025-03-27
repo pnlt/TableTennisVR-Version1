@@ -6,15 +6,19 @@ using UnityEngine;
 
 public class NotificationUis : MonoBehaviour
 {
+    [SerializeField] private float notificationDuration = 2f;
+    
     public GameObject modeNoti;
     public GameObject timeNoti;
-    [SerializeField] private float notificationDuration = 2f;
+    public GameObject failedChallengeNoti;
+    
     public RadialSelectionMenu radialSelectionMenu;
     public int challengePartIndex = 3;
 
     private void OnEnable() {
         ModeAlterationNotificationEvent.Subscribe(ModeActivation);
-        TimeNotificationEvent.Subscribe(TimeNotification);
+        TimeNotificationEvent.Subscribe(TimeNotificationState);
+        FailedChallengeNotification.Subscribe(FailedChallengeNotificationState);
     }
 
     private void ModeActivation(ModeNotificationData data) {
@@ -34,13 +38,18 @@ public class NotificationUis : MonoBehaviour
             radialSelectionMenu.EnableRadialPart(challengePartIndex);
     }
 
+    private void FailedChallengeNotificationState(FailedChallengeNotificationData data)
+    {
+        failedChallengeNoti.SetActive(data.Flag);
+    }
 
-    private void TimeNotification(TimeNotificationData data) {
+    private void TimeNotificationState(TimeNotificationData data) {
         timeNoti.SetActive(data.Flag);
     }
 
     private void OnDisable() {
         ModeAlterationNotificationEvent.Unsubscribe(ModeActivation);
-        TimeNotificationEvent.Unsubscribe(TimeNotification);
+        TimeNotificationEvent.Unsubscribe(TimeNotificationState);
+        FailedChallengeNotification.Unsubscribe(FailedChallengeNotificationState);
     }
 }
