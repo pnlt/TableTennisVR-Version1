@@ -12,8 +12,7 @@ namespace Dorkbots.XR.Runtime
     {
         public readonly SoundTypes audioType;
 
-        public PlayMusicEventData(SoundTypes audioType)
-        {
+        public PlayMusicEventData(SoundTypes audioType) {
             this.audioType = audioType;
         }
     }
@@ -27,8 +26,7 @@ namespace Dorkbots.XR.Runtime
         public readonly SoundTypes audioType;
         public readonly Vector3 position;
 
-        public PlaySFXEventData(SoundTypes audioType, Vector3 position = default(Vector3))
-        {
+        public PlaySFXEventData(SoundTypes audioType, Vector3 position = default(Vector3)) {
             this.audioType = audioType;
             this.position = position;
         }
@@ -46,8 +44,7 @@ namespace Dorkbots.XR.Runtime
     {
         public SplineCheckpoint Checkpoint;
 
-        public LineData(SplineCheckpoint checkpoint)
-        {
+        public LineData(SplineCheckpoint checkpoint) {
             this.Checkpoint = checkpoint;
         }
     }
@@ -61,8 +58,7 @@ namespace Dorkbots.XR.Runtime
         private readonly float score;
         public float Score => score;
 
-        public ScoreData(float score)
-        {
+        public ScoreData(float score) {
             this.score = score;
         }
     }
@@ -95,8 +91,21 @@ namespace Dorkbots.XR.Runtime
         private readonly bool flag;
         public bool Flag => flag;
 
-        public ModeNotificationData(bool flag)
-        {
+        public ModeNotificationData(bool flag) {
+            this.flag = flag;
+        }
+    }
+
+    public class FinishNotificationEvent : EventBase<FinishNotificationEvent, FinishNotificationData>
+    {
+    }
+
+    public readonly struct FinishNotificationData
+    {
+        private readonly bool flag;
+        public bool Flag => flag;
+
+        public FinishNotificationData(bool flag) {
             this.flag = flag;
         }
     }
@@ -111,22 +120,21 @@ namespace Dorkbots.XR.Runtime
         private readonly bool flag;
         public bool Flag => flag;
 
-        public TimeNotificationData(bool flag)
-        {
+        public TimeNotificationData(bool flag) {
             this.flag = flag;
         }
     }
 
     public class TimerActivationEvent : EventBase<TimerActivationEvent, TimerData>
-    { }
+    {
+    }
 
     public readonly struct TimerData
     {
         private readonly bool flag;
         public bool Flag => flag;
 
-        public TimerData(bool flag)
-        {
+        public TimerData(bool flag) {
             this.flag = flag;
         }
     }
@@ -143,8 +151,7 @@ namespace Dorkbots.XR.Runtime
 
         public float ElapsedTime => elapsedTime;
 
-        public DisplayTimerData(float elapsedTime)
-        {
+        public DisplayTimerData(float elapsedTime) {
             this.elapsedTime = elapsedTime;
         }
     }

@@ -8,6 +8,7 @@ public class NotificationUis : MonoBehaviour
 {
     public GameObject modeNoti;
     public GameObject timeNoti;
+    public GameObject finishNoti;
     [SerializeField] private float notificationDuration = 2f;
     public RadialSelectionMenu radialSelectionMenu;
     public int challengePartIndex = 3;
@@ -15,6 +16,7 @@ public class NotificationUis : MonoBehaviour
     private void OnEnable() {
         ModeAlterationNotificationEvent.Subscribe(ModeActivation);
         TimeNotificationEvent.Subscribe(TimeNotification);
+        FinishNotificationEvent.Subscribe(FinishNotification);
     }
 
     private void ModeActivation(ModeNotificationData data) {
@@ -34,6 +36,17 @@ public class NotificationUis : MonoBehaviour
             radialSelectionMenu.EnableRadialPart(challengePartIndex);
     }
 
+    private void FinishNotification(FinishNotificationData data) {
+        finishNoti.SetActive(data.Flag);
+        if (data.Flag)
+            StartCoroutine(DisableFinishNotificationAfterDelay());
+    }
+
+    private IEnumerator DisableFinishNotificationAfterDelay() {
+        yield return new WaitForSeconds(notificationDuration);
+        finishNoti.SetActive(false);
+    }
+
 
     private void TimeNotification(TimeNotificationData data) {
         timeNoti.SetActive(data.Flag);
@@ -42,5 +55,6 @@ public class NotificationUis : MonoBehaviour
     private void OnDisable() {
         ModeAlterationNotificationEvent.Unsubscribe(ModeActivation);
         TimeNotificationEvent.Unsubscribe(TimeNotification);
+        FinishNotificationEvent.Unsubscribe(FinishNotification);
     }
 }

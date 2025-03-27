@@ -12,24 +12,21 @@ namespace Dorkbots.XR.Runtime.DataSO
         public float challengeScore;
         public event Action OnChallengeCompleted;
 
-        public Challenges()
-        {
+        public Challenges() {
             Timer.OnTimerEnded += CheckedChallenge;
             challengeScore = 0;
         }
-        
+
         #region Score calculation
 
-        public void IncreaseScore()
-        {
+        public void IncreaseScore() {
             // Save challenge score data
             challengeScore++;
             DisplayScoreEvent.Invoke(new ScoreData(challengeScore));
             ChallengeFulfillment();
         }
 
-        public void DecreaseScore(int levelNum, int satisfiedCondition, bool correctPose)
-        {
+        public void DecreaseScore(int levelNum, int satisfiedCondition, bool correctPose) {
             switch (levelNum)
             {
                 case 1:
@@ -42,13 +39,12 @@ namespace Dorkbots.XR.Runtime.DataSO
                     ScoreRegulation(satisfiedCondition, correctPose, 0.5f);
                     break;
             }
-            
+
             DisplayScoreEvent.Invoke(new ScoreData(challengeScore));
         }
 
         private void ScoreRegulation(int satisfiedCondition, bool correctPose,
-            float decreaseCoefficient)
-        {
+            float decreaseCoefficient) {
             if ((correctPose && satisfiedCondition == 1) || (!correctPose && satisfiedCondition == 2) ||
                 (!correctPose && satisfiedCondition == 1))
             {
@@ -59,15 +55,15 @@ namespace Dorkbots.XR.Runtime.DataSO
                 challengeScore -= (decreaseCoefficient + 0.5f);
             }
         }
-        
+
         #endregion
 
-        public void ChallengeFulfillment()
-        {
+        public void ChallengeFulfillment() {
             if (challengeScore >= requiredScore)
             {
                 // TODO - Display level up confirm notification
-                
+                FinishNotificationEvent.Invoke(new FinishNotificationData(true));
+
                 // TODO - Disable Challenge Radial Button
 
                 // TODO - Disable countdown timer UI   
@@ -76,22 +72,20 @@ namespace Dorkbots.XR.Runtime.DataSO
 
                 // TODO - Upgrade level/Go back to practice mode
                 OnChallengeCompleted?.Invoke();
-                
+
                 // TODO - Display the score of practice mode
                 DisplayScoreEvent.Invoke(new ScoreData(GameManager.Instance.CurrentLevel.practiceScore));
             }
         }
 
-        private void CheckedChallenge()
-        {
+        private void CheckedChallenge() {
             UIManager.Instance.SetValueDebug("You're out");
             // TODO - Disable score management - Player can not score anymore 
 
             // TODO - Display failed notification - Player has two options (face challenge again or move back to normal for more practices)
         }
 
-        public void Dispose()
-        {
+        public void Dispose() {
             Timer.OnTimerEnded -= CheckedChallenge;
             GC.SuppressFinalize(this);
         }
