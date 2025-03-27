@@ -146,16 +146,6 @@ MonoBehaviour:
   pauseIcon: {fileID: 21300000, guid: 3c3e113f498c83147a4746db75b5b4aa, type: 3}
   playPauseImg: {fileID: 2012241069}
   isPlaying: 0
-  boxColors:
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 0.70596766, g: 1, b: 0.5518868, a: 1}
-  - {r: 0.5529412, g: 0.931934, b: 1, a: 1}
-  - {r: 0.8331967, g: 0.5529412, b: 1, a: 1}
-  boxes:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   leftLabel: {fileID: 1063907059}
   rightLabel: {fileID: 633508249}
   backgroundImage: {fileID: 521208901}

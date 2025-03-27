@@ -18,8 +18,6 @@ public class RoundedBoxVideoController : MonoBehaviour
     public Image playPauseImg;
 
     public bool isPlaying;
-    public List<Color> boxColors;
-    public List<RectTransform> boxes;
 
     private float animationCycleDuration;
 
@@ -77,46 +75,8 @@ public class RoundedBoxVideoController : MonoBehaviour
     }
 
     private void Start() {
-        animations = new List<BoxAnimation>();
-        var viewRect = (RectTransform)transform;
-        var size = viewRect.rect.size;
-        var sections = size.x / ((float)boxes.Count);
-
         timeSlider.onValueChanged.AddListener(delegate { OnSliderValueChange(); });
         volumeSlider.onValueChanged.AddListener(delegate { OnVolumeValueChange(); });
-
-        var boxCountMinusOne = (float)boxes.Count - 1.0f;
-        var boxMultiplier = boxCountMinusOne * 0.35f + 1.0f;
-        animationCycleDuration = animationDuration / ((float)cycleCount);
-        var boxAnimationDuration = animationCycleDuration / boxMultiplier;
-
-        var boxStartingHeight = boxes[0].rect.height * 0.6f;
-        var boxAnimationHeight = (size.y * 0.5f) + boxStartingHeight;
-
-        var boxStartVelocity = (2.0f * boxAnimationHeight) / (boxAnimationDuration * 0.5f);
-        var boxAcceleration = boxStartVelocity / (boxAnimationDuration * 0.5f);
-
-        for (int i = 0; i < boxes.Count; i++)
-        {
-            var box = boxes[i];
-            var mult = (float)i + 0.5f;
-            box.anchoredPosition = new Vector2(mult * sections, 0.0f);
-
-            var anim = new BoxAnimation()
-            {
-                duration = boxAnimationDuration,
-                startHeight = boxStartingHeight,
-                animationMaxHeight = boxAnimationHeight,
-                rectTransform = box,
-                startVelocity = boxStartVelocity,
-                acceleration = boxAcceleration,
-                startTime = boxAnimationDuration * 0.35f * (float)i,
-                image = box.GetComponent<Image>(),
-            };
-
-            animations.Add(anim);
-        }
-
 
         SetPlay();
         UpdateBackgroundMaterialProperties();
@@ -160,7 +120,7 @@ public class RoundedBoxVideoController : MonoBehaviour
 
     private void SetPaused() {
         isPlaying = false;
-        videoPlayer.Stop();
+        videoPlayer.Pause();
         playPauseImg.sprite = playIcon;
     }
 
@@ -198,12 +158,12 @@ public class RoundedBoxVideoController : MonoBehaviour
             animationTime = timeSlider.value * animationDuration;
         }
 
-        for (int i = 0; i < animations.Count; i++)
+        /*for (int i = 0; i < animations.Count; i++)
         {
             var colorIndex = Mathf.Floor(animationTime / animationCycleDuration) % boxColors.Count;
             animations[i].SetColor(boxColors[(int)colorIndex]);
             animations[i].Update(animationTime % animationCycleDuration);
-        }
+        }*/
 
         //Time labels
         var remainingTime = Mathf.Round(animationDuration - animationTime);
