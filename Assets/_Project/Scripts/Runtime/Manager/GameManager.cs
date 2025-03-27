@@ -131,7 +131,6 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
         }
 
         DataPersistentManager.Instance.SaveGame();
-        currentLevelIndex++;
         Mode = GameMode.Practice;
     }
 
