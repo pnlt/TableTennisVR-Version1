@@ -5,6 +5,6 @@ public class BackPlayBtn : MonoBehaviour
 {
     public void OnClick() {
         // TODO - Go back to play scene
-        SceneManager.LoadSceneAsync(3);
+        SceneManager.LoadSceneAsync("Level_1");
     }
 }
