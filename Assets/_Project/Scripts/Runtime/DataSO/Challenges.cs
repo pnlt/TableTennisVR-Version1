@@ -67,15 +67,17 @@ namespace Dorkbots.XR.Runtime.DataSO
             if (challengeScore >= requiredScore)
             {
                 // TODO - Display level up confirm notification
+                
+                // TODO - Disable Challenge Radial Button
 
                 // TODO - Disable countdown timer UI   
+                TimeNotificationEvent.Invoke(new TimeNotificationData(false));
                 TimerActivationEvent.Invoke(new TimerData(false));
+                
+                // TODO - Display the score of practice mode
 
                 // TODO - Upgrade level/Go back to practice mode
                 OnChallengeCompleted?.Invoke();
-
-                // TODO - Transition to menu scene
-                SceneManager.LoadSceneAsync("LevelSelection");
             }
         }
 
