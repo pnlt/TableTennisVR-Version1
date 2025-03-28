@@ -69,9 +69,7 @@ namespace Dorkbots.XR.Runtime.DataSO
 
                 // TODO - Disable Challenge Radial Part
                 if (radialSelectionMenu != null)
-                {
                     radialSelectionMenu.DisableChallengePart();
-                }
 
 
                 // Persist challenge completion
@@ -83,8 +81,8 @@ namespace Dorkbots.XR.Runtime.DataSO
                 }
 
                 // TODO - Disable countdown timer UI
-                TimeNotificationEvent.Invoke(new TimeNotificationData(false));
-                TimerActivationEvent.Invoke(new TimerData(false));
+                //TimeNotificationEvent.Invoke(new TimeNotificationData(false));
+                //TimerActivationEvent.Invoke(new TimerData(false));
 
                 // TODO - Upgrade level/Go back to practice mode
                 OnChallengeCompleted?.Invoke();

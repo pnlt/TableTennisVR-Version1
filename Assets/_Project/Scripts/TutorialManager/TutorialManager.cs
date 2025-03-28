@@ -28,7 +28,7 @@ public class TutorialManager : MonoBehaviour
     }
 
     public static void ResetTutorial() {
-        PlayerPrefs.SetInt(TUTORIAL_PLAYED_KEY, 0);
+        PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
     }
 }

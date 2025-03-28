@@ -13,7 +13,6 @@ public class RadialSelectionMenu : MonoBehaviour
 
     private List<GameObject> radialParts = new List<GameObject>();
     private List<IPathTrigger> pathTriggers = new List<IPathTrigger>();
-    private List<Color> defaultColors = new List<Color>();
     private IPathTrigger pathTrigger;
     private int currentSelectedRadialPart = -1;
 
@@ -24,7 +23,6 @@ public class RadialSelectionMenu : MonoBehaviour
             Transform child = radialPartCanvas.GetChild(i);
             radialParts.Add(child.gameObject);
             pathTriggers.Add(child.GetComponent<IPathTrigger>());
-            defaultColors.Add(child.GetComponent<Image>().color);
         }
     }
 
@@ -101,8 +99,6 @@ public class RadialSelectionMenu : MonoBehaviour
         // Reset the selected part’s visuals
         if (currentSelectedRadialPart >= 0 && currentSelectedRadialPart < radialParts.Count)
         {
-            radialParts[currentSelectedRadialPart].GetComponent<Image>().color =
-                defaultColors[currentSelectedRadialPart];
             radialParts[currentSelectedRadialPart].transform.localScale = Vector3.one;
         }
 
@@ -139,14 +135,6 @@ public class RadialSelectionMenu : MonoBehaviour
                 //radialParts[currentSelectedRadialPart].GetComponent<Image>().color = Color.red;
                 radialParts[currentSelectedRadialPart].transform.localScale = 1.1f * Vector3.one;
             }
-        }
-    }
-
-    //method to enable a specific radial part by index
-    public void EnableRadialPart(int index) {
-        if (index >= 0 && index < pathTriggers.Count)
-        {
-            pathTriggers[index].IsEnabled = true;
         }
     }
 }
