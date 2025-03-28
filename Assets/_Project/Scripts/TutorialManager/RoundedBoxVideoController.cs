@@ -48,7 +48,8 @@ public class RoundedBoxVideoController : MonoBehaviour
         public float startTime;
         public float acceleration;
 
-        public void Update(float animationTime) {
+        public void Update(float animationTime)
+        {
             var animTime = animationTime - startTime;
             animTime = Mathf.Clamp(animTime, 0.0f, duration);
             var animTime2 = animTime * animTime;
@@ -63,18 +64,21 @@ public class RoundedBoxVideoController : MonoBehaviour
             rectTransform.rotation = Quaternion.Euler(0.0f, 0.0f, heightParam * 360.0f);
         }
 
-        public void SetColor(Color color) {
+        public void SetColor(Color color)
+        {
             image.color = color;
         }
     }
 
     private List<BoxAnimation> animations;
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         UpdateBackgroundMaterialProperties();
     }
 
-    private void Start() {
+    private void Start()
+    {
         timeSlider.onValueChanged.AddListener(delegate { OnSliderValueChange(); });
         volumeSlider.onValueChanged.AddListener(delegate { OnVolumeValueChange(); });
 
@@ -82,11 +86,13 @@ public class RoundedBoxVideoController : MonoBehaviour
         UpdateBackgroundMaterialProperties();
     }
 
-    private void OnVolumeValueChange() {
+    private void OnVolumeValueChange()
+    {
         videoPlayer.SetDirectAudioVolume(0, volumeSlider.value);
     }
 
-    public void UpdateBackgroundMaterialProperties() {
+    private void UpdateBackgroundMaterialProperties()
+    {
         var normalizedDirection = direction.normalized;
         backgroundImage.materialForRendering.SetVector(columnDirectionID, normalizedDirection);
         backgroundImage.materialForRendering.SetVector(rowDirectionID,
@@ -98,11 +104,32 @@ public class RoundedBoxVideoController : MonoBehaviour
         backgroundImage.materialForRendering.SetFloat(animationTimeID, animationTime);
     }
 
-    public void OnSliderValueChange() {
+    private void OnSliderValueChange()
+    {
         animationTime = timeSlider.value * animationDuration;
+        videoPlayer.time = animationTime;
     }
 
-    public void TogglePlayPause() {
+    public void GoBackTenSeconds()
+    {
+        if (animationTime - 10 >= 0)
+        {
+            animationTime -= 10;
+            timeSlider.value = animationTime / animationDuration;
+        }
+    }
+
+    public void GoAheadTenSeconds()
+    {
+        if (animationTime + 10 < animationDuration)
+        {
+            animationTime += 10;
+            timeSlider.value = animationTime / animationDuration;
+        }
+    }
+
+    public void TogglePlayPause()
+    {
         if (isPlaying)
         {
             SetPaused();
@@ -118,19 +145,22 @@ public class RoundedBoxVideoController : MonoBehaviour
         }
     }
 
-    private void SetPaused() {
+    private void SetPaused()
+    {
         isPlaying = false;
         videoPlayer.Pause();
         playPauseImg.sprite = playIcon;
     }
 
-    private void SetPlay() {
+    private void SetPlay()
+    {
         isPlaying = true;
         videoPlayer.Play();
         playPauseImg.sprite = pauseIcon;
     }
 
-    private string FormatTime(float seconds) {
+    private string FormatTime(float seconds)
+    {
         var mins = seconds / 60.0f;
         var secs = (mins - Mathf.Floor(mins)) * 60.0f;
         mins = Mathf.Floor(mins);
@@ -142,7 +172,8 @@ public class RoundedBoxVideoController : MonoBehaviour
         return $"{iMins}:{secsFormat}";
     }
 
-    private void LateUpdate() {
+    private void LateUpdate()
+    {
         if (isPlaying)
         {
             animationTime += Time.deltaTime;
@@ -157,13 +188,6 @@ public class RoundedBoxVideoController : MonoBehaviour
         {
             animationTime = timeSlider.value * animationDuration;
         }
-
-        /*for (int i = 0; i < animations.Count; i++)
-        {
-            var colorIndex = Mathf.Floor(animationTime / animationCycleDuration) % boxColors.Count;
-            animations[i].SetColor(boxColors[(int)colorIndex]);
-            animations[i].Update(animationTime % animationCycleDuration);
-        }*/
 
         //Time labels
         var remainingTime = Mathf.Round(animationDuration - animationTime);
