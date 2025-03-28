@@ -12,6 +12,6 @@ public class TutorialPathTrigger : MonoBehaviour, IPathTrigger
     }
 
     public void OnPathTriggered() {
-        SceneManager.LoadSceneAsync(2);
+        SceneManager.LoadSceneAsync("Tutorial");
     }
 }

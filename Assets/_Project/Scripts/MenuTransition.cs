@@ -15,8 +15,7 @@ namespace _Project.Scripts
         }
 
         public void OnPathTriggered() {
-            SceneManager.LoadSceneAsync(1);
-            //SceneTransitionManager.singleton.GoToSceneAsync(1);
+            SceneManager.LoadSceneAsync("LevelSelection");
         }
     }
 }

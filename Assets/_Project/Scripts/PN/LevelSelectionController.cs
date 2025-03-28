@@ -1,6 +1,7 @@
 using System;
 using Michsky.UI.Heat;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelSelectionController : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class LevelSelectionController : MonoBehaviour
         gameManager.CurrentLevelIndex(level);
     }
 
+    public void OnPlayPressed(string levelLabel)
+    {
+        SceneManager.LoadSceneAsync(levelLabel);
+    }
+
     private void Start() {
         UpdateLevelStatus();
     }
@@ -28,16 +34,7 @@ public class LevelSelectionController : MonoBehaviour
 
             if (GameManager.Instance.IsLevelUnlocked(i))
             {
-                /*if (i == GameManager.Instance.currentLevelIndex)
-                {
-                    ChapterManager.SetCurrent(chapterId);
-                }
-                else
-                {
-                    ChapterManager.SetUnlocked(chapterId);
-                }*/
                 ChapterManager.SetUnlocked(chapterId);
-                //ChapterManager
             }
             else
             {

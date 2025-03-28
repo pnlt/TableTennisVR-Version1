@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
@@ -18,6 +19,8 @@ public class VideoTimer : MonoBehaviour
     private void Update()
     {
         //CountdownTimer();
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+            videoPlayer.time = 8;
     }
 
     private void CountdownTimer()

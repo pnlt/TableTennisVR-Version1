@@ -17,10 +17,13 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
 
     [Header("All Level")] [SerializeField] private List<LevelSO> levels;
 
+    # region Level Vars
     private LevelSO currentLevel;
     private int currentLevelIndex;
-    private GameMode mode = GameMode.Practice;
     private List<bool> levelCompletionStatus = new();
+    # endregion
+    
+    private GameMode mode = GameMode.Practice;
     public GameData.LevelData levelData = new();
 
     #region GameStates
