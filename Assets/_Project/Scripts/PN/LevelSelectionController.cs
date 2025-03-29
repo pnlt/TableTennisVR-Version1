@@ -15,7 +15,7 @@ public class LevelSelectionController : MonoBehaviour
 
     public void ChooseLevel(int level)
     {
-        gameManager.CurrentLevelIndex(level);
+        gameManager.CurrentLevelIndex = level;
     }
 
     public void OnPlayPressed(string levelLabel)
