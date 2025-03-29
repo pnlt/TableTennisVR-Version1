@@ -31,12 +31,13 @@ public class NotificationUis : MonoBehaviour
         FinishNotificationEvent.Subscribe(FinishNotification);
         TimeNotificationEvent.Subscribe(TimeNotificationState);
         FailedChallengeNotification.Subscribe(FailedChallengeNotificationState);
+        UpdateUIinteractionEvent.Subscribe(UpdateNotificationState);
         DisableCanvas();
     }
 
     private void ModeActivation(ModeNotificationData data) {
         modeNoti.SetActive(data.Flag);
-        UpdateNotificationState(data.Flag);
+        UpdateNotificationState();
         if (data.Flag)
             StartCoroutine(DisableNotificationAfterDelay());
     }
@@ -45,7 +46,7 @@ public class NotificationUis : MonoBehaviour
         EnableChallengePart();
         yield return new WaitForSeconds(notificationDuration);
         modeNoti.SetActive(false);
-        UpdateNotificationState(false);
+        UpdateNotificationState();
     }
 
     private void EnableChallengePart() {
@@ -55,7 +56,7 @@ public class NotificationUis : MonoBehaviour
 
     private void FinishNotification(FinishNotificationData data) {
         finishNoti.SetActive(data.Flag);
-        UpdateNotificationState(data.Flag);
+        UpdateNotificationState();
         if (data.Flag)
             StartCoroutine(DisableFinishNotificationAfterDelay());
     }
@@ -63,21 +64,21 @@ public class NotificationUis : MonoBehaviour
     private IEnumerator DisableFinishNotificationAfterDelay() {
         yield return new WaitForSeconds(notificationDuration);
         finishNoti.SetActive(false);
-        UpdateNotificationState(false);
+        UpdateNotificationState();
     }
 
     private void FailedChallengeNotificationState(FailedChallengeNotificationData data) {
         failedChallengeNoti.SetActive(data.Flag);
-        UpdateNotificationState(data.Flag);
+        UpdateNotificationState();
         interactionArea.SetActive(true);
     }
 
     private void TimeNotificationState(TimeNotificationData data) {
         timeNoti.SetActive(data.Flag);
-        UpdateNotificationState(data.Flag);
+        UpdateNotificationState();
     }
 
-    private void UpdateNotificationState(bool notificationActivated) {
+    private void UpdateNotificationState() {
         isAnyNotificationActive = modeNoti.activeSelf || timeNoti.activeSelf || finishNoti.activeSelf ||
                                   failedChallengeNoti.activeSelf;
 
@@ -111,6 +112,7 @@ public class NotificationUis : MonoBehaviour
         FinishNotificationEvent.Unsubscribe(FinishNotification);
         TimeNotificationEvent.Unsubscribe(TimeNotificationState);
         FailedChallengeNotification.Unsubscribe(FailedChallengeNotificationState);
+        UpdateUIinteractionEvent.Unsubscribe(UpdateNotificationState);
         DisableCanvas();
     }
 }

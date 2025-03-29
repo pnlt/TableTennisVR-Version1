@@ -103,9 +103,6 @@ public class RadialSelectionMenu : MonoBehaviour
     }
 
     private void GetSelectedRadialPart() {
-        radialPartCanvas.position = handTransform.position;
-        radialPartCanvas.rotation = handTransform.rotation;
-        
         Vector3 centerToHand = handTransform.position - radialPartCanvas.position;
         Vector3 centerToHandProjected = Vector3.ProjectOnPlane(centerToHand, radialPartCanvas.forward);
 

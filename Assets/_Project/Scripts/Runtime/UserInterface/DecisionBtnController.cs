@@ -21,6 +21,7 @@ public class DecisionBtnController : MonoBehaviour
     /// Player agrees with the option of playing challenge again
     /// </summary>
     private void OnYesClicked() {
+        UpdateUIinteractionEvent.Invoke();
         FailedChallengeNotification.Invoke(new FailedChallengeNotificationData(false));
 
         // TODO - Enable score system so that player can score

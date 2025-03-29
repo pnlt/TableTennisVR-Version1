@@ -173,4 +173,8 @@ namespace Dorkbots.XR.Runtime
     public class DisableChallengePathEvent : EventBase<DisableChallengePathEvent>
     {
     }
+
+    public class UpdateUIinteractionEvent : EventBase<UpdateUIinteractionEvent>
+    {
+    }
 }
