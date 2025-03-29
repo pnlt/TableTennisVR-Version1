@@ -3574,7 +3574,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &98372572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17172,7 +17172,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &551717576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17210,7 +17210,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 551717574}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
@@ -66858,6 +66858,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Exit
       objectReference: {fileID: 0}
+    - target: {fileID: 1940809339475553034, guid: 1ac8a9b9cbe251547aaa784b15ddbc1d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1940809339475553035, guid: 1ac8a9b9cbe251547aaa784b15ddbc1d, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -68301,9 +68305,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8570478574754328682, guid: 2030b02667a06c046a3aeca982d0b446, type: 3}
       propertyPath: descriptionText
-      value: 'Are you sure you want to exit?
+      value: 'Are you sure you want to exit to the Menu?
 
-        This action cannot be undone.'
+        This action cannot
+        be undone.'
       objectReference: {fileID: 0}
     - target: {fileID: 8570478574754328682, guid: 2030b02667a06c046a3aeca982d0b446, type: 3}
       propertyPath: onOpen.m_PersistentCalls.m_Calls.Array.size

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Michsky.UI.Heat
 {
@@ -6,7 +7,8 @@ namespace Michsky.UI.Heat
     {
         public void Exit() 
         { 
-            Application.Quit();
+            //Application.Quit();
+            SceneManager.LoadSceneAsync(0);
 #if UNITY_EDITOR
             Debug.Log("<b>[Heat UI]</b> Exit function works in builds only.");
 #endif
