@@ -36,6 +36,7 @@ public class NotificationUis : MonoBehaviour
 
     private void ModeActivation(ModeNotificationData data) {
         modeNoti.SetActive(data.Flag);
+        UpdateNotificationState(data.Flag);
         if (data.Flag)
             StartCoroutine(DisableNotificationAfterDelay());
     }
@@ -44,6 +45,7 @@ public class NotificationUis : MonoBehaviour
         EnableChallengePart();
         yield return new WaitForSeconds(notificationDuration);
         modeNoti.SetActive(false);
+        UpdateNotificationState(false);
     }
 
     private void EnableChallengePart() {
@@ -53,6 +55,7 @@ public class NotificationUis : MonoBehaviour
 
     private void FinishNotification(FinishNotificationData data) {
         finishNoti.SetActive(data.Flag);
+        UpdateNotificationState(data.Flag);
         if (data.Flag)
             StartCoroutine(DisableFinishNotificationAfterDelay());
     }
@@ -60,19 +63,23 @@ public class NotificationUis : MonoBehaviour
     private IEnumerator DisableFinishNotificationAfterDelay() {
         yield return new WaitForSeconds(notificationDuration);
         finishNoti.SetActive(false);
+        UpdateNotificationState(false);
     }
 
     private void FailedChallengeNotificationState(FailedChallengeNotificationData data) {
         failedChallengeNoti.SetActive(data.Flag);
         UpdateNotificationState(data.Flag);
+        interactionArea.SetActive(true);
     }
 
     private void TimeNotificationState(TimeNotificationData data) {
         timeNoti.SetActive(data.Flag);
+        UpdateNotificationState(data.Flag);
     }
 
     private void UpdateNotificationState(bool notificationActivated) {
-        isAnyNotificationActive = failedChallengeNoti.activeSelf;
+        isAnyNotificationActive = modeNoti.activeSelf || timeNoti.activeSelf || finishNoti.activeSelf ||
+                                  failedChallengeNoti.activeSelf;
 
         if (isAnyNotificationActive)
         {
@@ -88,7 +95,6 @@ public class NotificationUis : MonoBehaviour
         if (notificationCanvas != null)
         {
             notificationCanvas.enabled = true;
-            interactionArea.SetActive(true);
         }
     }
 
