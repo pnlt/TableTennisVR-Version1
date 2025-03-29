@@ -26,8 +26,7 @@ public class NotificationUis : MonoBehaviour
     private GameManager gameManager;
     private const string IN_CHALLENGE = "InChallenge_Level";
 
-    private void OnEnable()
-    {
+    private void OnEnable() {
         ModeAlterationNotificationEvent.Subscribe(ModeActivation);
         FinishNotificationEvent.Subscribe(FinishNotification);
         TimeNotificationEvent.Subscribe(TimeNotificationState);
@@ -35,58 +34,45 @@ public class NotificationUis : MonoBehaviour
         DisableCanvas();
     }
 
-    private void ModeActivation(ModeNotificationData data)
-    {
+    private void ModeActivation(ModeNotificationData data) {
         modeNoti.SetActive(data.Flag);
-        UpdateNotificationState(data.Flag);
         if (data.Flag)
             StartCoroutine(DisableNotificationAfterDelay());
     }
 
-    private IEnumerator DisableNotificationAfterDelay()
-    {
+    private IEnumerator DisableNotificationAfterDelay() {
         EnableChallengePart();
         yield return new WaitForSeconds(notificationDuration);
         modeNoti.SetActive(false);
-        UpdateNotificationState(false);
     }
 
-    private void EnableChallengePart()
-    {
+    private void EnableChallengePart() {
         PlayerPrefs.SetInt(IN_CHALLENGE + gameManager.CurrentLevelIndex, 1); // Ensure challenge not completed yet
         PlayerPrefs.Save();
     }
 
-    private void FinishNotification(FinishNotificationData data)
-    {
+    private void FinishNotification(FinishNotificationData data) {
         finishNoti.SetActive(data.Flag);
-        UpdateNotificationState(data.Flag);
         if (data.Flag)
             StartCoroutine(DisableFinishNotificationAfterDelay());
     }
 
-    private IEnumerator DisableFinishNotificationAfterDelay()
-    {
+    private IEnumerator DisableFinishNotificationAfterDelay() {
         yield return new WaitForSeconds(notificationDuration);
         finishNoti.SetActive(false);
-        UpdateNotificationState(false);
     }
 
-    private void FailedChallengeNotificationState(FailedChallengeNotificationData data)
-    {
+    private void FailedChallengeNotificationState(FailedChallengeNotificationData data) {
         failedChallengeNoti.SetActive(data.Flag);
         UpdateNotificationState(data.Flag);
     }
 
-    private void TimeNotificationState(TimeNotificationData data)
-    {
+    private void TimeNotificationState(TimeNotificationData data) {
         timeNoti.SetActive(data.Flag);
-        UpdateNotificationState(data.Flag);
     }
 
     private void UpdateNotificationState(bool notificationActivated) {
-        isAnyNotificationActive = modeNoti.activeSelf || timeNoti.activeSelf || finishNoti.activeSelf ||
-                                  failedChallengeNoti.activeSelf;
+        isAnyNotificationActive = failedChallengeNoti.activeSelf;
 
         if (isAnyNotificationActive)
         {
@@ -112,11 +98,9 @@ public class NotificationUis : MonoBehaviour
             notificationCanvas.enabled = false;
             interactionArea.SetActive(false);
         }
-
     }
 
-    private void OnDisable()
-    {
+    private void OnDisable() {
         ModeAlterationNotificationEvent.Unsubscribe(ModeActivation);
         FinishNotificationEvent.Unsubscribe(FinishNotification);
         TimeNotificationEvent.Unsubscribe(TimeNotificationState);
