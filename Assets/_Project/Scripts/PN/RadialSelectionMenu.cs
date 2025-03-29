@@ -103,6 +103,9 @@ public class RadialSelectionMenu : MonoBehaviour
     }
 
     private void GetSelectedRadialPart() {
+        radialPartCanvas.position = handTransform.position;
+        radialPartCanvas.rotation = handTransform.rotation;
+        
         Vector3 centerToHand = handTransform.position - radialPartCanvas.position;
         Vector3 centerToHandProjected = Vector3.ProjectOnPlane(centerToHand, radialPartCanvas.forward);
 
@@ -111,8 +114,11 @@ public class RadialSelectionMenu : MonoBehaviour
         if (angle < 0)
             angle += 360;
 
+        var testVal = centerToHand.magnitude;
+        if (testVal > 0.05f)
+            UIManager.Instance.SetValueDebug("center");
+
         int newSelectedRadialPart = (int)(angle * numberOfRadialPart / 360f);
-        UIManager.Instance.SetValueDebug($"{angle}");
 
         // Update visuals only if selection changes
         if (newSelectedRadialPart != currentSelectedRadialPart)
