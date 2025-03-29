@@ -10,8 +10,8 @@ public class RadialSelectionMenu : MonoBehaviour
     public Transform radialPartCanvas;
     public Transform handTransform;
 
-    private List<GameObject> radialParts = new List<GameObject>();
-    private List<IPathTrigger> pathTriggers = new List<IPathTrigger>();
+    private List<GameObject> radialParts = new();
+    private List<IPathTrigger> pathTriggers = new();
     private IPathTrigger pathTrigger;
     private int currentSelectedRadialPart = -1;
 
@@ -121,6 +121,7 @@ public class RadialSelectionMenu : MonoBehaviour
             angle += 360;
 
         int newSelectedRadialPart = (int)(angle * numberOfRadialPart / 360f);
+        UIManager.Instance.SetValueDebug($"{newSelectedRadialPart}");
 
         // Update visuals only if selection changes
         if (newSelectedRadialPart != currentSelectedRadialPart)
@@ -138,7 +139,6 @@ public class RadialSelectionMenu : MonoBehaviour
             // Highlight the new part only if it’s enabled
             if (pathTrigger.IsEnabled)
             {
-                //radialParts[currentSelectedRadialPart].GetComponent<Image>().color = Color.red;
                 radialParts[currentSelectedRadialPart].transform.localScale = 1.1f * Vector3.one;
             }
         }
