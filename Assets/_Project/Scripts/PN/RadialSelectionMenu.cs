@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
+using Dorkbots.XR.Runtime;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class RadialSelectionMenu : MonoBehaviour
 {
@@ -26,6 +25,10 @@ public class RadialSelectionMenu : MonoBehaviour
         }
     }
 
+    private void OnEnable() {
+        DisableChallengePathEvent.Subscribe(DisableChallengePart);
+    }
+
     private void Start() {
         if (LevelManager.Instance != null)
         {
@@ -43,7 +46,10 @@ public class RadialSelectionMenu : MonoBehaviour
     public void DisableChallengePart() {
         int challengeIndex = GetChallengePartIndex();
         if (challengeIndex != -1)
+        {
+            Debug.Log($"Disabling challenge part at index {challengeIndex}");
             pathTriggers[challengeIndex].IsEnabled = false;
+        }
     }
 
     private int GetChallengePartIndex() {
@@ -136,5 +142,9 @@ public class RadialSelectionMenu : MonoBehaviour
                 radialParts[currentSelectedRadialPart].transform.localScale = 1.1f * Vector3.one;
             }
         }
+    }
+
+    private void OnDisable() {
+        DisableChallengePathEvent.Unsubscribe(DisableChallengePart);
     }
 }

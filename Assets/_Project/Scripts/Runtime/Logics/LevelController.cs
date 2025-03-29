@@ -24,8 +24,6 @@ namespace _Project.Scripts.Runtime.Logics
             {
                 radialSelectionMenu = FindObjectOfType<RadialSelectionMenu>(); // Fallback if not assigned in Inspector
             }
-
-            challenges = new Challenges(radialSelectionMenu);
         }
 
         private void OnEnable() {

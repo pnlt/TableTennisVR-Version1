@@ -16,8 +16,7 @@ public class CheckingConditionEvent : IEvent
 
     public Checkpoints CheckpointsManager => checkpointsManager;
 
-    public CheckingConditionEvent(Checkpoints checkpointsManager)
-    {
+    public CheckingConditionEvent(Checkpoints checkpointsManager) {
         this.checkpointsManager = checkpointsManager;
     }
 }
@@ -27,8 +26,7 @@ public struct ScoreActivationEvent : IEvent
     private readonly bool flag;
     public bool Flag => flag;
 
-    public ScoreActivationEvent(bool flag)
-    {
+    public ScoreActivationEvent(bool flag) {
         this.flag = flag;
     }
 }
@@ -51,28 +49,24 @@ public class ScoreManagement : MonoBehaviour
         set => correctPose = value;
     }
 
-    private void Awake()
-    {
+    private void Awake() {
         gameManager = GameManager.Instance;
         conditionEvents = new EventBinding<ConditionActivatedEvent>(ActivateCondition);
         finalScoreEvents = new EventBinding<CheckingConditionEvent>(MeetCondition);
         scoreActivationEvent = new EventBinding<ScoreActivationEvent>(ScoreSystemActivation);
     }
 
-    private void Start()
-    {
+    private void Start() {
         presentLevel = gameManager.CurrentLevel;
     }
 
-    private void OnEnable()
-    {
+    private void OnEnable() {
         EventBus<ConditionActivatedEvent>.Register(conditionEvents);
         EventBus<CheckingConditionEvent>.Register(finalScoreEvents);
         EventBus<ScoreActivationEvent>.Register(scoreActivationEvent);
     }
 
-    private void Update()
-    {
+    private void Update() {
         if (OVRInput.Get(OVRInput.Button.Two))
         {
             if (gameManager.Mode == GameMode.Practice)
@@ -82,23 +76,19 @@ public class ScoreManagement : MonoBehaviour
         }
     }
 
-    private void ScoreSystemActivation(ScoreActivationEvent scoreActivationEvent)
-    {
+    private void ScoreSystemActivation(ScoreActivationEvent scoreActivationEvent) {
         gameObject.SetActive(scoreActivationEvent.Flag);
     }
 
-    private void ActivateCondition()
-    {
+    private void ActivateCondition() {
         satisfiedConditions += 1;
     }
 
-    private void MeetCondition(CheckingConditionEvent data)
-    {
+    private void MeetCondition(CheckingConditionEvent data) {
         CheckConditionSatisfaction(data.CheckpointsManager);
     }
 
-    private void CheckConditionSatisfaction(Checkpoints checkingCheckpoint)
-    {
+    private void CheckConditionSatisfaction(Checkpoints checkingCheckpoint) {
         presentLevel = gameManager.CurrentLevel;
         UIManager.Instance.SetValueDebug($"Correct Pose: {correctPose} + {satisfiedConditions}");
         if (satisfiedConditions >= 2 && correctPose)
@@ -109,8 +99,7 @@ public class ScoreManagement : MonoBehaviour
         ResetSatisfiedConditionNum();
     }
 
-    private void ScoreSuccessfully(Notification successfulNotification, IScoreIncrease level)
-    {
+    private void ScoreSuccessfully(Notification successfulNotification, IScoreIncrease level) {
         // Plus Score
         //UIManager.Instance.SetValueDebug("Success");
         if (gameManager.Mode == GameMode.Practice)
@@ -126,8 +115,7 @@ public class ScoreManagement : MonoBehaviour
     /// <summary>
     /// Player failed at hitting right area on spin wheel or did not complete the line correctly
     /// </summary>
-    private void ScoreFailed(Notification failedNotification, IScoreDecrease level)
-    {
+    private void ScoreFailed(Notification failedNotification, IScoreDecrease level) {
         //UIManager.Instance.SetValueDebug("Failed");
         // Remain or decrease score
         if (gameManager.Mode == GameMode.Challenge)
@@ -139,14 +127,12 @@ public class ScoreManagement : MonoBehaviour
     /// <summary>
     /// Reset the number of satisfied condition to be zero, being its initial state
     /// </summary>
-    private void ResetSatisfiedConditionNum()
-    {
+    private void ResetSatisfiedConditionNum() {
         satisfiedConditions = 0;
         correctPose = false;
     }
 
-    private void OnDisable()
-    {
+    private void OnDisable() {
         EventBus<ConditionActivatedEvent>.Deregister(conditionEvents);
         EventBus<CheckingConditionEvent>.Deregister(finalScoreEvents);
         EventBus<ScoreActivationEvent>.Deregister(scoreActivationEvent);

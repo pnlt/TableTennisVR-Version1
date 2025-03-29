@@ -34,6 +34,11 @@ public class ChallengePathTrigger : MonoBehaviour, IPathTrigger
             isEnabled = value;
             // Update the visual state when enabled/disabled
             SetBtnColor(isEnabled);
+            if (originalGradient != null)
+            {
+                originalGradient.enabled = false;
+                originalGradient.enabled = true;
+            }
         }
     }
 

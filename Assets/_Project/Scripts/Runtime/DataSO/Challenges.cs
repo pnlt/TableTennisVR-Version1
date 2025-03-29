@@ -13,8 +13,7 @@ namespace Dorkbots.XR.Runtime.DataSO
         public event Action OnChallengeCompleted;
         private RadialSelectionMenu radialSelectionMenu;
 
-        public Challenges(RadialSelectionMenu radialSelectionMenu = null) {
-            this.radialSelectionMenu = radialSelectionMenu;
+        public Challenges() {
             Timer.OnTimerEnded += CheckedChallenge;
             challengeScore = 0;
         }
@@ -66,11 +65,8 @@ namespace Dorkbots.XR.Runtime.DataSO
                 // TODO - Display level up confirm notification
                 FinishNotificationEvent.Invoke(new FinishNotificationData(true));
 
-
                 // TODO - Disable Challenge Radial Part
-                if (radialSelectionMenu != null)
-                    radialSelectionMenu.DisableChallengePart();
-
+                DisableChallengePathEvent.Invoke();
 
                 // Persist challenge completion
                 if (LevelManager.Instance != null)
@@ -81,8 +77,8 @@ namespace Dorkbots.XR.Runtime.DataSO
                 }
 
                 // TODO - Disable countdown timer UI
-                //TimeNotificationEvent.Invoke(new TimeNotificationData(false));
-                //TimerActivationEvent.Invoke(new TimerData(false));
+                TimeNotificationEvent.Invoke(new TimeNotificationData(false));
+                TimerActivationEvent.Invoke(new TimerData(false));
 
                 // TODO - Upgrade level/Go back to practice mode
                 OnChallengeCompleted?.Invoke();

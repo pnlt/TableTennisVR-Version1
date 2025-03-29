@@ -138,17 +138,17 @@ namespace Dorkbots.XR.Runtime
             this.flag = flag;
         }
     }
-    
+
     public class FailedChallengeNotification : EventBase<FailedChallengeNotification, FailedChallengeNotificationData>
-    {}
-    
+    {
+    }
+
     public readonly struct FailedChallengeNotificationData
     {
         private readonly bool flag;
         public bool Flag => flag;
 
-        public FailedChallengeNotificationData(bool flag)
-        {
+        public FailedChallengeNotificationData(bool flag) {
             this.flag = flag;
         }
     }
@@ -168,5 +168,9 @@ namespace Dorkbots.XR.Runtime
         public DisplayTimerData(float elapsedTime) {
             this.elapsedTime = elapsedTime;
         }
+    }
+
+    public class DisableChallengePathEvent : EventBase<DisableChallengePathEvent>
+    {
     }
 }
