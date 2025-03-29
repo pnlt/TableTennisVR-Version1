@@ -32,7 +32,11 @@ public class GameManager : PersistentSingleton<GameManager>, IDataPersistence
 
     #endregion
 
-    public void CurrentLevelIndex(int value) => currentLevelIndex = value;
+    public int CurrentLevelIndex
+    {
+        get => currentLevelIndex;
+        set => currentLevelIndex = value;
+    }
 
     public LevelSO CurrentLevel
     {

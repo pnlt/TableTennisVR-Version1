@@ -12,6 +12,7 @@ namespace Dorkbots.XR.Runtime.DataSO
         public float challengeScore;
         public event Action OnChallengeCompleted;
         private RadialSelectionMenu radialSelectionMenu;
+        private const string IN_CHALLENGE = "InChallenge_Level";
 
         public Challenges() {
             Timer.OnTimerEnded += CheckedChallenge;
@@ -66,15 +67,11 @@ namespace Dorkbots.XR.Runtime.DataSO
                 FinishNotificationEvent.Invoke(new FinishNotificationData(true));
 
                 // TODO - Disable Challenge Radial Part
-                DisableChallengePathEvent.Invoke();
+                //DisableChallengePathEvent.Invoke();
 
                 // Persist challenge completion
-                if (LevelManager.Instance != null)
-                {
-                    int currentLevel = LevelManager.Instance.levelNumber;
-                    PlayerPrefs.SetInt("ChallengeCompleted_Level" + currentLevel, 1);
-                    PlayerPrefs.Save();
-                }
+                PlayerPrefs.SetInt(IN_CHALLENGE + GameManager.Instance.CurrentLevelIndex, 0);
+                PlayerPrefs.Save();
 
                 // TODO - Disable countdown timer UI
                 TimeNotificationEvent.Invoke(new TimeNotificationData(false));

@@ -30,7 +30,7 @@ public class RadialSelectionMenu : MonoBehaviour
     }
 
     private void Start() {
-        if (LevelManager.Instance != null)
+        /*if (LevelManager.Instance != null)
         {
             int level = LevelManager.Instance.levelNumber;
             int challengeIndex = GetChallengePartIndex();
@@ -40,14 +40,13 @@ public class RadialSelectionMenu : MonoBehaviour
                 bool challengeCompleted = PlayerPrefs.GetInt("ChallengeCompleted_Level" + level, 0) == 1;
                 pathTriggers[challengeIndex].IsEnabled = practiceCompleted && !challengeCompleted;
             }
-        }
+        }*/
     }
 
-    public void DisableChallengePart() {
+    private void DisableChallengePart() {
         int challengeIndex = GetChallengePartIndex();
         if (challengeIndex != -1)
         {
-            Debug.Log($"Disabling challenge part at index {challengeIndex}");
             pathTriggers[challengeIndex].IsEnabled = false;
         }
     }
@@ -62,14 +61,6 @@ public class RadialSelectionMenu : MonoBehaviour
         }
 
         return -1; // Return -1 if no ChallengePathTrigger is found
-    }
-
-    public void EnableChallengePart() {
-        int challengeIndex = GetChallengePartIndex();
-        if (challengeIndex != -1)
-        {
-            pathTriggers[challengeIndex].IsEnabled = true;
-        }
     }
 
     private void Update() {
@@ -111,7 +102,7 @@ public class RadialSelectionMenu : MonoBehaviour
         radialPartCanvas.gameObject.SetActive(false);
     }
 
-    public void GetSelectedRadialPart() {
+    private void GetSelectedRadialPart() {
         Vector3 centerToHand = handTransform.position - radialPartCanvas.position;
         Vector3 centerToHandProjected = Vector3.ProjectOnPlane(centerToHand, radialPartCanvas.forward);
 
@@ -121,7 +112,7 @@ public class RadialSelectionMenu : MonoBehaviour
             angle += 360;
 
         int newSelectedRadialPart = (int)(angle * numberOfRadialPart / 360f);
-        UIManager.Instance.SetValueDebug($"{newSelectedRadialPart}");
+        UIManager.Instance.SetValueDebug($"{angle}");
 
         // Update visuals only if selection changes
         if (newSelectedRadialPart != currentSelectedRadialPart)
