@@ -12,7 +12,7 @@ public class NotificationUis : MonoBehaviour
     public GameObject timeNoti;
     public GameObject finishNoti;
     public GameObject failedChallengeNoti;
-    public RadialSelectionMenu radialSelectionMenu;
+    public GameObject pauseNoti;
 
     [SerializeField] private Canvas notificationCanvas;
     private bool isAnyNotificationActive = false;
@@ -32,7 +32,14 @@ public class NotificationUis : MonoBehaviour
         TimeNotificationEvent.Subscribe(TimeNotificationState);
         FailedChallengeNotification.Subscribe(FailedChallengeNotificationState);
         UpdateUIinteractionEvent.Subscribe(UpdateNotificationState);
+        PauseNotificationEvent.Subscribe(PauseNotification);
+        
         DisableCanvas();
+    }
+
+    private void PauseNotification(PauseNotificationData data)
+    {
+        pauseNoti.SetActive(data.Flag);
     }
 
     private void ModeActivation(ModeNotificationData data) {
@@ -113,6 +120,7 @@ public class NotificationUis : MonoBehaviour
         TimeNotificationEvent.Unsubscribe(TimeNotificationState);
         FailedChallengeNotification.Unsubscribe(FailedChallengeNotificationState);
         UpdateUIinteractionEvent.Unsubscribe(UpdateNotificationState);
+        PauseNotificationEvent.Unsubscribe(PauseNotification);
         DisableCanvas();
     }
 }
