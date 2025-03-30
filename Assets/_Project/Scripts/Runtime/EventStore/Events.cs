@@ -153,6 +153,19 @@ namespace Dorkbots.XR.Runtime
         }
     }
 
+    public class PauseNotificationEvent : EventBase<PauseNotificationEvent, PauseNotificationData>
+    {
+    }
+
+    public readonly struct PauseNotificationData
+    {
+        private readonly bool flag;
+        public bool Flag => flag;
+
+        public PauseNotificationData(bool flag) {
+            this.flag = flag;
+        }
+    }
     #endregion
 
     public class DisplayTimerEvent : EventBase<DisplayTimerEvent, DisplayTimerData>
@@ -168,10 +181,6 @@ namespace Dorkbots.XR.Runtime
         public DisplayTimerData(float elapsedTime) {
             this.elapsedTime = elapsedTime;
         }
-    }
-
-    public class DisableChallengePathEvent : EventBase<DisableChallengePathEvent>
-    {
     }
 
     public class UpdateUIinteractionEvent : EventBase<UpdateUIinteractionEvent>

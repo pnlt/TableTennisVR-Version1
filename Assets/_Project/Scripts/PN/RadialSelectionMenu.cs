@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Dorkbots.XR.Runtime;
 using UnityEngine;
 
 public class RadialSelectionMenu : MonoBehaviour
@@ -13,7 +12,7 @@ public class RadialSelectionMenu : MonoBehaviour
     [Header("Menu Positioning")] public float menuDistanceFromHand = 0.2f; // Offset distance from hand
     public Vector3 menuPositionOffset = new Vector3(0, 0, 0.2f); // Additional offset if needed
 
-    [Header("Selection Settings")] public float selectionDeadzone = 0.05f; // Minimum distance to select
+    [Header("Selection Settings")] public float selectionDeadZone = 0.05f; // Minimum distance to select
     public float selectionHighlightScale = 1.1f; // Scale factor for highlighting
 
     private List<GameObject> radialParts = new();
@@ -31,30 +30,6 @@ public class RadialSelectionMenu : MonoBehaviour
             radialParts.Add(child.gameObject);
             pathTriggers.Add(child.GetComponent<IPathTrigger>());
         }
-    }
-
-    private void OnEnable() {
-        DisableChallengePathEvent.Subscribe(DisableChallengePart);
-    }
-
-    private void DisableChallengePart() {
-        int challengeIndex = GetChallengePartIndex();
-        if (challengeIndex != -1)
-        {
-            pathTriggers[challengeIndex].IsEnabled = false;
-        }
-    }
-
-    private int GetChallengePartIndex() {
-        for (int i = 0; i < pathTriggers.Count; i++)
-        {
-            if (pathTriggers[i] is ChallengePathTrigger)
-            {
-                return i;
-            }
-        }
-
-        return -1; // Return -1 if no ChallengePathTrigger is found
     }
 
     private void Update() {
@@ -122,7 +97,7 @@ public class RadialSelectionMenu : MonoBehaviour
         Vector3 handMovementProjected = Vector3.ProjectOnPlane(handMovement, radialPartCanvas.forward);
 
         // Check if hand has moved enough to make a selection
-        if (handMovementProjected.magnitude < selectionDeadzone)
+        if (handMovementProjected.magnitude < selectionDeadZone)
         {
             // If hand hasn't moved enough, clear selection
             if (currentSelectedRadialPart >= 0 && currentSelectedRadialPart < radialParts.Count)
@@ -162,9 +137,5 @@ public class RadialSelectionMenu : MonoBehaviour
                 radialParts[currentSelectedRadialPart].transform.localScale = selectionHighlightScale * Vector3.one;
             }
         }
-    }
-
-    private void OnDisable() {
-        DisableChallengePathEvent.Unsubscribe(DisableChallengePart);
     }
 }
