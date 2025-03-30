@@ -19,7 +19,11 @@ namespace _Project.Scripts.Runtime.UserInterface
         private void DisplayTime(DisplayTimerData timerData)
         {
             var timeStr = TimeSpan.FromSeconds(timerData.ElapsedTime).ToString(@"mm\:ss");
-            timeTxt.text = timeStr;
+            
+            if (timerData.ElapsedTime <= 11)
+                timeTxt.text = $"<color=red>{timeStr}</color>";
+            else
+                timeTxt.text = timeStr;
         }
 
         private void OnDisable()

@@ -23,6 +23,7 @@ namespace Michsky.UI.Heat
         {
             var animator = serializedObject.FindProperty("animator");
             var canvasGroup = serializedObject.FindProperty("canvasGroup");
+            var closeButton = serializedObject.FindProperty("closeBtn");
 
             var updateMode = serializedObject.FindProperty("updateMode");
             var barDirection = serializedObject.FindProperty("barDirection");
@@ -32,6 +33,7 @@ namespace Michsky.UI.Heat
             HeatUIEditorHandler.DrawHeader(customSkin, "Core Header", 6);
             HeatUIEditorHandler.DrawProperty(animator, customSkin, "Animator");
             HeatUIEditorHandler.DrawProperty(canvasGroup, customSkin, "Canvas Group");
+            HeatUIEditorHandler.DrawProperty(closeButton, customSkin, "Close Button");
 
             HeatUIEditorHandler.DrawHeader(customSkin, "Options Header", 10);
             GUILayout.BeginVertical(EditorStyles.helpBox);

@@ -12,6 +12,7 @@ namespace Michsky.UI.Heat
         // Resources
         [SerializeField] private Animator animator;
         [SerializeField] private CanvasGroup canvasGroup;
+        [SerializeField] private GameObject closeBtn;
 
         // Settings
         [SerializeField] private UpdateMode updateMode = UpdateMode.DeltaTime;
@@ -75,6 +76,11 @@ namespace Michsky.UI.Heat
 
                 btn.IsInteractable(false);
             }
+        }
+
+        public void ShowExitSetting(bool flag)
+        {
+            closeBtn.SetActive(flag);
         }
 
         public void Show()
