@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faa3f735c40cfba4fb2499bd6f1d09c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UnparentOnAwake: 1
   score: 0
   coin: 0
   levelDataLabel:
@@ -51,3 +52,7 @@ MonoBehaviour:
   levels:
   - {fileID: 11400000, guid: daefbe58d7abc9b448b8940fef554ebd, type: 2}
   - {fileID: 11400000, guid: 6862dc88f2bafb14992da66bf0369960, type: 2}
+  - {fileID: 11400000, guid: a46542e5f3555454cbc644b9ad06e377, type: 2}
+  levelData:
+    m_keys: 
+    m_values: []

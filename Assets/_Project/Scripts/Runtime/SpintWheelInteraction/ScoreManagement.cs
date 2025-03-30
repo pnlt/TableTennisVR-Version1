@@ -101,7 +101,6 @@ public class ScoreManagement : MonoBehaviour
 
     private void ScoreSuccessfully(Notification successfulNotification, IScoreIncrease level) {
         // Plus Score
-        //UIManager.Instance.SetValueDebug("Success");
         if (gameManager.Mode == GameMode.Practice)
             level.UpdateScore(gameManager);
         else if (gameManager.Mode == GameMode.Challenge) // In challenge mode
@@ -116,11 +115,6 @@ public class ScoreManagement : MonoBehaviour
     /// Player failed at hitting right area on spin wheel or did not complete the line correctly
     /// </summary>
     private void ScoreFailed(Notification failedNotification, IScoreDecrease level) {
-        //UIManager.Instance.SetValueDebug("Failed");
-        // Remain or decrease score
-        if (gameManager.Mode == GameMode.Challenge)
-            level.ScoreDecrease(satisfiedConditions, correctPose);
-
         failedNotification.ResetLine();
     }
 
