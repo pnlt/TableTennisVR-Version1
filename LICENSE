@@ -1,21 +1,160 @@
-MIT License
+ACADEMIC RESEARCH LICENSE
 
-Copyright (c) 2025 NGUYỄN LÊ TẤT PHÚ
+TableTennis VR - Virtual Reality Table Tennis Experience
+Copyright (c) 2025 Nguyen Le Tat Phu, Doan Cat Phu
+All Rights Reserved
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+================================================================================
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+ACADEMIC RESEARCH LICENSE AGREEMENT
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+This software and associated documentation files (the "Software") are provided 
+under the terms of this Academic Research License Agreement ("License"). By 
+accessing, downloading, or using the Software, you agree to be bound by the 
+terms of this License.
+
+================================================================================
+
+1. GRANT OF LICENSE
+
+Subject to the terms and conditions of this License, the copyright holders 
+hereby grant you a limited, non-exclusive, non-transferable license to use 
+the Software solely for:
+
+   a) Academic research purposes
+   b) Educational activities within accredited institutions
+   c) Peer review and reproducibility verification
+   d) Reference and study for scholarly work
+
+2. RESTRICTIONS
+
+You may NOT:
+
+   a) Use the Software for any commercial purposes
+   b) Distribute, sublicense, or sell copies of the Software
+   c) Create derivative works for commercial use
+   d) Use the Software in production environments
+   e) Remove or alter any copyright notices or this License
+   f) Use the Software for any purpose other than academic research
+   g) Reverse engineer, decompile, or disassemble the Software for 
+      commercial purposes
+
+3. RESEARCH PUBLICATION CONTEXT
+
+This Software was developed as part of academic research for publication in 
+a Q1 VR journal. The Software is provided to support:
+
+   - Research reproducibility
+   - Peer review processes
+   - Academic collaboration
+   - Educational advancement in VR technology
+
+4. ATTRIBUTION REQUIREMENTS
+
+If you use this Software in your research, you MUST:
+
+   a) Provide proper citation to the original research paper
+   b) Include this License notice in any distribution
+   c) Acknowledge the original authors in any publications
+   d) Clearly indicate any modifications made to the original Software
+
+   Suggested citation format:
+   
+   Nguyen Le Tat Phu, Doan Cat Phu. "Advanced Physics Simulation and Haptic 
+   Feedback in Virtual Reality Table Tennis." Q1 VR Journal, 2025.
+
+5. MODIFICATIONS
+
+You may modify the Software for academic research purposes only, provided that:
+
+   a) All modifications are clearly documented
+   b) The original copyright notice is preserved
+   c) Modified versions are not distributed outside academic contexts
+   d) Any publications using modified versions cite the original work
+
+6. DISTRIBUTION
+
+Distribution of the Software is permitted only:
+
+   a) Within academic institutions for educational purposes
+   b) To fellow researchers for collaborative academic work
+   c) For peer review processes
+   d) When accompanied by this complete License
+
+7. DISCLAIMER OF WARRANTIES
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
 SOFTWARE.
+
+8. LIMITATION OF LIABILITY
+
+IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
+EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+9. TERMINATION
+
+This License is effective until terminated. Your rights under this License 
+will terminate automatically without notice if you fail to comply with any 
+term(s) of this License. Upon termination, you must cease all use of the 
+Software and destroy all copies in your possession.
+
+10. GOVERNING LAW
+
+This License shall be governed by and construed in accordance with the laws 
+of [Your Country/State], without regard to its conflict of laws principles.
+
+11. ENTIRE AGREEMENT
+
+This License constitutes the entire agreement between you and the copyright 
+holders regarding the Software and supersedes all prior or contemporaneous 
+understandings regarding such subject matter.
+
+12. CONTACT INFORMATION
+
+For licensing inquiries, academic collaboration, or permission requests:
+
+   Primary Contact: Nguyen Le Tat Phu
+   Email: research@tabletennisxr.com
+   Institution: [Your Institution]
+   
+   Secondary Contact: Doan Cat Phu
+   Email: [Secondary Email]
+   Institution: [Institution]
+
+================================================================================
+
+COMMERCIAL USE NOTICE
+
+This Software is NOT licensed for commercial use. Any commercial use, including 
+but not limited to:
+
+- Product development
+- Commercial distribution
+- Revenue-generating activities
+- Production deployment
+- Commercial derivative works
+
+Requires explicit written permission from the copyright holders and may be 
+subject to separate licensing terms and fees.
+
+For commercial licensing inquiries, contact: research@tabletennisxr.com
+
+================================================================================
+
+END OF LICENSE TERMS
+
+By using this Software, you acknowledge that you have read this License, 
+understand it, and agree to be bound by its terms and conditions.
+
+Last Updated: [Current Date]
+Version: 1.0
